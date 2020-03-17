@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion compileSdkVersion
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompatVersion"
+    implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
+    // 基础库（不包任何第三方框架）
+    implementation project(':base')
+}

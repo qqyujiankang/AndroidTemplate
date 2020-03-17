@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.TestFragmentD">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/tb_test_e_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backButton="false"
+        app:title="@string/home_nav_network" />
+
+    <com.cn.android.widget.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/getHtml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get请求" />
+
+        <Button
+            android:id="@+id/postHtml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post请求" />
+
+        <Button
+            android:id="@+id/getImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请求图片" />
+
+        <Button
+            android:id="@+id/uploadFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上传文件" />
+
+        <Button
+            android:id="@+id/downloadFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下载文件" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清理数据" />
+
+    </com.cn.android.widget.FlowLayout>
+
+    <ProgressBar
+        android:id="@+id/id_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/id_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
