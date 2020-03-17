@@ -41,6 +41,7 @@
     <color name="white5">#0DFFFFFF</color>
     <color name="white50">#80FFFFFF</color>
     <color name="white55">#8CFFFFFF</color>
+    <color name="white6">#F6F6F6</color>
     <color name="white60">#99FFFFFF</color>
     <color name="white65">#A6FFFFFF</color>
     <color name="white70">#B3FFFFFF</color>
@@ -49,6 +50,7 @@
     <color name="white85">#D9FFFFFF</color>
     <color name="white90">#E6FFFFFF</color>
     <color name="white95">#F2FFFFFF</color>
+    <color name="whitecccccc">#cccccc</color>
     <color name="yellow">#FFFF00</color>
     <dimen name="font_size_100px">50sp</dimen>
     <dimen name="font_size_102px">51sp</dimen>

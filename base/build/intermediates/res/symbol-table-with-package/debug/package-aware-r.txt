@@ -907,6 +907,7 @@ color white45
 color white5
 color white50
 color white55
+color white6
 color white60
 color white65
 color white70
@@ -915,6 +916,7 @@ color white80
 color white85
 color white90
 color white95
+color whitecccccc
 color yellow
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav

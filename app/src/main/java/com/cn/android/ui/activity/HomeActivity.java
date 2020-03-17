@@ -14,11 +14,9 @@ import com.cn.android.helper.ActivityStackManager;
 import com.cn.android.helper.DoubleClickHelper;
 import com.cn.android.other.KeyboardWatcher;
 import com.cn.android.ui.fragment.HomePageFragment;
-import com.cn.android.ui.fragment.TestFragmentA;
 import com.cn.android.ui.fragment.TestFragmentB;
 import com.cn.android.ui.fragment.TestFragmentC;
-import com.cn.android.ui.fragment.TestFragmentD;
-import com.cn.android.ui.fragment.TestFragmentE;
+import com.cn.android.ui.fragment.PersonalCenterFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hjq.base.BaseFragmentAdapter;
 
@@ -66,8 +64,8 @@ public final class HomeActivity extends MyActivity
         mPagerAdapter.addFragment(HomePageFragment.newInstance());
         mPagerAdapter.addFragment(TestFragmentB.newInstance());
         mPagerAdapter.addFragment(TestFragmentC.newInstance());
-        mPagerAdapter.addFragment(TestFragmentD.newInstance());
-        mPagerAdapter.addFragment(TestFragmentE.newInstance());
+      //  mPagerAdapter.addFragment(TestFragmentD.newInstance());
+        mPagerAdapter.addFragment(PersonalCenterFragment.newInstance());
 
         mViewPager.setAdapter(mPagerAdapter);
 
@@ -97,9 +95,9 @@ public final class HomeActivity extends MyActivity
             case 3:
                 mBottomNavigationView.setSelectedItemId(R.id.home_me);
                 break;
-            case 4:
-                mBottomNavigationView.setSelectedItemId(R.id.home_message);
-                break;
+//            case 4:
+//                mBottomNavigationView.setSelectedItemId(R.id.home_message);
+//                break;
             default:
                 break;
         }
@@ -127,9 +125,9 @@ public final class HomeActivity extends MyActivity
             case R.id.home_me:
                 mViewPager.setCurrentItem(3);
                 return true;
-            case R.id.home_network:
-                mViewPager.setCurrentItem(4);
-                return true;
+//            case R.id.home_network:
+//                mViewPager.setCurrentItem(4);
+//                return true;
             default:
                 break;
         }

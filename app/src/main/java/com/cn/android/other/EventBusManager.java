@@ -1,9 +1,10 @@
 package com.cn.android.other;
 
+import com.cn.android.mall.MyEventBusIndex;
+
 import androidx.collection.ArrayMap;
 
 
-import com.cn.android.xn.MyEventBusIndex;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

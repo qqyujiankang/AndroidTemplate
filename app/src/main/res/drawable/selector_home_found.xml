@@ -5,6 +5,6 @@
     <item android:drawable="@drawable/tab_ico_found" android:state_checked="true" />
 
     <!-- 默认状态 -->
-    <item android:drawable="@drawable/tab_ico_found_off" />
+    <item android:drawable="@drawable/fenlei" />
 
 </selector>

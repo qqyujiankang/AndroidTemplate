@@ -25,6 +25,8 @@
     <color name="white15">#26FFFFFF</color>
     <color name="white10">#1AFFFFFF</color>
     <color name="white5">#0DFFFFFF</color>
+    <color name="white6">#F6F6F6</color>
+    <color name="whitecccccc">#cccccc</color>
 
     <!-- 黑色 -->
     <color name="black">#FF000000</color>
