@@ -48,6 +48,7 @@ public final class HomeActivity extends MyActivity
 
     @Override
     protected void initView() {
+        toast("initView");
         mViewPager.addOnPageChangeListener(this);
 
         // 不使用图标默认变色
