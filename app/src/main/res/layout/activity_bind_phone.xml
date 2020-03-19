@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.PasswordResetActivity">
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="设置"
+        app:rightTitle="确定"
+        app:rightColor="@color/textColor"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.hjq.widget.view.RegexEditText
+                android:id="@+id/et_bind_phone"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:hint="请输入新手机号"
+                android:inputType="textVisiblePassword"
+                android:paddingLeft="20dp"
+                android:paddingTop="18dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="18dp"
+                android:singleLine="true"
+                app:regexType="mobile" />
+
+
+            <View
+                style="@style/HorizontalLineStyle"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_bind_code"
+                    style="@style/EditTextStyle"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="@string/common_code_input_hint"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="18dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="18dp"
+                    android:singleLine="true" />
+
+                <com.hjq.widget.view.CountdownView
+                    android:textColor="#333333"
+                    android:background="@color/gold"
+                    android:id="@+id/cv_bind_countdown"
+                    style="@style/CountdownViewStyle2" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

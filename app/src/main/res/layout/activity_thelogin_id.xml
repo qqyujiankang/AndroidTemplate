@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.TheloginIdActivity">
+
+    <TextView
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="121.5dp"
+        android:background="#AAAAAA"
+        android:gravity="center"
+        android:text="LOGO"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_Enterprise_portal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50.5dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/bg_dialog_rounded_corner_yellow"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="企业入口"
+        android:textColor="#222222" />
+
+    <Button
+        android:id="@+id/btn_Personal_portal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/bg_yellow"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="个人入口"
+        android:textColor="#FFE300" />
+</LinearLayout>

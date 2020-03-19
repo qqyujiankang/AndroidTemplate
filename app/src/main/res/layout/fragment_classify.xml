@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp">
+
+        <TextView
+            android:id="@+id/tv_qi_q"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/io"
+            android:text="雁塔区" />
+
+        <com.cn.android.widget.searchviewd.components.view.seach.KylinSearchView
+            android:id="@+id/sv_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_toStartOf="@+id/iv_information"
+            android:layout_toLeftOf="@+id/iv_information"
+            android:layout_toEndOf="@+id/tv_qi_q"
+            android:layout_toRightOf="@+id/tv_qi_q" />
+
+        <ImageView
+            android:id="@+id/iv_information"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_30"
+            android:layout_toStartOf="@+id/iv_RichScan"
+            android:layout_toLeftOf="@+id/iv_RichScan"
+            android:src="@mipmap/ic_dialog_delete"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_RichScan"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/xiaoxi">
+
+        </ImageView>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_class_nmae"
+            android:layout_width="90dp"
+
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

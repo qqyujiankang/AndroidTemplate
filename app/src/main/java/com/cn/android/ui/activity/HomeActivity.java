@@ -13,7 +13,9 @@ import com.cn.android.common.MyLazyFragment;
 import com.cn.android.helper.ActivityStackManager;
 import com.cn.android.helper.DoubleClickHelper;
 import com.cn.android.other.KeyboardWatcher;
+import com.cn.android.ui.fragment.ClassifyFragment;
 import com.cn.android.ui.fragment.HomePageFragment;
+import com.cn.android.ui.fragment.ShoppingTrolleyFragment;
 import com.cn.android.ui.fragment.TestFragmentB;
 import com.cn.android.ui.fragment.TestFragmentC;
 import com.cn.android.ui.fragment.PersonalCenterFragment;
@@ -63,8 +65,8 @@ public final class HomeActivity extends MyActivity
     protected void initData() {
         mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(HomePageFragment.newInstance());
-        mPagerAdapter.addFragment(TestFragmentB.newInstance());
-        mPagerAdapter.addFragment(TestFragmentC.newInstance());
+        mPagerAdapter.addFragment(ClassifyFragment.newInstance());
+        mPagerAdapter.addFragment(ShoppingTrolleyFragment.newInstance());
       //  mPagerAdapter.addFragment(TestFragmentD.newInstance());
         mPagerAdapter.addFragment(PersonalCenterFragment.newInstance());
 

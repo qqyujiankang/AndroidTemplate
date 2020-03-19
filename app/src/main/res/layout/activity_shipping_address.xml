@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cn.android.ui.activity.ShippingAddressActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/t_test_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="收货地址" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/t_test_title"></androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btn_bind_commit"
+        style="@style/MyButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="添加新地址"
+        android:textColor="@color/textColor" />
+</RelativeLayout>

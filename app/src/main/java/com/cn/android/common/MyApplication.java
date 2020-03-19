@@ -128,7 +128,7 @@ public final class MyApplication extends Application {
         L.init(true);
         // 设置崩溃后自动重启 APP
         // 参数依次为 上下文（建议是Application），是否是debug模式，是否崩溃后重启，重启延迟时间，重启的Activity
-        UncaughtExceptionHandlerImpl.getInstance().init(application, BuildConfig.DEBUG, true, 0, HomeActivity.class);
+//        UncaughtExceptionHandlerImpl.getInstance().init(application, BuildConfig.DEBUG, true, 0, HomeActivity.class);
     }
 
     @Override

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.LoginIDActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="137dp"
+        android:gravity="center"
+        android:text="欢迎进入玺购商城"
+        android:textSize="30sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="40dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/shouji" />
+
+        <com.hjq.widget.view.ClearEditText
+            android:id="@+id/et_login_phone"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:hint="@string/common_phone_input_hint"
+            android:inputType="textVisiblePassword"
+            android:singleLine="true"
+            app:regexType="mobile" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/delete" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/HorizontalLineStyle"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/mima" />
+
+        <com.hjq.widget.view.ClearEditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:layout_toStartOf="@+id/cv_bind_countdown"
+            android:layout_toLeftOf="@+id/cv_bind_countdown"
+            android:hint="@string/common_password_input_error"
+            android:inputType="textVisiblePassword"
+            android:singleLine="true"
+            app:regexType="mobile" />
+
+        <com.hjq.widget.view.CountdownView
+            android:id="@+id/cv_bind_countdown"
+            style="@style/CountdownViewStyle"
+            android:layout_alignParentRight="true"
+            android:textColor="#333333" />
+
+    </RelativeLayout>
+    <View
+        style="@style/HorizontalLineStyle"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
+    <Button
+        android:id="@+id/btn_login_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/bg_yellow"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="登录"
+        android:textColor="#FFE300"
+         />
+
+    <Button
+        android:textColor="#222222"
+        android:background="@drawable/bg_dialog_rounded_corner_yellow"
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="注册"
+       />
+</LinearLayout>

@@ -92,7 +92,8 @@ public final class SplashActivity extends MyActivity
 
     @Override
     public void hasPermission(List<String> granted, boolean isAll) {
-        startActivityFinish(HomeActivity.class);
+       // startActivityFinish(HomeActivity.class);
+        startActivityFinish(TheloginIdActivity.class);
     }
 
     @Override

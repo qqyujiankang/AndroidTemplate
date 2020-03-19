@@ -30,8 +30,8 @@
 
                     <ImageView
                         android:id="@+id/iv_information"
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/space_30"
                         android:layout_toStartOf="@+id/iv_set"
@@ -40,8 +40,8 @@
 
                     <ImageView
                         android:id="@+id/iv_set"
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
@@ -113,6 +113,33 @@
                         android:text="账户余额"
                         android:textColor="@color/white"
                         android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_view_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="22.5dp"
+                        android:layout_marginRight="20dp"
+                        android:drawableRight="@drawable/ico_go_black"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text="查看详情"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_withdraw_deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_view_details"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:drawableLeft="@mipmap/bank"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text="提现"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -141,6 +168,7 @@
                         android:id="@+id/tv_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_toStartOf="@+id/more"
                         android:layout_toLeftOf="@+id/more"
                         android:text="更多"
@@ -154,7 +182,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@mipmap/more" />
+                        android:src="@drawable/ico_go_black" />
 
 
                 </RelativeLayout>
@@ -175,8 +203,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/grzx_icon_daifukuan" />
 
                         <TextView
@@ -195,8 +223,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/grzx_icon_daifahuo" />
 
                         <TextView
@@ -216,8 +244,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/grzx_icon_daishouhuo" />
 
                         <TextView
@@ -236,8 +264,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/grzx_icon_daipingjia" />
 
                         <TextView
@@ -281,6 +309,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ll_AddressDetail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
@@ -289,8 +318,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/site" />
 
                         <TextView
@@ -309,8 +338,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/service" />
 
                         <TextView
@@ -323,6 +352,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_Discount_Coupon"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -330,8 +360,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/preferential" />
 
                         <TextView
@@ -343,6 +373,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_favorite"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -350,8 +381,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/favorite" />
 
                         <TextView
@@ -382,7 +413,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15.5dp"
-                        android:text="基础服务"
+                        android:text="企业服务"
                         android:textSize="16sp" />
 
 
@@ -404,9 +435,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@mipmap/Products_cover" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/products_cover" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -418,6 +449,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_Invitation_Code"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -425,19 +457,20 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@mipmap/preferential" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/qr_code" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
-                            android:text="优惠券" />
+                            android:text="邀请码   " />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_my_team"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -445,15 +478,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@mipmap/favorite" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/my_team" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
-                            android:text="我的收藏" />
+                            android:text="我的团队" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -474,15 +507,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@mipmap/site" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/commoditymanagement" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
-                            android:text="收货地址" />
+                            android:text="商品管理" />
 
                     </LinearLayout>
 
@@ -494,15 +527,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@mipmap/service" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/sale" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
-                            android:text="平台客服" />
+                            android:text="我卖出的" />
 
                     </LinearLayout>
 

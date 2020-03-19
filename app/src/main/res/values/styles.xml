@@ -74,21 +74,6 @@
         <item name="android:background">@color/colorLine</item>
     </style>
 
-    <!-- 获取验证码样式 -->
-    <style name="CountdownViewStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/selector_countdown</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:minWidth">90dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:text">@string/common_code_send</item>
-        <item name="android:textColor">@drawable/selector_countdown_color</item>
-        <item name="android:textSize">12sp</item>
-    </style>
 
     <!-- 圆形 CardView 样式 -->
     <style name="CircleCardViewStyle" parent="Base.CardView">
@@ -105,5 +90,43 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- 获取验证码样式 -->
+    <style name="CountdownViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_yellow</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minWidth">90dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/common_code_send</item>
+        <item name="android:textColor">@drawable/selector_countdown_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
+    <style name="CountdownViewStyle2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minWidth">90dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/common_code_send</item>
+        <item name="android:textColor">@drawable/selector_countdown_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- CustomCheckBox theme -->
+    2
+
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        3
+        <item name="android:button">@drawable/checkbox_style</item>
+        4
+    </style>
 </resources>

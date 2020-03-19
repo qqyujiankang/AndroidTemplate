@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.AccountManagementActivity">
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="账号管理" />
+    <com.hjq.widget.layout.SettingBar
+        android:id="@+id/sb_Version_checking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:bar_leftText="更换手机"
+        app:bar_rightIcon="@drawable/ico_go_black"
+        tools:bar_rightHint="1553595815456" />
+</LinearLayout>

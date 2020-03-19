@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.ThebalanceDetailsActivity">
+
+    <com.hjq.bar.TitleBar
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="余额详情" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="15.5dp"
+        android:layout_marginEnd="7dp"
+        android:background="@mipmap/balance_of_account">
+
+        <TextView
+            android:id="@+id/tv_balance_of_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22.5dp"
+            android:layout_marginLeft="22.5dp"
+            android:layout_marginTop="22.5dp"
+            android:text="3221.13"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_balance_of_account"
+            android:layout_marginLeft="22.5dp"
+            android:layout_marginTop="2dp"
+            android:text="账户余额"
+            android:textColor="@color/white"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_home_search_bar_gray"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:text="交易明细" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10" />
+    </LinearLayout>
+</LinearLayout>

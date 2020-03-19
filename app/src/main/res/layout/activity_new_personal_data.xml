@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.NewPersonalDataActivity">
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/personal_data_title" />
+
+    <com.hjq.widget.layout.SettingBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:bar_leftIcon="@drawable/ic_head_placeholder"
+        app:bar_rightText="修改" />
+
+
+    <com.hjq.widget.layout.SettingBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:bar_leftText="昵称"
+        app:bar_rightIcon="@drawable/ico_go_black"
+        tools:bar_rightHint="傲娇鬼" />
+
+    <com.hjq.widget.layout.SettingBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="性别"
+        app:bar_rightIcon="@drawable/ico_go_black"
+        tools:bar_rightHint="男" />
+</LinearLayout>
