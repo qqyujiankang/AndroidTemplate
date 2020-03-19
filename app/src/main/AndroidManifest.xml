@@ -22,8 +22,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.MyOrderActivity"></activity>
-        <activity android:name=".ui.activity.OpeningOfTheEnterpriseActivity" /> <!-- 适配Android 7.0文件意图 -->
+        <!-- 适配Android 7.0文件意图 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -198,6 +197,16 @@
             android:screenOrientation="portrait" /> <!-- 提现 -->
         <activity
             android:name=".ui.activity.WithdrawDepositActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!--        我的订单-->
+        <activity
+            android:name=".ui.activity.MyOrderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!--        开通企业-->
+        <activity
+            android:name=".ui.activity.OpeningOfTheEnterpriseActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>

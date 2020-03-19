@@ -209,10 +209,10 @@ dependencies {
     implementation 'com.github.nanchen2251:AppManager:1.0.1'
     // 应用更新 功能强大，链式编程，调用简单，集成轻松，扩展性强大
     implementation 'com.allenliu.versionchecklib:library:2.2.1'
-	
-	// 轮播图 https://github.com/xiaohaibin/XBanner
+
+    // 轮播图 https://github.com/xiaohaibin/XBanner
     implementation 'com.github.xiaohaibin:XBanner:1.7.0'
-	
+
     androidTestImplementation 'junit:junit:4.12'
     testImplementation "junit:junit:4.12"
     // 网络请求（待发布）：https://github.com/getActivity/EasyHttp
