@@ -2,33 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp">
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/tv_qi_q"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:textSize="16sp"
             android:layout_marginLeft="@dimen/dp_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:drawableRight="@mipmap/io"
-            android:text="雁塔区" />
+            android:text="雁塔区"
+            android:textSize="14sp" />
 
-        <com.cn.android.widget.searchviewd.components.view.seach.KylinSearchView
+        <TextView
             android:id="@+id/sv_default"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginLeft="22dp"
-            android:layout_toStartOf="@+id/iv_information"
-            android:layout_toLeftOf="@+id/iv_information"
-            android:layout_toEndOf="@+id/tv_qi_q"
-            android:layout_toRightOf="@+id/tv_qi_q" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="29dp"
+            android:textSize="12sp"
+            android:textColor="#FF999999"
+            android:drawableLeft="@mipmap/icon_sousuo"
+            android:background="@drawable/bg_radius_f6f6f6"
+            android:paddingLeft="12dp"
+            android:paddingRight="15dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="11dp"
+            android:text="请输入想要的商品"/>
 
         <ImageView
             android:id="@+id/iv_information"
@@ -43,32 +51,32 @@
 
         <ImageView
             android:id="@+id/iv_RichScan"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
+            android:layout_width="18dp"
+            android:layout_height="17dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_margin="10dp"
             android:src="@mipmap/xiaoxi">
 
         </ImageView>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#F6F6F6">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_class_nmae"
             android:layout_width="90dp"
-
-            android:layout_height="wrap_content" />
+            android:background="@color/white"
+            android:layout_height="match_parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shop_recyclerView"
             android:layout_width="match_parent"
-
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>

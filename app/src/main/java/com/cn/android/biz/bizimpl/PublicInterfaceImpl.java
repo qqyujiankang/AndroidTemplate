@@ -3,6 +3,7 @@ package com.cn.android.biz.bizimpl;
 import android.app.Activity;
 
 import com.cn.android.biz.PublicInterfaceBiz;
+import com.cn.android.network.GetJsonDate;
 import com.cn.android.utils.L;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -112,15 +113,14 @@ public class PublicInterfaceImpl implements PublicInterfaceBiz {
      * 处理成功返回
      */
     private void SuccessfulTreatment(String s, OnRequestListener requestListener,Activity context) {
-//        int code = new GetJsonDate().getJsonCode(s);
-//        switch (code) {
-//            case 200:
-                requestListener.onRequesSuccess(s);
-//                requestListener.onRequesSuccess(new GetJsonDate().getJsonData(s));
-//                break;
-//                default:
-//                    requestListener.onRequesError(new GetJsonDate().getJsonMsg(s));
-//                    break;
-//        }
+        int code = new GetJsonDate().getJsonCode(s);
+        switch (code) {
+            case 200:
+                requestListener.onRequesSuccess(new GetJsonDate().getJsonData(s));
+                break;
+                default:
+                    requestListener.onRequesError(new GetJsonDate().getJsonMsg(s));
+                    break;
+        }
     }
 }
