@@ -21,6 +21,7 @@ import com.cn.android.ui.fragment.TestFragmentC;
 import com.cn.android.ui.fragment.PersonalCenterFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hjq.base.BaseFragmentAdapter;
+import com.hjq.widget.layout.NoScrollViewPager;
 
 import butterknife.BindView;
 
@@ -36,7 +37,7 @@ public final class HomeActivity extends MyActivity
         KeyboardWatcher.SoftKeyboardStateListener {
 
     @BindView(R.id.vp_home_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
     @BindView(R.id.bv_home_navigation)
     BottomNavigationView mBottomNavigationView;
 
@@ -52,6 +53,7 @@ public final class HomeActivity extends MyActivity
     protected void initView() {
         toast("initView");
         mViewPager.addOnPageChangeListener(this);
+        mViewPager.setNoScroll(true);
 
         // 不使用图标默认变色
         mBottomNavigationView.setItemIconTintList(null);
@@ -67,7 +69,6 @@ public final class HomeActivity extends MyActivity
         mPagerAdapter.addFragment(HomePageFragment.newInstance());
         mPagerAdapter.addFragment(ClassifyFragment.newInstance());
         mPagerAdapter.addFragment(ShoppingTrolleyFragment.newInstance());
-      //  mPagerAdapter.addFragment(TestFragmentD.newInstance());
         mPagerAdapter.addFragment(PersonalCenterFragment.newInstance());
 
         mViewPager.setAdapter(mPagerAdapter);
@@ -98,11 +99,7 @@ public final class HomeActivity extends MyActivity
             case 3:
                 mBottomNavigationView.setSelectedItemId(R.id.home_me);
                 break;
-//            case 4:
-//                mBottomNavigationView.setSelectedItemId(R.id.home_message);
-//                break;
-            default:
-                break;
+
         }
     }
 
@@ -128,11 +125,8 @@ public final class HomeActivity extends MyActivity
             case R.id.home_me:
                 mViewPager.setCurrentItem(3);
                 return true;
-//            case R.id.home_network:
-//                mViewPager.setCurrentItem(4);
-//                return true;
-            default:
-                break;
+//
+
         }
         return false;
     }

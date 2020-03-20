@@ -1,5 +1,7 @@
 package com.cn.android.bean;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.List;
 
 public class Commodity {
@@ -37,12 +39,14 @@ public class Commodity {
         private String name;
         private String price;
         private String vipprice;
+        private int drawable;
 
-        public DataBean(String imgUrl, String name, String price, String vipprice) {
+        public DataBean(String imgUrl, String name, String price, String vipprice, int drawable) {
             this.imgUrl = imgUrl;
             this.name = name;
             this.price = price;
             this.vipprice = vipprice;
+            this.drawable = drawable;
         }
 
         public String getImgUrl() {
@@ -75,6 +79,14 @@ public class Commodity {
 
         public void setVipprice(String vipprice) {
             this.vipprice = vipprice;
+        }
+
+        public int getDrawable() {
+            return drawable;
+        }
+
+        public void setDrawable(int drawable) {
+            this.drawable = drawable;
         }
     }
 }

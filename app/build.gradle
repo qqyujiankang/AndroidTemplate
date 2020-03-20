@@ -228,4 +228,6 @@ dependencies {
     // 图片压缩：https://github.com/Curzibn/Luban
     // 对象存储：https://github.com/leavesC/DoKV
     // 数据注入：https://github.com/JumeiRdGroup/Parceler
+    implementation 'com.android.support:appcompat-v7:24.2.0'
+    implementation 'com.android.support:cardview-v7:24.2.0'
 }

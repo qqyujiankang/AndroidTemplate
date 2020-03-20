@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cn.android.ui.activity.MyOrderActivity">
+    tools:context="com.cn.android.ui.activity.IsellActivity">
 
     <com.hjq.bar.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="企业入驻" />
+        app:title="我卖出的" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:button="@null"
             android:checked="true"
             android:gravity="center"
-            android:text="待付款"
+            android:text="全部"
             android:textColor="@drawable/btt_selector" />
 
         <RadioButton
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="待发货"
+            android:text="待付款"
             android:textColor="@drawable/btt_selector" />
 
         <RadioButton
@@ -49,7 +49,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="已完成"
+            android:text="待发货"
             android:textColor="@drawable/btt_selector" />
 
         <RadioButton
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="待评价"
+            android:text="已完成"
             android:textColor="@drawable/btt_selector" />
 
     </RadioGroup>

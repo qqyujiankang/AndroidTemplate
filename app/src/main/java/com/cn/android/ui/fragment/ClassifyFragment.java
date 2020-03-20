@@ -22,7 +22,7 @@ import butterknife.BindView;
 /***
  * 分类
  */
-public class ClassifyFragment extends MyLazyFragment<HomeActivity>  {
+public class ClassifyFragment extends MyLazyFragment<HomeActivity> {
     @BindView(R.id.tv_qi_q)
     TextView tvQiQ;
     @BindView(R.id.sv_default)
@@ -34,7 +34,7 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity>  {
     ClassAdapter classAdapter;
     @BindView(R.id.rv_class_nmae)
     RecyclerView rvClassNmae;
-    List<Commodity.DataBean> dataBeans ;
+    List<Commodity.DataBean> dataBeans;
 
     public static ClassifyFragment newInstance() {
         return new ClassifyFragment();
@@ -49,13 +49,16 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity>  {
     @Override
     protected void initView() {
         rvClassNmae.setLayoutManager(new LinearLayoutManager(getActivity()));
-        dataBeans= new ArrayList<>();
-        dataBeans.add(new Commodity.DataBean("", "手机数码", "", ""));
-        dataBeans.add(new Commodity.DataBean("", "电脑办公", "", ""));
-        dataBeans.add(new Commodity.DataBean("", "家用电器", "", ""));
-        dataBeans.add(new Commodity.DataBean("", "手机数码", "", ""));
-        dataBeans.add(new Commodity.DataBean("", "手机数码", "", ""));
-        dataBeans.add(new Commodity.DataBean("", "手机数码", "", ""));
+        dataBeans = new ArrayList<>();
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+        dataBeans.add(new Commodity.DataBean("", "手机数码", "", "", 0));
+
         classAdapter = new ClassAdapter(getActivity(), dataBeans);
         rvClassNmae.setAdapter(classAdapter);
     }
@@ -65,8 +68,6 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity>  {
 
 
     }
-
-
 
 
 }

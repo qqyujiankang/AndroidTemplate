@@ -70,12 +70,14 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:id="@+id/tv_Enterprises"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_name"
                         android:background="@mipmap/qiyeruzhu"
                         android:padding="5dp"
-                        android:text="企业入驻" />
+                        android:text="企业入驻"
+                        android:textSize="11sp" />
 
                     <ImageView
                         android:id="@+id/iv_hear"
@@ -176,6 +178,7 @@
                         android:textSize="10sp" />
 
                     <ImageView
+
                         android:id="@+id/more"
                         android:layout_width="21dp"
                         android:layout_height="21dp"
@@ -195,9 +198,9 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ll_obligation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -210,12 +213,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="待付款" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_To_send_the_good"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -230,13 +234,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="待发货" />
 
                     </LinearLayout>
 
 
                     <LinearLayout
+                        android:id="@+id/ll_wait_for_receiving"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -251,12 +256,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="待收货" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_remain_to_be_evaluated"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -271,7 +277,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="待评价" />
 
                     </LinearLayout>
@@ -312,7 +318,6 @@
                         android:id="@+id/ll_AddressDetail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -325,7 +330,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="收货地址" />
 
                     </LinearLayout>
@@ -345,7 +350,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="平台客服" />
 
                     </LinearLayout>
@@ -367,7 +372,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="优惠券" />
 
                     </LinearLayout>
@@ -388,7 +393,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="我的收藏" />
 
                     </LinearLayout>
@@ -422,14 +427,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="@dimen/dp_10"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -442,7 +446,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="商品自荐" />
 
                     </LinearLayout>
@@ -464,8 +468,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:text="邀请码   " />
+                            android:layout_marginTop="5dp"
+                            android:text="邀请码" />
 
                     </LinearLayout>
 
@@ -485,7 +489,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="我的团队" />
 
                     </LinearLayout>
@@ -499,9 +503,9 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ll_CommodityManagement"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -514,12 +518,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="商品管理" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_isell"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -534,7 +539,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginTop="5dp"
                             android:text="我卖出的" />
 
                     </LinearLayout>

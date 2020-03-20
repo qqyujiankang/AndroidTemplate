@@ -64,6 +64,7 @@ public class LoginIDActivity extends MyActivity {
                 startActivity(HomeActivity.class);
                 break;
             case R.id.btn_register:
+                startActivity(NewRegisterActivity.class);
                 break;
         }
     }

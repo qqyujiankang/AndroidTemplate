@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cn.android.ui.activity.MyOrderActivity">
+    tools:context="com.cn.android.ui.activity.CommodityManagementActivity">
 
     <com.hjq.bar.TitleBar
+
+        android:id="@+id/tite_bar"
+        app:rightTitle="上传"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="企业入驻" />
+        app:title="我卖出的" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingTop="10dp"
@@ -29,7 +32,7 @@
             android:button="@null"
             android:checked="true"
             android:gravity="center"
-            android:text="待付款"
+            android:text="已发布"
             android:textColor="@drawable/btt_selector" />
 
         <RadioButton
@@ -39,28 +42,9 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="待发货"
+            android:text="草稿箱"
             android:textColor="@drawable/btt_selector" />
 
-        <RadioButton
-            android:id="@+id/rbt_off_the_stocks"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="已完成"
-            android:textColor="@drawable/btt_selector" />
-
-        <RadioButton
-            android:id="@+id/btn_remain_to_be_evaluated"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="待评价"
-            android:textColor="@drawable/btt_selector" />
 
     </RadioGroup>
 

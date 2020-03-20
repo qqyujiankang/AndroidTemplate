@@ -1,5 +1,6 @@
 package com.cn.android.ui.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -7,10 +8,14 @@ import android.widget.TextView;
 
 import com.cn.android.R;
 import com.cn.android.common.MyLazyFragment;
+import com.cn.android.ui.activity.CommodityManagementActivity;
 import com.cn.android.ui.activity.DiscountCouponActivity;
+import com.cn.android.ui.activity.EnterprisesActivity;
 import com.cn.android.ui.activity.HomeActivity;
 import com.cn.android.ui.activity.InvitationCodeActivity;
+import com.cn.android.ui.activity.IsellActivity;
 import com.cn.android.ui.activity.MyFavoriteActivity;
+import com.cn.android.ui.activity.MyOrderActivity;
 import com.cn.android.ui.activity.MyTeamActivity;
 import com.cn.android.ui.activity.NewPersonalDataActivity;
 import com.cn.android.ui.activity.SetActivity;
@@ -19,6 +24,7 @@ import com.cn.android.ui.activity.ThebalanceDetailsActivity;
 import com.cn.android.ui.activity.WithdrawDepositActivity;
 import com.hjq.image.ImageLoader;
 
+import androidx.activity.ComponentActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -54,6 +60,21 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
     TextView tvWithdrawDeposit;
     @BindView(R.id.ll_favorite)
     LinearLayout llFavorite;
+    @BindView(R.id.tv_Enterprises)
+    TextView tvEnterprises;
+    @BindView(R.id.ll_obligation)
+    LinearLayout llObligation;
+    @BindView(R.id.ll_To_send_the_good)
+    LinearLayout llToSendTheGood;
+    @BindView(R.id.ll_wait_for_receiving)
+    LinearLayout llWaitForReceiving;
+    @BindView(R.id.ll_remain_to_be_evaluated)
+    LinearLayout llRemainToBeEvaluated;
+    @BindView(R.id.ll_CommodityManagement)
+    LinearLayout llCommodityManagement;
+    @BindView(R.id.ll_isell)
+    LinearLayout llIsell;
+    private int order = 0;
 
     public static PersonalCenterFragment newInstance() {
         return new PersonalCenterFragment();
@@ -79,9 +100,19 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @OnClick({R.id.iv_set, R.id.iv_hear, R.id.ll_Discount_Coupon,
             R.id.ll_AddressDetail, R.id.ll_my_team,
-            R.id.ll_Invitation_Code, R.id.tv_view_details, R.id.ll_favorite, R.id.tv_withdraw_deposit})
+            R.id.ll_Invitation_Code, R.id.tv_view_details,
+            R.id.ll_favorite, R.id.tv_withdraw_deposit, R.id.tv_Enterprises,
+            R.id.ll_obligation, R.id.ll_To_send_the_good,
+            R.id.ll_wait_for_receiving, R.id.ll_remain_to_be_evaluated, R.id.ll_isell, R.id.ll_CommodityManagement})
     public void onViewClicked(View view) {
+
         switch (view.getId()) {
+            case R.id.ll_CommodityManagement:
+                startActivity(CommodityManagementActivity.class);//商品管理
+                break;
+            case R.id.tv_Enterprises:
+                startActivity(EnterprisesActivity.class);
+                break;
             case R.id.tv_withdraw_deposit://提现
                 startActivity(WithdrawDepositActivity.class);
                 break;
@@ -109,6 +140,39 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
             case R.id.ll_my_team:
                 startActivity(MyTeamActivity.class);
                 break;
+            case R.id.ll_obligation:
+                order = 1;
+                order(1);
+                break;
+            case R.id.ll_To_send_the_good:
+                order = 2;
+                order(2);
+                break;
+            case R.id.ll_wait_for_receiving:
+                order = 3;
+                order(3);
+                break;
+            case R.id.ll_remain_to_be_evaluated:
+                order = 4;
+                order(4);
+                break;
+            case R.id.ll_isell:
+                startActivity(IsellActivity.class);
+                break;
         }
     }
+
+    /**
+     * 我的订单
+     *
+     * @param i
+     */
+    private void order(int i) {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), MyOrderActivity.class);
+        intent.putExtra("order", i);
+        startActivity(intent);
+    }
+
+
 }

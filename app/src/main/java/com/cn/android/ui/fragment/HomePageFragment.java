@@ -12,9 +12,10 @@ import com.cn.android.common.MyLazyFragment;
 import com.cn.android.ui.activity.HomeActivity;
 import com.cn.android.ui.adapter.CommodityAdapter;
 import com.cn.android.ui.adapter.CommodityClassifyAdapter;
+import com.cn.android.ui.adapter.NotCommodityAdapter;
 import com.cn.android.widget.SpaceItemDecoration;
-import com.cn.android.widget.searchviewd.components.view.seach.KylinSearchView;
 import com.hjq.image.ImageLoader;
+import com.hjq.widget.view.ClearEditText;
 import com.stx.xhb.xbanner.XBanner;
 
 import java.util.ArrayList;
@@ -29,8 +30,7 @@ import butterknife.BindView;
  * 首页
  */
 public class HomePageFragment extends MyLazyFragment<HomeActivity> {
-    @BindView(R.id.sv_default)
-    KylinSearchView svDefault;
+
     @BindView(R.id.iv_information)
     ImageView ivInformation;
     @BindView(R.id.iv_RichScan)
@@ -39,7 +39,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> {
     XBanner xbanner;
     @BindView(R.id.message_recycler)
     RecyclerView messageRecycler;
-    CommodityAdapter commodityAdapter;
+    NotCommodityAdapter notCommodityAdapter;
     CommodityAdapter commodityAdapte1r;
     CommodityClassifyAdapter commodityClassifyAdapter;
     @BindView(R.id.message_recycler1)
@@ -47,6 +47,9 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> {
     @BindView(R.id.message_recycler2)
     RecyclerView messageRecycler2;
     GridLayoutManager gridLayoutManager;
+    @BindView(R.id.search_txt)
+    ClearEditText searchTxt;
+
     public static MyLazyFragment newInstance() {
         return new HomePageFragment();
     }
@@ -72,12 +75,12 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> {
 
         messageRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         messageRecycler.addItemDecoration(new SpaceItemDecoration(30));
-        commodityAdapter = new CommodityAdapter(getContext());
-        messageRecycler.setAdapter(commodityAdapter);
+        notCommodityAdapter = new NotCommodityAdapter(getContext());
+        messageRecycler.setAdapter(notCommodityAdapter);
 
 
         //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
-         gridLayoutManager = new GridLayoutManager(getContext(), 5);
+        gridLayoutManager = new GridLayoutManager(getContext(), 5);
         //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
         gridLayoutManager.setOrientation(GridLayout.VERTICAL);
         //设置布局管理器， 参数gridLayoutManager对象
@@ -86,7 +89,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> {
         messageRecycler1.setAdapter(commodityClassifyAdapter);
 
         //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
-        gridLayoutManager= new GridLayoutManager(getContext(), 2);
+        gridLayoutManager = new GridLayoutManager(getContext(), 2);
         //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
         gridLayoutManager.setOrientation(GridLayout.VERTICAL);
         //设置布局管理器， 参数gridLayoutManager对象
@@ -96,30 +99,29 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> {
         messageRecycler2.setAdapter(commodityAdapte1r);
 
 
-
     }
 
     @Override
     protected void initData() {
         List<Commodity.DataBean> dataBeans = new ArrayList<>();
         List<Commodity.DataBean> dataBeans1 = new ArrayList<>();
-        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984"));
-        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984"));
-        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984"));
-        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984"));
-        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984"));
+        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
+        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
+        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
+        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
+        dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
 
-        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "米面粮油", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "调料干杂", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "新鲜蔬菜", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "酒水饮料", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "肉禽蛋类", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "海鲜水产", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "休闲零食", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "速食冻品", "", ""));
-        dataBeans1.add(new Commodity.DataBean("", "全部产品", "", ""));
-        commodityAdapter.setNewData(dataBeans);
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        dataBeans1.add(new Commodity.DataBean("", "新鲜水果", "", "", R.mipmap.xinxianshuiguo));
+        notCommodityAdapter.setNewData(dataBeans);
         commodityClassifyAdapter.setNewData(dataBeans1);
         commodityAdapte1r.setNewData(dataBeans);
     }

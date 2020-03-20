@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 提现
+     * 提现
  */
 public class WithdrawDepositActivity extends MyActivity {
 

@@ -22,7 +22,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="40dp"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/iv_phone"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/iv_Invitation_code"
@@ -140,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/bg_dialog_rounded_corner_yellow"
         android:paddingLeft="10dp"
