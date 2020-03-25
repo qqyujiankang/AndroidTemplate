@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/xin" android:state_checked="true" />
+    <item android:drawable="@mipmap/test32" android:state_checked="false" />
+    <item android:drawable="@mipmap/test32" />
+
+</selector>

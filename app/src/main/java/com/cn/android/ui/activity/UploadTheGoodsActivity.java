@@ -1,25 +1,22 @@
 package com.cn.android.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.GridLayout;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
-import com.cn.android.bean.BannerBean;
 import com.cn.android.bean.Commodity;
 import com.cn.android.common.MyActivity;
 import com.cn.android.ui.adapter.CommercialSpecificationAdapter;
-import com.cn.android.widget.SpaceItemDecoration;
+import com.hjq.bar.OnTitleBarListener;
 import com.hjq.widget.view.SwitchButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -29,7 +26,10 @@ import butterknife.OnClick;
 /**
  * Upload the goods 上传商品
  */
-public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapter.OnItemChildClickListener {
+public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapter.OnItemChildClickListener, OnTitleBarListener {
+
+    CommercialSpecificationAdapter commercialSpecificationAdapter;
+    List<Commodity.DataBean> strings = new ArrayList<>();
     @BindView(R.id.idea_add_image1)
     ImageView ideaAddImage1;
     @BindView(R.id.idea_add_image2)
@@ -44,16 +44,16 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     ImageView ideaAddImage;
     @BindView(R.id.idea_ll)
     LinearLayout ideaLl;
-    @BindView(R.id.iv_add)
-    ImageView ivAdd;
     @BindView(R.id.rv)
     RecyclerView rv;
     @BindView(R.id.iv_particulars)
     ImageView ivParticulars;
     @BindView(R.id.sb_test_switch)
     SwitchButton sbTestSwitch;
-    CommercialSpecificationAdapter commercialSpecificationAdapter;
-    List<Commodity.DataBean> strings = new ArrayList<>();
+    @BindView(R.id.ll_01)
+    LinearLayout ll01;
+    @BindView(R.id.ll02)
+    LinearLayout ll02;
 
 //
 //    @Override
@@ -70,11 +70,18 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     @Override
     protected void initView() {
 
+
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        commercialSpecificationAdapter = new CommercialSpecificationAdapter(getActivity());
+        rv.setAdapter(commercialSpecificationAdapter);
+        commercialSpecificationAdapter.setNewData(strings);
+        commercialSpecificationAdapter.setOnItemChildClickListener(this);
+
     }
 
     @Override
     protected void initData() {
-
+        strings.add(new Commodity.DataBean("fdsdfds", "455", "45", "455", 4));
     }
 
     @Override
@@ -84,37 +91,62 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
         ButterKnife.bind(this);
     }
 
-    @SuppressLint("WrongConstant")
-    @OnClick(R.id.iv_add)
-    public void onViewClicked() {
-        strings.add(new Commodity.DataBean("fdsdfds", "455", "45", "455", 4));
-        //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
-        //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
-        gridLayoutManager.setOrientation(GridLayout.VERTICAL);
-        //设置布局管理器， 参数gridLayoutManager对象
-        rv.setLayoutManager(gridLayoutManager);
-        commercialSpecificationAdapter = new CommercialSpecificationAdapter(getActivity());
-        rv.setAdapter(commercialSpecificationAdapter);
-//        if (strings.size() >= 1) {
-//            for (int i = 1; i <= 1000; i++) {
-//                strings.add(new Commodity.DataBean("fdsdfds", "455", "45", "455", 4));
-//            }
-//
-//        }
-        commercialSpecificationAdapter.setNewData(strings);
-        commercialSpecificationAdapter.setOnItemChildClickListener(this);
-
-    }
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         switch (view.getId()) {
             case R.id.iv_add:
-//                int i=1;
-//                i
-//                strings.size();
+                CheckBox checkBox = view.findViewById(R.id.iv_add);
+                if (!checkBox.isChecked()) {
+                    strings.add(new Commodity.DataBean("fdsdfds", "456", "45", "455", 4));
+
+                } else if (strings.size() != 1) {
+                    checkBox.setChecked(true);
+                    strings.remove(position);
+
+                }
+                commercialSpecificationAdapter.setNewData(strings);
                 break;
         }
     }
+
+    @OnClick({R.id.idea_add_image, R.id.iv_particulars, R.id.ll_01, R.id.ll02})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.idea_add_image:
+                ivview(ideaAddImage);
+                break;
+            case R.id.iv_particulars:
+                ivview(ivParticulars);
+
+                break;
+            case R.id.ll_01:
+                finish();
+                break;
+            case R.id.ll02:
+                finish();
+                break;
+        }
+    }
+
+    private void ivview(ImageView ivParticulars) {
+        PhotoActivity.start(this, 5, new PhotoActivity.OnPhotoSelectListener() {
+            @Override
+            public void onSelect(List<String> data) {
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+    }
+
+    @Override
+    public void onRightClick(View v) {
+        super.onRightClick(v);
+        finish();
+    }
+
+
 }

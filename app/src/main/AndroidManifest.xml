@@ -22,7 +22,8 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <!-- 适配Android 7.0文件意图 -->
+        <activity android:name=".ui.activity.ModifyTheNicknameActivity"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -206,11 +207,75 @@
         <activity
             android:name=".ui.activity.OpeningOfTheEnterpriseActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 上传商品 -->
+        <activity
+            android:name=".ui.activity.UploadTheGoodsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 商品管理 -->
+        <activity
+            android:name=".ui.activity.CommodityManagementActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 我卖出的 -->
+        <activity
+            android:name=".ui.activity.IsellActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 搜索 -->
+        <activity
+            android:name=".ui.activity.SearchActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 订单详情 -->
+        <activity
+            android:name=".ui.activity.TheOrderDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 所在地 -->
+        <activity
+            android:name=".ui.activity.locationActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 确认订单 -->
+        <activity
+            android:name=".ui.activity.ConfirmAnOrderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 商品详情 -->
+        <activity
+            android:name=".ui.activity.CommodityDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 商品列表 -->
+        <activity
+            android:name=".ui.activity.ProductListActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- cover商品自荐 -->
+        <activity
+            android:name=".ui.activity.ProductsCoverActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 物流信息 -->
+        <activity
+            android:name=".ui.activity.CheckTheLogisticsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 店铺名详情 -->
+        <activity
+            android:name=".ui.activity.StoreNameDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 营销师详情 -->
+        <activity
+            android:name=".ui.activity.DetailsOfMarketingDivisionActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 客服 -->
+        <activity
+            android:name=".ui.activity.ServiceActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 资讯详情 -->
+        <activity
+            android:name=".ui.activity.NformationForDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 发布评价 -->
+        <activity
+            android:name=".ui.activity.PostEvaluationActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 性别 -->
+        <activity
+            android:name=".ui.activity.Genderctivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.UploadTheGoodsActivity"></activity>
-        <activity android:name=".ui.activity.CommodityManagementActivity" />
-        <activity android:name=".ui.activity.IsellActivity" />
-        <activity android:name=".ui.activity.SearchActivity" />
     </application>
 
 </manifest>

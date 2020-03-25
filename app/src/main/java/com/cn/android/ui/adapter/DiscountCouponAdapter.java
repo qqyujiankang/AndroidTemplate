@@ -19,8 +19,9 @@ public class DiscountCouponAdapter extends BaseQuickAdapter<Commodity.DataBean, 
 
     @Override
     protected void convert(BaseViewHolder helper, Commodity.DataBean item) {
-        helper.setText(R.id.tv_price, item.getName());
-        helper.setText(R.id.tv_usable, item.getPrice());
-        helper.setText(R.id.tv_time, item.getImgUrl());
+        helper.setBackgroundRes(R.id.ll01, item.getDrawable());
+        helper.setText(R.id.tv_price, item.getImgUrl());
+        helper.setText(R.id.tv_usable, item.getName());
+        helper.setText(R.id.tv_time, item.getPrice());
     }
 }

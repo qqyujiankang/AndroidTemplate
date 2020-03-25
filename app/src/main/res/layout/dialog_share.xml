@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv01"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/bg_radius_white_5"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_weixi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_share_wechat"
+            android:gravity="center"
+            android:text="微信" />
+
+        <TextView
+            android:id="@+id/tv02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/tv_weixi"
+            android:drawableTop="@drawable/ic_share_moment"
+            android:gravity="center"
+            android:text="朋友圈" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/bg_radius_white_5"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="取消"
+        android:textSize="16sp" />
+</RelativeLayout>

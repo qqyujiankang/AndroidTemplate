@@ -14,6 +14,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 注册
+ */
 public class NewRegisterActivity extends MyActivity {
     @BindView(R.id.iv_phone)
     ImageView ivPhone;

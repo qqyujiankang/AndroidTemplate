@@ -4,17 +4,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.android.R;
 import com.cn.android.common.MyActivity;
+import com.cn.android.ui.dialog.BindingAccountDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
-     * 提现
+ * 提现
  */
 public class WithdrawDepositActivity extends MyActivity {
 
@@ -27,6 +29,12 @@ public class WithdrawDepositActivity extends MyActivity {
     CheckBox tvUpper;
     @BindView(R.id.btn_bind_commit)
     Button btnBindCommit;
+    @BindView(R.id.relativeLayout)
+    RelativeLayout relativeLayout;
+    @BindView(R.id.rl_search)
+    RelativeLayout rlSearch;
+    @BindView(R.id.tv02)
+    CheckBox tv02;
 
     @Override
     protected int getLayoutId() {
@@ -47,16 +55,26 @@ public class WithdrawDepositActivity extends MyActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        ButterKnife.bind(this);//
     }
 
-    @OnClick({R.id.tv_view_details, R.id.btn_bind_commit})
+
+    @OnClick({R.id.tv_view_details, R.id.relativeLayout, R.id.rl_search, R.id.btn_bind_commit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_view_details:
                 startActivity(ThebalanceDetailsActivity.class);
                 break;
+            case R.id.relativeLayout:
+                tvUpper.setChecked(true);
+                tv02.setChecked(false);
+                break;
+            case R.id.rl_search:
+                tvUpper.setChecked(false);
+                tv02.setChecked(true);
+                break;
             case R.id.btn_bind_commit:
+                new BindingAccountDialog.Builder(getActivity()).show();
                 break;
         }
     }

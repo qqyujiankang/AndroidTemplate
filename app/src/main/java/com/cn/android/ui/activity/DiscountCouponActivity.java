@@ -25,7 +25,8 @@ public class DiscountCouponActivity extends MyActivity {
     @BindView(R.id.rv_dc)
     RecyclerView rvDc;
     DiscountCouponAdapter discountCouponAdapter;
-    List<Commodity.DataBean> dataBeans=new ArrayList<>();
+    List<Commodity.DataBean> dataBeans = new ArrayList<>();
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_discount_coupon;
@@ -33,15 +34,11 @@ public class DiscountCouponActivity extends MyActivity {
 
     @Override
     protected void initView() {
-        dataBeans.add(new Commodity.DataBean("50","满300元可用","2020年10月21日—2020年11月28日","",0));
-        dataBeans.add(new Commodity.DataBean("50","满300元可用","2020年10月21日—2020年11月28日","",0));
-        dataBeans.add(new Commodity.DataBean("50","满300元可用","2020年10月21日—2020年11月28日","",0));
-        dataBeans.add(new Commodity.DataBean("50","满300元可用","2020年10月21日—2020年11月28日","",0));
-        dataBeans.add(new Commodity.DataBean("50","满300元可用","2020年10月21日—2020年11月28日","",0));
-        dataBeans.add(new Commodity.DataBean("50","满300元可用","2020年10月21日—2020年11月28日","",0));
+        dataBeans.add(new Commodity.DataBean(getString(R.string.test01)+"50", "满300元可用", "2020年10月21日—2020年11月28日", "", R.mipmap.yes_discount));
+        dataBeans.add(new Commodity.DataBean(getString(R.string.test01)+"50", "满300元可用", "2020年10月21日—2020年11月28日", "", R.mipmap.test25));
         rvDc.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvDc.addItemDecoration(new SpaceItemDecoration(30));
-        discountCouponAdapter=new DiscountCouponAdapter(R.layout.adapter_discount_coupon,dataBeans);
+        discountCouponAdapter = new DiscountCouponAdapter(R.layout.adapter_discount_coupon, dataBeans);
         rvDc.setAdapter(discountCouponAdapter);
 
     }

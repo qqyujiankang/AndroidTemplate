@@ -20,6 +20,8 @@ public class CommodityClassifyAdapter extends BaseQuickAdapter<Commodity.DataBea
 
     @Override
     protected void convert(BaseViewHolder helper, Commodity.DataBean item) {
-        helper.setText(R.id.tv_name,item.getName());
+        helper.setText(R.id.tv_name, item.getName());
+        helper.setBackgroundRes(R.id.iv, item.getDrawable());
+        helper.addOnClickListener(R.id.ll_01);
     }
 }

@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/Rl_01"
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
 
-    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/comm_constrain"
         android:background="@color/white"
-        android:paddingBottom="@dimen/space_20">
+        android:paddingLeft="15dp"
+        android:layout_below="@+id/iv_bao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/sp_16"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
-        <ImageView
-            android:id="@+id/iv_bao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/bao" />
 
         <ImageView
 
             android:id="@+id/iv_commodity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_bao"
             android:layout_marginLeft="17dp"
-            android:src="@mipmap/zhaoxiangji" />
+            android:src="@mipmap/zhaoxiangji"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
         <TextView
             android:id="@+id/tv_name"
@@ -34,6 +43,9 @@
             android:layout_marginLeft="@dimen/space_20"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginRight="@dimen/space_20"
+            android:maxEms="10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_commodity"
             android:text="商品名称商品进尼康照相机商品名称商品名..."
             android:textColor="#ff666666"
             android:textSize="12sp" />
@@ -43,30 +55,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
-            android:layout_marginLeft="@dimen/space_20"
             android:text="10.9"
             android:textColor="#ff333333"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
 
         <TextView
             android:id="@+id/iv_vpi_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_price"
-            android:layout_marginLeft="@dimen/space_20"
-            android:text="9.9"
+            android:drawableLeft="@mipmap/vip"
+            android:drawablePadding="1dp"
+            android:text="&#165; 9.9"
             android:textColor="#ffef4321"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_price"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="12dp"
             android:layout_marginRight="@dimen/dp_10"
-            android:src="@mipmap/gwc" />
-    </RelativeLayout>
+            android:layout_toRightOf="@+id/iv_vpi_price"
+            android:src="@mipmap/gwc"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_vpi_price"
+            app:layout_constraintRight_toRightOf="@+id/comm_constrain"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/iv_bao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/bao"
 
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/comm_constrain"
+        app:layout_constraintBottom_toTopOf="@+id/comm_constrain"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>

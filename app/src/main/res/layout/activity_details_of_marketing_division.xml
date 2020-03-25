@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/test15"
+    tools:context="com.cn.android.ui.activity.DetailsOfMarketingDivisionActivity">
+
+    <com.hjq.bar.TitleBar
+        app:lineVisible="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_whilte_top_20">
+
+        <TextView
+            android:id="@+id/tv01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="25dp"
+            android:text="姜涩琪"
+            android:textSize="18sp" />
+
+        <ImageView
+
+            android:id="@+id/iv_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv01"
+            android:layout_toRightOf="@id/tv01"
+            android:src="@mipmap/test17" />
+
+        <ImageView
+            android:id="@+id/iv_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_01"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:src="@mipmap/test18" />
+
+        <TextView
+
+            android:id="@+id/tv_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv01"
+            android:layout_alignLeft="@+id/tv01"
+            android:layout_marginTop="10dp"
+            android:text="28岁"
+            android:textColor="#666666" />
+
+        <TextView
+            android:id="@+id/tv03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_02"
+            android:layout_alignLeft="@id/tv_02"
+            android:layout_marginTop="31dp"
+            android:text="工作职称:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv03"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv03"
+            android:text="高级营销师"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/tv04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv03"
+            android:layout_alignLeft="@id/tv03"
+            android:layout_marginTop="15dp"
+            android:text="工作年限:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv04"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv04"
+            android:text="6年"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/tv05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv04"
+            android:layout_alignLeft="@id/tv04"
+            android:layout_marginTop="15dp"
+            android:text="个性签名:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv05"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="40dp"
+            android:layout_toRightOf="@+id/tv05"
+            android:text="我一定会成功的！！一夜暴富！冲鸭冲鸭冲鸭冲鸭冲鸭冲鸭"
+            android:textColor="#333333" />
+
+    </RelativeLayout>
+</RelativeLayout>

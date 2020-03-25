@@ -53,6 +53,7 @@
             android:layout_marginTop="10dp" />
 
         <RelativeLayout
+            android:id="@+id/Rl_01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -76,6 +77,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:checked="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:gravity="center_vertical" />
         </RelativeLayout>
 
@@ -84,6 +88,7 @@
             android:layout_marginTop="10dp" />
 
         <RelativeLayout
+            android:id="@+id/Rl_02"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -101,10 +106,14 @@
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/cb02"
                 style="@style/CustomCheckBoxTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:gravity="center_vertical" />
         </RelativeLayout>
     </LinearLayout>
@@ -117,6 +126,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:text="确认提现"
+        android:text="确认开通"
         android:textColor="@color/textColor" />
 </LinearLayout>

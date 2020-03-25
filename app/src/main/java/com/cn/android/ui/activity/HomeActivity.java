@@ -23,13 +23,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hjq.base.BaseFragmentAdapter;
 import com.hjq.widget.layout.NoScrollViewPager;
 
+import java.util.List;
+
 import butterknife.BindView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2018/10/18
- *    desc   : 主页界面
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/AndroidProject
+ * time   : 2018/10/18
+ * desc   : 主页界面
  */
 public final class HomeActivity extends MyActivity
         implements ViewPager.OnPageChangeListener,
@@ -40,8 +42,11 @@ public final class HomeActivity extends MyActivity
     NoScrollViewPager mViewPager;
     @BindView(R.id.bv_home_navigation)
     BottomNavigationView mBottomNavigationView;
+    public ClassifyFragment classifyFragment=new ClassifyFragment();
 
-    /** ViewPager 适配器 */
+    /**
+     * ViewPager 适配器
+     */
     private BaseFragmentAdapter<MyLazyFragment> mPagerAdapter;
 
     @Override
@@ -49,11 +54,14 @@ public final class HomeActivity extends MyActivity
         return R.layout.activity_home;
     }
 
+    private int anInt = 0;
+
     @Override
     protected void initView() {
-        toast("initView");
+
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setNoScroll(true);
+
 
         // 不使用图标默认变色
         mBottomNavigationView.setItemIconTintList(null);
@@ -67,7 +75,7 @@ public final class HomeActivity extends MyActivity
     protected void initData() {
         mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(HomePageFragment.newInstance());
-        mPagerAdapter.addFragment(ClassifyFragment.newInstance());
+        mPagerAdapter.addFragment(classifyFragment);
         mPagerAdapter.addFragment(ShoppingTrolleyFragment.newInstance());
         mPagerAdapter.addFragment(PersonalCenterFragment.newInstance());
 
@@ -77,15 +85,23 @@ public final class HomeActivity extends MyActivity
         mViewPager.setOffscreenPageLimit(mPagerAdapter.getCount());
     }
 
+    public void onFragmentClick(int position) {
+        mViewPager.setCurrentItem(1);
+        mBottomNavigationView.setSelectedItemId(R.id.home_found);
+        classifyFragment.onClick(position);
+    }
+
     /**
      * {@link ViewPager.OnPageChangeListener}
      */
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
     public void onPageSelected(int position) {
+
         switch (position) {
             case 0:
                 mBottomNavigationView.setSelectedItemId(R.id.menu_home);
@@ -101,10 +117,13 @@ public final class HomeActivity extends MyActivity
                 break;
 
         }
+
+
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {}
+    public void onPageScrollStateChanged(int state) {
+    }
 
     /**
      * {@link BottomNavigationView.OnNavigationItemSelectedListener}
@@ -179,5 +198,20 @@ public final class HomeActivity extends MyActivity
         mViewPager.setAdapter(null);
         mBottomNavigationView.setOnNavigationItemSelectedListener(null);
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+//        anInt = getIntent().getIntExtra("name", 0);
+//        if (anInt == 1) {
+//            mViewPager.setCurrentItem(1);
+//            mBottomNavigationView.setSelectedItemId(R.id.home_found);
+//        } else {
+//            mViewPager.setCurrentItem(0);
+//            mBottomNavigationView.setSelectedItemId(R.id.menu_home);
+//        }
     }
 }

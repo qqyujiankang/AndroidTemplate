@@ -25,6 +25,7 @@ public final class CopyDialog {
             setContentView(R.layout.dialog_copy);
             setAnimStyle(BaseDialog.AnimStyle.BOTTOM);
             setGravity(Gravity.BOTTOM);
+
         }
     }
 }

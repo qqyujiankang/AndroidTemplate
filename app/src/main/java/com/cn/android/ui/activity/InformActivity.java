@@ -52,19 +52,21 @@ public class InformActivity extends MyActivity {
 
     @OnClick({R.id.ll_ServiceNotifications, R.id.ll_special_promotion, R.id.ll_my_team})
     public void onViewClicked(View view) {
-        Intent intent=new Intent();
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.ll_ServiceNotifications://服务通知
-                intent.putExtra("TestTitle","服务通知");
-                intent.setClass(getActivity(),ServiceNotificationsActivity.class);
+                intent.putExtra("TestTitle", "服务通知");
+                intent.setClass(getActivity(), ServiceNotificationsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_special_promotion://
-                intent.putExtra("TestTitle","优惠促销");
-                intent.setClass(getActivity(),ServiceNotificationsActivity.class);
+                intent.putExtra("TestTitle", "优惠促销");
+                intent.setClass(getActivity(), ServiceNotificationsActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.ll_my_team://客服
+            case R.id.ll_my_team://kefu
+                startActivity(ServiceActivity.class);
+
                 break;
 
         }

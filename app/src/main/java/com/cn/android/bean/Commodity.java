@@ -41,6 +41,10 @@ public class Commodity {
         private String vipprice;
         private int drawable;
 
+        public DataBean() {
+
+        }
+
         public DataBean(String imgUrl, String name, String price, String vipprice, int drawable) {
             this.imgUrl = imgUrl;
             this.name = name;

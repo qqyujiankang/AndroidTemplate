@@ -12,19 +12,21 @@ import com.cn.android.ui.activity.CommodityManagementActivity;
 import com.cn.android.ui.activity.DiscountCouponActivity;
 import com.cn.android.ui.activity.EnterprisesActivity;
 import com.cn.android.ui.activity.HomeActivity;
+import com.cn.android.ui.activity.InformActivity;
 import com.cn.android.ui.activity.InvitationCodeActivity;
 import com.cn.android.ui.activity.IsellActivity;
 import com.cn.android.ui.activity.MyFavoriteActivity;
 import com.cn.android.ui.activity.MyOrderActivity;
 import com.cn.android.ui.activity.MyTeamActivity;
 import com.cn.android.ui.activity.NewPersonalDataActivity;
+import com.cn.android.ui.activity.ProductsCoverActivity;
+import com.cn.android.ui.activity.ServiceActivity;
 import com.cn.android.ui.activity.SetActivity;
 import com.cn.android.ui.activity.ShippingAddressActivity;
 import com.cn.android.ui.activity.ThebalanceDetailsActivity;
+import com.cn.android.ui.activity.TheloginIdActivity;
 import com.cn.android.ui.activity.WithdrawDepositActivity;
-import com.hjq.image.ImageLoader;
 
-import androidx.activity.ComponentActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -74,6 +76,10 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
     LinearLayout llCommodityManagement;
     @BindView(R.id.ll_isell)
     LinearLayout llIsell;
+    @BindView(R.id.ll_Products_Cover_Activity)
+    LinearLayout llProductsCoverActivity;
+    @BindView(R.id.ll_service)
+    LinearLayout llService;
     private int order = 0;
 
     public static PersonalCenterFragment newInstance() {
@@ -87,10 +93,10 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @Override
     protected void initView() {
-        ImageLoader.with(this)
-                .circle()
-                .load("https://www.baidu.com/img/bd_logo.png")
-                .into(ivHear);
+//        ImageLoader.with(this)
+//                .circle()
+//                .load("https://www.baidu.com/img/bd_logo.png")
+//                .into(ivHear);
     }
 
     @Override
@@ -103,12 +109,33 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
             R.id.ll_Invitation_Code, R.id.tv_view_details,
             R.id.ll_favorite, R.id.tv_withdraw_deposit, R.id.tv_Enterprises,
             R.id.ll_obligation, R.id.ll_To_send_the_good,
-            R.id.ll_wait_for_receiving, R.id.ll_remain_to_be_evaluated, R.id.ll_isell, R.id.ll_CommodityManagement})
+            R.id.ll_wait_for_receiving, R.id.ll_remain_to_be_evaluated,
+            R.id.ll_isell, R.id.ll_CommodityManagement,
+            R.id.ll_Products_Cover_Activity, R.id.iv_information,R.id.ll_service})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
+            case R.id.ll_service://
+                startActivity(ServiceActivity.class);
+                break;
+            case R.id.iv_information:
+                startActivity(InformActivity.class);
+                break;
+            case R.id.ll_Products_Cover_Activity:
+                if (TheloginIdActivity.state == 0) {
+                    startActivity(ProductsCoverActivity.class);//商品管理
+                } else {
+                    toast("您还不是企业用户，请前往认证");
+                }//商品管理
+
+                break;
             case R.id.ll_CommodityManagement:
-                startActivity(CommodityManagementActivity.class);//商品管理
+                if (TheloginIdActivity.state == 0) {
+                    startActivity(CommodityManagementActivity.class);//商品管理
+                } else {
+                    toast("您还不是企业用户，请前往认证");
+                }
+
                 break;
             case R.id.tv_Enterprises:
                 startActivity(EnterprisesActivity.class);
@@ -123,7 +150,12 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 startActivity(ThebalanceDetailsActivity.class);
                 break;
             case R.id.ll_Invitation_Code://邀请码
-                startActivity(InvitationCodeActivity.class);
+                if (TheloginIdActivity.state == 0) {
+                    startActivity(InvitationCodeActivity.class);
+                } else {
+                    toast("您还不是企业用户，请前往认证");
+                }
+
                 break;
             case R.id.ll_AddressDetail:
                 startActivity(ShippingAddressActivity.class);
@@ -138,7 +170,12 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 startActivity(NewPersonalDataActivity.class);
                 break;
             case R.id.ll_my_team:
-                startActivity(MyTeamActivity.class);
+                if (TheloginIdActivity.state == 0) {
+                    startActivity(MyTeamActivity.class);
+                } else {
+                    toast("您还不是企业用户，请前往认证");
+                }
+
                 break;
             case R.id.ll_obligation:
                 order = 1;
@@ -157,7 +194,12 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 order(4);
                 break;
             case R.id.ll_isell:
-                startActivity(IsellActivity.class);
+                if (TheloginIdActivity.state == 0) {
+                    startActivity(IsellActivity.class);
+                } else {
+                    toast("您还不是企业用户，请前往认证");
+                }
+
                 break;
         }
     }

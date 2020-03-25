@@ -20,8 +20,9 @@ public class NotCommodityAdapter extends BaseQuickAdapter<Commodity.DataBean, Ba
 
     @Override
     protected void convert(BaseViewHolder helper, Commodity.DataBean item) {
-        helper.setText(R.id.tv_name,item.getName());
-        helper.setText(R.id.tv_price,item.getPrice());
-        helper.setText(R.id.iv_vpi_price,item.getVipprice());
+        helper.setText(R.id.tv_name, item.getName());
+        helper.setText(R.id.tv_price, context.getString(R.string.test01) + item.getPrice());
+        helper.setText(R.id.iv_vpi_price, context.getString(R.string.test01) + "" + item.getVipprice());
+        helper.addOnClickListener(R.id.Rl_01);
     }
 }

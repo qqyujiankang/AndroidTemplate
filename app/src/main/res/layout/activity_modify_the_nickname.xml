@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.ModifyTheNicknameActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/tib"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:rightTitle="确定"
+        app:title="我的订单" />
+
+    <com.hjq.widget.layout.SettingBar
+        app:bar_rightIcon="@mipmap/delete"
+        app:bar_leftText="傲娇鬼"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

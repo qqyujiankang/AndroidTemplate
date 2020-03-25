@@ -41,7 +41,8 @@
                 android:layout_below="@+id/tv_name"
                 android:background="@mipmap/qiyeruzhu"
                 android:padding="5dp"
-                android:text="企业入驻" />
+                android:text="已入驻"
+                android:textSize="11sp" />
 
             <ImageView
                 android:id="@+id/iv_hear"
@@ -87,21 +88,22 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="22.5dp"
                 android:layout_marginRight="20dp"
-                android:drawableRight="@drawable/ico_go_black"
+                android:drawableRight="@mipmap/test38"
                 android:drawablePadding="@dimen/dp_10"
                 android:text="查看详情"
                 android:textColor="#FFFFFF" />
 
             <TextView
+                android:id="@+id/tv_ti_xian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_view_details"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:drawableLeft="@mipmap/bank"
                 android:drawablePadding="@dimen/dp_10"
-                android:text="查看详情"
+                android:text="提现"
                 android:textColor="#FFFFFF" />
         </RelativeLayout>
     </LinearLayout>
@@ -118,5 +120,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

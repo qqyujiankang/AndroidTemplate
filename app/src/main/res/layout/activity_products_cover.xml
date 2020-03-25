@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.ProductsCoverActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/ttb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:rightTitle="排序"
+        app:title="商品自荐" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_products_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" />
+</LinearLayout>

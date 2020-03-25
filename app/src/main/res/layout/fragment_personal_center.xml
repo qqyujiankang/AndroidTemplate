@@ -84,7 +84,8 @@
                         android:layout_width="@dimen/space_100"
                         android:layout_height="@dimen/space_100"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/test24" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -123,7 +124,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="22.5dp"
                         android:layout_marginRight="20dp"
-                        android:drawableRight="@drawable/ico_go_black"
+                        android:drawableRight="@mipmap/test38"
                         android:drawablePadding="@dimen/dp_10"
                         android:text="查看详情"
                         android:textColor="#FFFFFF"
@@ -167,25 +168,28 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:gravity="center"
+                        android:drawablePadding="5dp"
+                        android:layout_marginRight="20dp"
                         android:id="@+id/tv_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/more"
-                        android:layout_toLeftOf="@+id/more"
+                        android:drawableRight="@mipmap/more"
                         android:text="更多"
                         android:textColor="#ff999999"
+                        android:layout_alignParentRight="true"
                         android:textSize="10sp" />
 
                     <ImageView
-
                         android:id="@+id/more"
                         android:layout_width="21dp"
                         android:layout_height="21dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@drawable/ico_go_black" />
+                        android:src="@drawable/ico_go_black"
+                        android:visibility="gone" />
 
 
                 </RelativeLayout>
@@ -336,6 +340,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_service"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -432,6 +437,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ll_Products_Cover_Activity"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

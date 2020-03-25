@@ -31,5 +31,6 @@ public final class ShopItemAdapter extends BaseQuickAdapter<ShopBean.ShopItem, B
         ImageView img=helper.getView(R.id.shop_img);
         ImageLoader.with(context).load(item.getImg()).into(img);
         helper.setText(R.id.shop_name,item.getName());
+        helper.addOnClickListener(R.id.shop_img);
     }
 }

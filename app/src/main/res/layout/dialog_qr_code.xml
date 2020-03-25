@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="131dp"
+    android:background="#00000000">
+
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/guanbi" />
+
+        <RelativeLayout
+
+            android:id="@+id/ll"
+            android:layout_width="253dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_delete"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white">
+
+
+            <ImageView
+
+                android:id="@+id/iv_code"
+                android:layout_width="165dp"
+                android:layout_height="165dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="44dp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_code"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="扫一扫二维码，加微信" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

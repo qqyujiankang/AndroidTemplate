@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/iv_tu"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="23dp"
+            android:src="@mipmap/zhaoxiangji" />
+
+        <TextView
+            android:id="@+id/tv_bame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_tu"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/iv_tu"
+            android:text="伯纳天纯幼猫粮1.5kg离乳期幼猫天然 粮接口为奇偶将饿哦爱谁就懂啊"></TextView>
+
+        <TextView
+            android:id="@+id/tv01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_bame"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_tu"
+            android:text="￥10.9"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_vip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv01"
+            android:layout_alignLeft="@+id/tv01"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@mipmap/vip"
+            android:text="￥9.9"
+            android:textColor="#EF4321" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_vip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/checkbox_xin"
+            android:button="@null" />
+    </RelativeLayout>
+</LinearLayout>

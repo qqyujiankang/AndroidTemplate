@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/iv01"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@mipmap/test11" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv01"
+            android:text="嘿嘿" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv01"
+            android:layout_marginTop="10dp"
+            android:text="你看下找你的鸡尾酒饿哦就睡啦就算了卡门口那些能看见你说的酷教信者量子空间西欧是奇偶睡多久哦再下结论就立刻就看见哦就啥都"
+            android:textColor="#666666"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/sp_12"
+    android:paddingRight="@dimen/sp_12">
+
+    <LinearLayout
+        android:layout_width="18dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+
+        <ImageView
+            android:id="@+id/iv_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/iv_old"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/refund_circle_gray"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/line_vertical"
+            android:layerType="software" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:paddingBottom="@dimen/sp_12">
+
+        <TextView
+
+            android:id="@+id/start_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="商家收到退货，已为您安排退款"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sp_12"
+            android:text="2018-11-15  14:15:08"
+            android:textSize="@dimen/sp_12" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cn.android.ui.activity.ConfirmAnOrderActivity">
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="确认订单" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_dialog_rounded_corner_5">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:text="收货地址" />
+
+        <View
+            android:id="@+id/vv_1"
+            style="@style/HorizontalLineStyle"
+            android:layout_below="@+id/tv_1" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vv_1"
+            android:layout_marginLeft="47dp"
+            android:layout_marginTop="20dp"
+            android:text="收件人： 马爸爸" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vv_1"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:text="18256789087" />
+
+        <TextView
+            android:id="@+id/tv_site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@mipmap/add_seit"
+            android:drawablePadding="15dp"
+            android:text="陕西省西安市高新四路丹枫国际B座" />
+
+        <TextView
+            android:id="@+id/add_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_site"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="15dp"
+            android:drawableRight="@mipmap/xiala"
+            android:drawablePadding="10dp"
+            android:text="其他地址"
+            android:textColor="#EF4321" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_dialog_rounded_corner_5">
+
+        <ImageView
+            android:id="@+id/iv_tet10"
+            android:layout_width="94.5dp"
+            android:layout_height="94.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:src="@mipmap/test10" />
+
+        <TextView
+            android:id="@+id/tv_test02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_tet10"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/iv_tet10"
+            android:text="【Manuka Health 蜜纽康】瑞瓦 瑞瓦蜂蜜 Rewarewa 2瓶"></TextView>
+
+        <TextView
+            android:id="@+id/tv_test03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_test02"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/iv_tet10"
+
+            android:text="规格 350g" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_test03"
+            android:layout_alignBottom="@+id/iv_tet10"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_tet10"
+
+            android:text="X2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_tet10"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"
+            android:text="￥48.45"
+            android:textColor="#EF4321" />
+
+        <View
+            android:id="@+id/vv_2"
+            style="@style/HorizontalLineStyle"
+            android:layout_below="@+id/iv_tet10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vv_2"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="应付金额"
+            android:textColor="#EF4321" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vv_2"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="20dp"
+            android:text="￥96.60"
+            android:textColor="#EF4321" />
+    </RelativeLayout>
+
+    <com.hjq.widget.layout.SettingBar
+        android:id="@+id/sb_setting_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:bar_leftText="优惠券"
+        app:bar_rightIcon="@drawable/ico_go_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_dialog_rounded_corner_5"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:text="选择支付方式"
+            android:textSize="18sp" />
+
+        <View
+            style="@style/HorizontalLineStyle"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:id="@+id/ll_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:drawableLeft="@mipmap/weixinzhifu"
+                android:drawablePadding="20dp"
+                android:text="微信支付"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/tv_upper"
+                style="@style/CustomCheckBoxTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical" />
+        </RelativeLayout>
+
+        <View
+            style="@style/HorizontalLineStyle"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:id="@+id/ll02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:drawableLeft="@mipmap/zhifubao"
+                android:drawablePadding="20dp"
+                android:text="支付宝支付"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cb02"
+                style="@style/CustomCheckBoxTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="合计：¥144.60"
+                android:textColor="#EF4321"
+                android:textSize="16sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="#FFE200"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="付款" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

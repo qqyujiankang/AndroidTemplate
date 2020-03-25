@@ -16,16 +16,24 @@ import androidx.annotation.Nullable;
  */
 public class CommodityAdapter extends BaseQuickAdapter<Commodity.DataBean, BaseViewHolder> {
     private Context context;
+    private int anInt;
 
-    public CommodityAdapter(Context context) {
+    public CommodityAdapter(Context context, int i) {
         super(R.layout.adapter_commodity);
         this.context = context;
+        this.anInt = i;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, Commodity.DataBean item) {
-        helper.setText(R.id.tv_name,item.getName());
-        helper.setText(R.id.tv_price,item.getPrice());
-        helper.setText(R.id.iv_vpi_price,item.getVipprice());
+        if (anInt == 0) {
+            helper.setGone(R.id.iv_bao, false);
+        } else {
+            helper.setGone(R.id.iv_bao, false);
+        }
+        helper.setText(R.id.tv_name, item.getName());
+        helper.setText(R.id.tv_price, context.getString(R.string.test01) + item.getPrice());
+        helper.setText(R.id.iv_vpi_price, context.getString(R.string.test01) + " " + item.getVipprice());
+        helper.addOnClickListener(R.id.Rl_01);
     }
 }

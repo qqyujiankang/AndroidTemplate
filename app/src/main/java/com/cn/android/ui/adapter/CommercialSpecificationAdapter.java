@@ -23,7 +23,7 @@ public class CommercialSpecificationAdapter extends BaseQuickAdapter<Commodity.D
 
     @Override
     protected void convert(BaseViewHolder helper, Commodity.DataBean item) {
-        helper.setText(R.id.tv_name, item.getName());
+       // helper.setText(R.id.tv_name, item.getName());
         helper.addOnClickListener(R.id.iv_add);
     }
 

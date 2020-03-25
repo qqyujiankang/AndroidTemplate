@@ -13,6 +13,7 @@
         app:title="收货地址" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/t_test_title"></androidx.recyclerview.widget.RecyclerView>

@@ -1,0 +1,9 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">// 形状
+    <solid android:color="#999999" />
+    // 颜色
+    <size
+        android:width="10dp"
+        android:height="10dp" />
+    // 宽高
+</shape>

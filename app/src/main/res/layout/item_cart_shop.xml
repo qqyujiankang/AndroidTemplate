@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@drawable/bg_whilte_r_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--<CheckBox-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <View
+            android:id="@+id/line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/space_80"
+            android:background="@color/colorLine"
+            app:layout_constraintTop_toTopOf="@+id/top_view" />
+
+        <CheckBox
+            android:id="@+id/parent_check"
+            android:layout_width="@dimen/space_48"
+            android:layout_height="@dimen/space_48"
+            android:layout_marginLeft="@dimen/space_26"
+            android:button="@drawable/shopcart_check"
+            app:layout_constraintBottom_toBottomOf="@+id/line_view"
+            app:layout_constraintLeft_toLeftOf="@+id/top_view"
+            app:layout_constraintTop_toTopOf="@+id/top_view" />
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sp_12"
+            android:text="玺购商城"
+            app:layout_constraintBottom_toBottomOf="@+id/parent_check"
+            app:layout_constraintLeft_toRightOf="@+id/parent_check"
+            app:layout_constraintTop_toTopOf="@+id/parent_check" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shop_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_view"
+
+            tools:listitem="@layout/item_cart_goods" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

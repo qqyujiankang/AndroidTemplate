@@ -4,7 +4,9 @@ import java.util.List;
 
 public class ShopBean {
     private String className;
+
     private List<ShopItem> list;
+
 
     public String getClassName() {
         return className;
@@ -23,13 +25,23 @@ public class ShopBean {
     }
 
     public static class ShopItem {
-        public ShopItem(int img, String name) {
+        public ShopItem(int img, String name, String goods_num) {
             this.img = img;
             this.name = name;
+            this.goods_num = goods_num;
+        }
+
+        public String getGoods_num() {
+            return goods_num;
+        }
+
+        public void setGoods_num(String goods_num) {
+            this.goods_num = goods_num;
         }
 
         private int img;
         private String name;
+        private String goods_num;
 
         public int getImg() {
             return img;

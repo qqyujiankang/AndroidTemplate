@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">安卓架构</string>
+    <string name="app_name">玺购商城</string>
 
     <!-- 通用的 -->
     <string name="common_phone_input_hint">输入手机号码</string>
@@ -176,5 +176,6 @@
     <string name="photo_launch_fail">无法启动相机</string>
     <string name="photo_picture_error">图片错误</string>
     <string name="home_nav_network">网络</string>
+    <string name="test01">&#165;</string>
 
 </resources>

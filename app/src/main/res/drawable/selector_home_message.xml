@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 按压状态 -->
-    <item android:drawable="@drawable/tab_ico_message" android:state_checked="true" />
+    <item android:drawable="@mipmap/gouwuche_yes" android:state_checked="true" />
 
     <!-- 默认状态 -->
-    <item android:drawable="@drawable/tab_ico_message_off" />
+    <item android:drawable="@mipmap/gowu01" />
 
 </selector>

@@ -7,8 +7,10 @@
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/netsv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,35 +18,39 @@
             android:orientation="vertical">
 
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp">
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_qi_q"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:drawableRight="@mipmap/io"
+                    android:text="雁塔区"
+                    android:textSize="14sp" />
 
-                    <com.hjq.widget.view.ClearEditText
-                        android:id="@+id/search_txt"
-                        style="@style/EditTextStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/edittxt_bg"
-                        android:drawableLeft="@mipmap/so"
-                        android:drawablePadding="10dp"
-                        android:hint="请输入想要的商品"
-                        android:imeOptions="actionSearch"
-                        android:inputType="text"
-                        android:singleLine="true"
-                        app:regexType="nonnull" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/sv_default"
+                    android:layout_width="0dp"
+                    android:layout_height="29dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radius_f6f6f6"
+                    android:drawableLeft="@mipmap/icon_sousuo"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="15dp"
+                    android:text="请输入想要的商品"
+                    android:textColor="#FF999999"
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/iv_information"
@@ -54,25 +60,25 @@
                     android:layout_marginLeft="@dimen/space_30"
                     android:layout_toStartOf="@+id/iv_RichScan"
                     android:layout_toLeftOf="@+id/iv_RichScan"
-                    android:src="@mipmap/ic_dialog_delete"
+                    android:src="@mipmap/saoyisao"
                     android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/iv_RichScan"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
+                    android:layout_width="18dp"
+                    android:layout_height="17dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_margin="10dp"
                     android:src="@mipmap/xiaoxi">
 
                 </ImageView>
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <com.stx.xhb.xbanner.XBanner xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.stx.xhb.xbanner.XBanner
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/xbanner"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
@@ -82,11 +88,9 @@
                 app:AutoPlayTime="3000"
                 app:isClipChildrenMode="true"
                 app:isShowIndicatorOnlyOne="true"
-                app:isShowNumberIndicator="true"
                 app:pageChangeDuration="800"
-                app:pointsContainerBackground="#44aaaaaa"
-                app:pointsPosition="RIGHT"
-                app:tipTextSize="12sp" />
+                app:pointsPosition="CENTER"
+                 />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,11 +114,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/bg_radius_white_5">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/ll_marketing_division"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="优秀营销师"
+                    android:textColor="#222222"
+                    android:textSize="@dimen/sp_16" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_High_quality_shops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="优质店铺"
+                    android:textColor="#222222"
+                    android:textSize="@dimen/sp_16" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </LinearLayout>
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -124,6 +188,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/rbn_01"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:button="@null"

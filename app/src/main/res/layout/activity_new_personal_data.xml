@@ -13,6 +13,7 @@
         app:title="@string/personal_data_title" />
 
     <com.hjq.widget.layout.SettingBar
+        android:id="@+id/s03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
@@ -21,6 +22,7 @@
 
 
     <com.hjq.widget.layout.SettingBar
+        android:id="@+id/s02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -29,6 +31,7 @@
         tools:bar_rightHint="傲娇鬼" />
 
     <com.hjq.widget.layout.SettingBar
+        android:id="@+id/s01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:bar_leftText="性别"
