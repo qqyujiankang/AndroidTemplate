@@ -53,11 +53,11 @@ public class TheloginIdActivity extends MyActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_Enterprise_portal:
-                state = 0;
+                state = 1;
                 startActivity(LoginIDActivity.class);
                 break;
             case R.id.btn_Personal_portal:
-                state = 1;
+                state = 2;
                 startActivity(LoginIDActivity.class);
                 break;
         }

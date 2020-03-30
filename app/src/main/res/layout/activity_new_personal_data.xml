@@ -12,13 +12,21 @@
         android:layout_height="wrap_content"
         app:title="@string/personal_data_title" />
 
-    <com.hjq.widget.layout.SettingBar
-        android:id="@+id/s03"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        app:bar_leftIcon="@drawable/ic_head_placeholder"
-        app:bar_rightText="修改" />
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/test24" />
+    </RelativeLayout>
 
 
     <com.hjq.widget.layout.SettingBar

@@ -67,10 +67,11 @@
         android:paddingBottom="20dp">
 
         <TextView
+            android:id="@+id/tv_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="21dp"
-            android:text="￥300"
+            android:text="300"
 
             android:textSize="18sp" />
     </LinearLayout>
@@ -146,7 +147,7 @@
                 android:layout_marginLeft="21dp"
                 android:drawableLeft="@mipmap/zhifubao"
                 android:drawablePadding="20dp"
-                android:text="微信支付"
+                android:text="支付宝支付"
                 android:textSize="18sp" />
 
             <CheckBox

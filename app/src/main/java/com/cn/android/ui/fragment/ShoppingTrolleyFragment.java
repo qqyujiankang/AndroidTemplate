@@ -89,7 +89,6 @@ public class ShoppingTrolleyFragment extends MyLazyFragment<HomeActivity> implem
 
     @Override
     protected void initData() {
-
     }
 
     @Override

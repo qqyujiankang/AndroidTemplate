@@ -11,11 +11,17 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import com.amap.api.location.AMapLocation;
 import com.cn.android.R;
 import com.cn.android.bean.UserBean;
+import com.cn.android.bean.Userdata;
 import com.cn.android.helper.ActivityStackManager;
+import com.cn.android.network.GsonUtils;
 import com.cn.android.other.EventBusManager;
 import com.cn.android.other.StatusManager;
+import com.cn.android.utils.LocationManager;
+import com.cn.android.utils.SPUtils;
+import com.google.gson.Gson;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
@@ -28,21 +34,29 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2018/10/18
- *    desc   : 项目中的 Activity 基类
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/AndroidProject
+ * time   : 2018/10/18
+ * desc   : 项目中的 Activity 基类
  */
 public abstract class MyActivity extends BaseActivity
         implements OnTitleBarListener {
 
-    /** 标题栏对象 */
+    /**
+     * 标题栏对象
+     */
     private TitleBar mTitleBar;
-    /** 状态栏沉浸 */
+    /**
+     * 状态栏沉浸
+     */
     private ImmersionBar mImmersionBar;
-    /** ButterKnife 注解 */
+    /**
+     * ButterKnife 注解
+     */
     private Unbinder mButterKnife;
-    private UserBean userBean ;
+    private Userdata userBean;
+    private LocationManager locationManager = new LocationManager();
+    Userdata userdata = new Userdata();
 
     /**
      * 获取标题栏 id
@@ -51,10 +65,25 @@ public abstract class MyActivity extends BaseActivity
         return 0;
     }
 
+    public String Province, City, District;
+
     @Override
     protected void initActivity() {
         super.initActivity();
-        ActivityStackManager.getInstance().onCreated(this);
+        ActivityStackManager.getInstance().onCreated( this );
+        locationManager.startLocation( getActivity() );
+
+        // locationManager.isLocationEnabled( getActivity() );
+        locationManager.setLocationCallBack( new LocationManager.ILocationCallBack() {
+            @Override
+            public void callBack(String str, double lat, double lgt, AMapLocation aMapLocation) {
+                Province = aMapLocation.getProvince();
+                City = aMapLocation.getCity();
+                District = aMapLocation.getDistrict();
+                // toast( aMapLocation.getProvince() + aMapLocation.getCity() + aMapLocation.getDistrict() );
+            }
+        } );
+
     }
 
     @Override
@@ -64,20 +93,20 @@ public abstract class MyActivity extends BaseActivity
         // 初始化标题栏的监听
         if (getTitleId() > 0) {
             // 勤快模式
-            View view = findViewById(getTitleId());
+            View view = findViewById( getTitleId() );
             if (view instanceof TitleBar) {
                 mTitleBar = (TitleBar) view;
             }
         } else if (getTitleId() == 0) {
             // 懒人模式
-            mTitleBar = findTitleBar(getContentView());
+            mTitleBar = findTitleBar( getContentView() );
         }
         if (mTitleBar != null) {
-            mTitleBar.setOnTitleBarListener(this);
+            mTitleBar.setOnTitleBarListener( this );
         }
 
-        mButterKnife = ButterKnife.bind(this);
-        EventBusManager.register(this);
+        mButterKnife = ButterKnife.bind( this );
+        EventBusManager.register( this );
         initImmersion();
     }
 
@@ -86,11 +115,11 @@ public abstract class MyActivity extends BaseActivity
      */
     static TitleBar findTitleBar(ViewGroup group) {
         for (int i = 0; i < group.getChildCount(); i++) {
-            View view = group.getChildAt(i);
+            View view = group.getChildAt( i );
             if ((view instanceof TitleBar)) {
                 return (TitleBar) view;
             } else if (view instanceof ViewGroup) {
-                TitleBar titleBar = findTitleBar((ViewGroup) view);
+                TitleBar titleBar = findTitleBar( (ViewGroup) view );
                 if (titleBar != null) {
                     return titleBar;
                 }
@@ -109,9 +138,9 @@ public abstract class MyActivity extends BaseActivity
 
             // 设置标题栏沉浸
             if (getTitleId() > 0) {
-                ImmersionBar.setTitleBar(this, findViewById(getTitleId()));
+                ImmersionBar.setTitleBar( this, findViewById( getTitleId() ) );
             } else if (mTitleBar != null) {
-                ImmersionBar.setTitleBar(this, mTitleBar);
+                ImmersionBar.setTitleBar( this, mTitleBar );
             }
         }
     }
@@ -143,9 +172,9 @@ public abstract class MyActivity extends BaseActivity
      */
     protected ImmersionBar statusBarConfig() {
         // 在BaseActivity里初始化
-        mImmersionBar = ImmersionBar.with(this)
+        mImmersionBar = ImmersionBar.with( this )
                 // 默认状态栏字体颜色为黑色
-                .statusBarDarkFont(statusBarDarkFont());
+                .statusBarDarkFont( statusBarDarkFont() );
         return mImmersionBar;
     }
 
@@ -154,7 +183,7 @@ public abstract class MyActivity extends BaseActivity
      */
     @Override
     public void setTitle(@StringRes int id) {
-        setTitle(getString(id));
+        setTitle( getString( id ) );
     }
 
     /**
@@ -162,9 +191,9 @@ public abstract class MyActivity extends BaseActivity
      */
     @Override
     public void setTitle(CharSequence title) {
-        super.setTitle(title);
+        super.setTitle( title );
         if (mTitleBar != null) {
-            mTitleBar.setTitle(title);
+            mTitleBar.setTitle( title );
         }
     }
 
@@ -173,13 +202,13 @@ public abstract class MyActivity extends BaseActivity
      */
     public void setLeftTitle(int id) {
         if (mTitleBar != null) {
-            mTitleBar.setLeftTitle(id);
+            mTitleBar.setLeftTitle( id );
         }
     }
 
     public void setLeftTitle(CharSequence text) {
         if (mTitleBar != null) {
-            mTitleBar.setLeftTitle(text);
+            mTitleBar.setLeftTitle( text );
         }
     }
 
@@ -195,13 +224,13 @@ public abstract class MyActivity extends BaseActivity
      */
     public void setRightTitle(int id) {
         if (mTitleBar != null) {
-            mTitleBar.setRightTitle(id);
+            mTitleBar.setRightTitle( id );
         }
     }
 
     public void setRightTitle(CharSequence text) {
         if (mTitleBar != null) {
-            mTitleBar.setRightTitle(text);
+            mTitleBar.setRightTitle( text );
         }
     }
 
@@ -217,13 +246,13 @@ public abstract class MyActivity extends BaseActivity
      */
     public void setLeftIcon(int id) {
         if (mTitleBar != null) {
-            mTitleBar.setLeftIcon(id);
+            mTitleBar.setLeftIcon( id );
         }
     }
 
     public void setLeftIcon(Drawable drawable) {
         if (mTitleBar != null) {
-            mTitleBar.setLeftIcon(drawable);
+            mTitleBar.setLeftIcon( drawable );
         }
     }
 
@@ -240,13 +269,13 @@ public abstract class MyActivity extends BaseActivity
      */
     public void setRightIcon(int id) {
         if (mTitleBar != null) {
-            mTitleBar.setRightIcon(id);
+            mTitleBar.setRightIcon( id );
         }
     }
 
     public void setRightIcon(Drawable drawable) {
         if (mTitleBar != null) {
-            mTitleBar.setRightIcon(drawable);
+            mTitleBar.setRightIcon( drawable );
         }
     }
 
@@ -279,13 +308,15 @@ public abstract class MyActivity extends BaseActivity
      * TitleBar 中间的View被点击了
      */
     @Override
-    public void onTitleClick(View v) {}
+    public void onTitleClick(View v) {
+    }
 
     /**
      * TitleBar 右边的View被点击了
      */
     @Override
-    public void onRightClick(View v) {}
+    public void onRightClick(View v) {
+    }
 
     @Override
     protected void onResume() {
@@ -303,36 +334,36 @@ public abstract class MyActivity extends BaseActivity
         if (mButterKnife != null) {
             mButterKnife.unbind();
         }
-        OkHttpUtils.getInstance().cancelTag(this);
-        EventBusManager.unregister(this);
-        ActivityStackManager.getInstance().onDestroyed(this);
+        OkHttpUtils.getInstance().cancelTag( this );
+        EventBusManager.unregister( this );
+        ActivityStackManager.getInstance().onDestroyed( this );
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
-        super.startActivityForResult(intent, requestCode, options);
-        overridePendingTransition(R.anim.activity_right_in, R.anim.activity_right_out);
+        super.startActivityForResult( intent, requestCode, options );
+        overridePendingTransition( R.anim.activity_right_in, R.anim.activity_right_out );
     }
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.activity_left_in, R.anim.activity_left_out);
+        overridePendingTransition( R.anim.activity_left_in, R.anim.activity_left_out );
     }
 
     /**
      * 显示吐司
      */
     public void toast(CharSequence text) {
-        ToastUtils.show(text);
+        ToastUtils.show( text );
     }
 
     public void toast(@StringRes int id) {
-        ToastUtils.show(id);
+        ToastUtils.show( id );
     }
 
     public void toast(Object object) {
-        ToastUtils.show(object);
+        ToastUtils.show( object );
     }
 
     /**
@@ -340,7 +371,7 @@ public abstract class MyActivity extends BaseActivity
      */
     public void log(Object object) {
         if (BuildConfig.DEBUG) {
-            Log.v(getClass().getSimpleName(), object != null ? object.toString() : "null");
+            Log.v( getClass().getSimpleName(), object != null ? object.toString() : "null" );
         }
     }
 
@@ -350,15 +381,15 @@ public abstract class MyActivity extends BaseActivity
      * 显示加载中
      */
     public void showLoading() {
-        mStatusManager.showLoading(this);
+        mStatusManager.showLoading( this );
     }
 
     public void showLoading(@StringRes int id) {
-        mStatusManager.showLoading(this, getString(id));
+        mStatusManager.showLoading( this, getString( id ) );
     }
 
     public void showLoading(CharSequence text) {
-        mStatusManager.showLoading(this, text);
+        mStatusManager.showLoading( this, text );
     }
 
     /**
@@ -372,25 +403,37 @@ public abstract class MyActivity extends BaseActivity
      * 显示空提示
      */
     public void showEmpty() {
-        mStatusManager.showEmpty(getContentView());
+        mStatusManager.showEmpty( getContentView() );
     }
 
     /**
      * 显示错误提示
      */
     public void showError() {
-        mStatusManager.showError(getContentView());
+        mStatusManager.showError( getContentView() );
     }
 
     /**
      * 显示自定义提示
      */
     public void showLayout(@DrawableRes int drawableId, @StringRes int stringId) {
-        mStatusManager.showLayout(getContentView(), drawableId, stringId);
+        mStatusManager.showLayout( getContentView(), drawableId, stringId );
     }
 
     public void showLayout(Drawable drawable, CharSequence hint) {
-        mStatusManager.showLayout(getContentView(), drawable, hint);
+        mStatusManager.showLayout( getContentView(), drawable, hint );
     }
 
+    public Userdata userdata() {
+        userBean = GsonUtils.getPerson( SPUtils.getString( "AppUser", "" ), Userdata.class );
+        return userBean;
+    }
+
+    public boolean isLogin() {
+        return SPUtils.contains( "AppUser" );
+    }
+
+    public void SaveUserBean(Userdata userBean) {
+        SPUtils.putString( "AppUser", new Gson().toJson( userBean ) );
+    }
 }

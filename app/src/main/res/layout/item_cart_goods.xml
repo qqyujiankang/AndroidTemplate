@@ -20,7 +20,7 @@
         android:id="@+id/goods_img"
         android:layout_width="@dimen/space_184"
         android:layout_height="@dimen/space_184"
-        android:src="@mipmap/test7"
+        android:src="@mipmap/test10"
         app:corner_radius="5dp"
         android:layout_marginLeft="@dimen/space_20"
         app:layout_constraintTop_toTopOf="parent"
@@ -74,8 +74,8 @@
     <ImageButton
 
         android:id="@+id/goods_add"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/shopcart_jian"
         android:background="@null"
         android:layout_margin="@dimen/space_10"
@@ -116,8 +116,8 @@
 
     <ImageButton
         android:id="@+id/goods_jian"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/shopcart_add"
         android:background="@null"
         android:padding="@dimen/space_20"

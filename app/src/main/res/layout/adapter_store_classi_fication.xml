@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/bg_radius_white_5"
+        android:background="@drawable/bg_radius_toumig_5"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="15dp"

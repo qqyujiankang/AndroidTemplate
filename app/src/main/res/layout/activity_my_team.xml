@@ -15,6 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:orientation="vertical">
 
@@ -28,6 +29,7 @@
             android:layout_marginRight="11dp">
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
             android:layout_marginTop="15.5dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginEnd="7dp"
             android:background="@mipmap/balance_of_account">
 
@@ -77,6 +80,7 @@
                 android:layout_below="@+id/tv_balance_of_account"
                 android:layout_marginLeft="22.5dp"
                 android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
                 android:text="账户余额"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
@@ -94,13 +98,14 @@
                 android:textColor="#FFFFFF" />
 
             <TextView
+
                 android:id="@+id/tv_ti_xian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_view_details"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
                 android:drawableLeft="@mipmap/bank"
                 android:drawablePadding="@dimen/dp_10"
                 android:text="提现"
@@ -116,7 +121,10 @@
         android:padding="10dp"
         android:text="团队成员"
         android:textSize="16sp" />
-
+    <View
+        style="@style/HorizontalLineStyle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"

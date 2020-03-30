@@ -7,14 +7,16 @@
     android:orientation="vertical">
 
     <com.hjq.bar.TitleBar
+        android:background="#F6F6F6"
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:leftColor="#333333"
         app:leftIcon="@color/white"
-        app:leftSize="@dimen/sp_14"
+        app:leftSize="18sp"
         app:leftTitle="购物车"
+        app:rightColor="#333333"
         app:rightTitle="管理" />
 
     <TextView
@@ -33,7 +35,6 @@
         android:id="@+id/cart_recycle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintTop_toBottomOf="@+id/total_num"
         tools:layout_editor_absoluteX="16dp" />
@@ -79,7 +80,8 @@
                 android:layout_marginRight="15dp"
                 android:background="@drawable/bg_dialog_rounded_corner_yellow"
                 android:text="结算"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -51,12 +51,12 @@ public class AddressPickerView extends RelativeLayout implements View.OnClickLis
     private AddressAdapter mAdapter;   // recyclerview 的 adapter
 
     private YwpAddressBean mYwpAddressBean; // 总数据
-    private YwpAddressBean.AddressItemBean mSelectProvice; //选中 省份 bean
-    private YwpAddressBean.AddressItemBean mSelectCity;//选中 城市  bean
-    private YwpAddressBean.AddressItemBean mSelectDistrict;//选中 区县  bean
-    private int mSelectProvicePosition = 0; //选中 省份 位置
-    private int mSelectCityPosition = 0;//选中 城市  位置
-    private int mSelectDistrictPosition = 0;//选中 区县  位置
+    private YwpAddressBean.AddressItemBean mSelectProvice; //puls_yes 省份 bean
+    private YwpAddressBean.AddressItemBean mSelectCity;//puls_yes 城市  bean
+    private YwpAddressBean.AddressItemBean mSelectDistrict;//puls_yes 区县  bean
+    private int mSelectProvicePosition = 0; //puls_yes 省份 位置
+    private int mSelectCityPosition = 0;//puls_yes 城市  位置
+    private int mSelectDistrictPosition = 0;//puls_yes 区县  位置
 
     private OnAddressPickerSureListener mOnAddressPickerSureListener;
     private TextView mTvSure; //确定

@@ -13,6 +13,7 @@
         app:title="收货地址" />
 
     <EditText
+        android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
@@ -23,11 +24,12 @@
         android:paddingBottom="@dimen/dp_10" />
 
     <EditText
+        android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:background="@color/white"
-        android:hint="1555356564646456"
+        android:hint="手机号"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="@dimen/dp_10" />
@@ -41,6 +43,7 @@
         app:bar_rightIcon="@drawable/ico_go_black" />
 
     <EditText
+        android:id="@+id/et_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -78,7 +81,6 @@
 
     <TextView
         android:id="@+id/tv_04"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -88,7 +90,8 @@
         android:paddingBottom="18dp"
         android:text="删除收货地址"
         android:textColor="#EF4321"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_bind_commit"

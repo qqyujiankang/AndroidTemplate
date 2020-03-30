@@ -74,6 +74,7 @@
             android:src="@mipmap/mima" />
 
         <com.hjq.widget.view.ClearEditText
+            android:id="@+id/etsmscode"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,9 +85,10 @@
             android:hint="@string/common_password_input_error"
             android:inputType="textVisiblePassword"
             android:singleLine="true"
-            app:regexType="mobile" />
+          />
 
         <com.hjq.widget.view.CountdownView
+
             android:id="@+id/cv_bind_countdown"
             style="@style/CountdownViewStyle"
             android:layout_alignParentRight="true"

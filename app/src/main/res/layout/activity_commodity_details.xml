@@ -83,7 +83,8 @@
                     android:layout_alignTop="@+id/tv_02"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:text="成交量" />
+                    android:text="成交量"
+                    android:textColor="#AAAAAA" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -102,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
+                app:bar_leftColor="#AAAAAA"
                 app:bar_leftText="规格"
                 app:bar_rightIcon="@drawable/ico_go_black" />
 
@@ -110,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
+                app:bar_leftColor="#AAAAAA"
                 app:bar_leftText="收货地址"
                 app:bar_rightIcon="@drawable/ico_go_black" />
 

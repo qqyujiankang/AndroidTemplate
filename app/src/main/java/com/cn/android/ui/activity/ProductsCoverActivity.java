@@ -64,7 +64,7 @@ public class ProductsCoverActivity extends MyActivity implements OnTitleBarListe
             }
 
         }
-        commodityManagementAdapter.setNewData(dataBeans);
+      //  commodityManagementAdapter.setNewData(dataBeans);
     }
 
     @Override

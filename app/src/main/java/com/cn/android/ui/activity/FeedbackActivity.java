@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * time   : 2018/10/18
  * desc   : 意见反馈
  */
-public final class FeedbackActivity extends MyActivity {
+public final class FeedbackActivity extends MyActivity implements PublicInterfaceView {
 
     @BindView(R.id.et_special_txt)
     EditText etSpecialTxt;
@@ -43,7 +43,7 @@ public final class FeedbackActivity extends MyActivity {
     @Override
     protected void initView() {
 
-        // presenetr = new PublicInterfaceePresenetr(this);
+        presenetr = new PublicInterfaceePresenetr( this );
 
     }
 
@@ -52,24 +52,41 @@ public final class FeedbackActivity extends MyActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
     @OnClick(R.id.btn_special_commit)
     public void onViewClicked() {
 
-        if (TextUtils.isEmpty(etSpecialTxt.getText().toString().trim())) {
-            ToastUtils.show("请输入反馈内容！！！");
+        if (TextUtils.isEmpty( etSpecialTxt.getText().toString().trim() )) {
+            ToastUtils.show( "请输入反馈内容！！！" );
             return;
         }
-        finish();
-        //presenetr.getPostHeaderRequest(FeedbackActivity.this, ServerUrl.addFeedBack,Constant.addFeedBack);
+        showLoading();
+        presenetr.getPostTokenRequest( FeedbackActivity.this, ServerUrl.addFeedBack, Constant.addFeedBack );
 
     }
 
 
+    @Override
+    public Map<String, Object> setPublicInterfaceData(int tag) {
+        Map<String, Object> paramsMap = new HashMap<>();
+        switch (tag) {
+            case Constant.addFeedBack:
+                paramsMap.put( "userid", userdata().getId() );
+                paramsMap.put( "content", etSpecialTxt.getText().toString() );
+                return paramsMap;
+
+        }
+        return null;
+    }
+
+    @Override
+    public void onPublicInterfaceSuccess(String data, int tag) {
+        showComplete();
+        finish();
+    }
+
+    @Override
+    public void onPublicInterfaceError(String error, int tag) {
+        showComplete();
+    }
 }

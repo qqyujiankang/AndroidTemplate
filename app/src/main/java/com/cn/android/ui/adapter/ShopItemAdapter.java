@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.cn.android.R;
+import com.cn.android.bean.SelectTypeListByPid;
 import com.cn.android.bean.ShopBean;
 import com.hjq.image.ImageLoader;
 
@@ -17,7 +18,7 @@ import com.hjq.image.ImageLoader;
  *    time   : 2018/11/05
  *    desc   : 可进行拷贝的副本
  */
-public final class ShopItemAdapter extends BaseQuickAdapter<ShopBean.ShopItem, BaseViewHolder> {
+public final class ShopItemAdapter extends BaseQuickAdapter<SelectTypeListByPid.ThreeListBean, BaseViewHolder> {
 
     private Context context;
 
@@ -27,7 +28,7 @@ public final class ShopItemAdapter extends BaseQuickAdapter<ShopBean.ShopItem, B
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ShopBean.ShopItem item) {
+    protected void convert(BaseViewHolder helper, SelectTypeListByPid.ThreeListBean item) {
         ImageView img=helper.getView(R.id.shop_img);
         ImageLoader.with(context).load(item.getImg()).into(img);
         helper.setText(R.id.shop_name,item.getName());

@@ -84,12 +84,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
         strings.add(new Commodity.DataBean("fdsdfds", "455", "45", "455", 4));
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
 
     @Override

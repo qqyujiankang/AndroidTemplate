@@ -28,6 +28,7 @@
             android:layout_height="wrap_content">
 
             <com.hjq.widget.view.RegexEditText
+
                 android:layout_toLeftOf="@+id/iv01"
                 android:id="@+id/et_bind_phone"
                 style="@style/EditTextStyle"

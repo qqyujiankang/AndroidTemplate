@@ -1,6 +1,8 @@
 package com.cn.android.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -25,6 +27,6 @@ public class StoreClassiFicationAdapter extends BaseQuickAdapter<Commodity.DataB
         helper.setBackgroundRes(R.id.rv, item.getDrawable());
         helper.setText(R.id.tv01, item.getName());
         helper.addOnClickListener(R.id.rv);
-
+       //elper.setBackgroundColor(R.id.tv01,Color.argb(0, 0, 0,0));
     }
 }

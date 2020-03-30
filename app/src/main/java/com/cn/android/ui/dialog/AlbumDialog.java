@@ -149,7 +149,7 @@ public final class AlbumDialog {
         private String name;
         /** 数量 */
         private int count;
-        /** 选中 */
+        /** puls_yes */
         private boolean select;
 
         public AlbumBean(String icon, String name, int count, boolean select) {

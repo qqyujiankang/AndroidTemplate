@@ -89,5 +89,15 @@ public class GetJsonDate {
         }
         return data;
     }
+    public static String getJsonDriveq(String jsonData,String s) {
+        String data="";
+        try {
+            JSONObject obj = new JSONObject(jsonData);
+            data=obj.optString(s);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
 
 }

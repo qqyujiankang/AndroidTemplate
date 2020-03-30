@@ -1,220 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/smallLabel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white6"
-    android:orientation="vertical">
+    android:background="@color/white6">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/netsv"
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_height="match_parent" />
+
+    <com.hjq.widget.layout.HintLayout
+        android:id="@+id/iv_hint_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <LinearLayout
-                android:id="@+id/title"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/netsv"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:gravity="center_vertical">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/tv_qi_q"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:drawableRight="@mipmap/io"
-                    android:text="雁塔区"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/sv_default"
-                    android:layout_width="0dp"
-                    android:layout_height="29dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="11dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_radius_f6f6f6"
-                    android:drawableLeft="@mipmap/icon_sousuo"
-                    android:drawablePadding="5dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="15dp"
-                    android:text="请输入想要的商品"
-                    android:textColor="#FF999999"
-                    android:textSize="12sp" />
-
-                <ImageView
-                    android:id="@+id/iv_information"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/space_30"
-                    android:layout_toStartOf="@+id/iv_RichScan"
-                    android:layout_toLeftOf="@+id/iv_RichScan"
-                    android:src="@mipmap/saoyisao"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_RichScan"
-                    android:layout_width="18dp"
-                    android:layout_height="17dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/xiaoxi">
-
-                </ImageView>
-
-
-            </LinearLayout>
-
-            <com.stx.xhb.xbanner.XBanner
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/xbanner"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginRight="10dp"
-                app:AutoPlayTime="3000"
-                app:isClipChildrenMode="true"
-                app:isShowIndicatorOnlyOne="true"
-                app:pageChangeDuration="800"
-                app:pointsPosition="CENTER"
-                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="每日爆品"
-                android:textColor="#222222"
-                android:textSize="@dimen/sp_16" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/message_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/message_recycler1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/bg_radius_white_5">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <LinearLayout
-                android:id="@+id/ll_marketing_division"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10.5dp"
-                    android:layout_marginTop="10dp"
-                    android:text="优秀营销师"
-                    android:textColor="#222222"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_03"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_04"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:orientation="vertical">
 
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical">
 
-            <LinearLayout
-                android:id="@+id/ll_High_quality_shops"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                        <TextView
+                            android:id="@+id/tv_qi_q"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:drawableRight="@mipmap/io"
+                            android:text="雁塔区"
+                            android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10.5dp"
-                    android:layout_marginTop="10dp"
-                    android:text="优质店铺"
-                    android:textColor="#222222"
-                    android:textSize="@dimen/sp_16" />
+                        <TextView
+                            android:id="@+id/sv_default"
+                            android:layout_width="0dp"
+                            android:layout_height="29dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_radius_f6f6f6"
+                            android:drawableLeft="@mipmap/icon_sousuo"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="15dp"
+                            android:text="请输入想要的商品"
+                            android:textColor="#FF999999"
+                            android:textSize="12sp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_05"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/iv_information"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/space_30"
+                            android:layout_toStartOf="@+id/iv_RichScan"
+                            android:layout_toLeftOf="@+id/iv_RichScan"
+                            android:src="@mipmap/saoyisao"
+                            android:visibility="gone" />
 
-                </androidx.recyclerview.widget.RecyclerView>
+                        <ImageView
+                            android:id="@+id/iv_RichScan"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="10dp"
+                            android:src="@mipmap/xiaoxi">
 
-
-            </LinearLayout>
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rbn_01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:button="@null"
-                    android:checked="true"
-                    android:text="附近商家"
-                    android:textColor="@drawable/rb_text_drawable_selector"
-                    android:textSize="@dimen/sp_16" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:button="@null"
-                    android:text="最新商品"
-                    android:textColor="@drawable/rb_text_drawable_selector"
-                    android:textSize="@dimen/sp_16" />
+                        </ImageView>
 
 
-            </RadioGroup>
+                    </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/message_recycler2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <com.stx.xhb.xbanner.XBanner xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/xbanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginRight="10dp"
+                        app:AutoPlayTime="3000"
+                        app:isClipChildrenMode="true"
+                        app:isShowIndicatorOnlyOne="true"
+                        app:pageChangeDuration="800"
+                        app:pointsPosition="CENTER" />
 
-            </androidx.recyclerview.widget.RecyclerView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="每日爆品"
+                        android:textColor="#222222"
+                        android:textSize="@dimen/sp_16" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/message_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/message_recycler1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/bg_radius_white_5">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <LinearLayout
+                        android:id="@+id/ll_marketing_division"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10.5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="优秀营销师"
+                            android:textColor="#222222"
+                            android:textSize="@dimen/sp_16" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_High_quality_shops"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10.5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="优质店铺"
+                            android:textColor="#222222"
+                            android:textSize="@dimen/sp_16" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbn_01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text="附近商家"
+                            android:textColor="@drawable/rb_text_drawable_selector"
+                            android:textSize="@dimen/sp_16" />
+
+                        <RadioButton
+                            android:id="@+id/rbn_02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22dp"
+                            android:button="@null"
+                            android:text="最新商品"
+                            android:textColor="@drawable/rb_text_drawable_selector"
+                            android:textSize="@dimen/sp_16" />
+
+
+                    </RadioGroup>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/message_recycler2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+
+    </com.hjq.widget.layout.HintLayout>
+
+    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

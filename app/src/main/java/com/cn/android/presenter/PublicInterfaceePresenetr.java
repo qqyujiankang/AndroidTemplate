@@ -20,45 +20,59 @@ public class PublicInterfaceePresenetr {
     }
 
     public void getPostStringRequest(Activity context, String url, final int tag) {
-            biz.publicPostStringRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
-                        @Override
-                        public void onRequesSuccess(String data) {
-                            view.onPublicInterfaceSuccess(data, tag);
-                        }
-
-                        @Override
-                        public void onRequesError(String meessage) {
-                            view.onPublicInterfaceError(meessage, tag);
-                        }
+        biz.publicPostStringRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
+                    @Override
+                    public void onRequesSuccess(String data) {
+                        view.onPublicInterfaceSuccess(data, tag);
                     }
-            );
+
+                    @Override
+                    public void onRequesError(String meessage) {
+                        view.onPublicInterfaceError(meessage, tag);
+                    }
+                }
+        );
     }
     public void getPostRequest(Activity context, String url, final int tag) {
-            biz.publicPostRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
-                        @Override
-                        public void onRequesSuccess(String data) {
-                            view.onPublicInterfaceSuccess(data, tag);
-                        }
-
-                        @Override
-                        public void onRequesError(String meessage) {
-                            view.onPublicInterfaceError(meessage, tag);
-                        }
+        biz.publicPostRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
+                    @Override
+                    public void onRequesSuccess(String data) {
+                        view.onPublicInterfaceSuccess(data, tag);
                     }
-            );
+
+                    @Override
+                    public void onRequesError(String meessage) {
+                        view.onPublicInterfaceError(meessage, tag);
+                    }
+                }
+        );
+    }
+    public void getPostTokenRequest(Activity context, String url, final int tag) {
+        biz.publicPostTokenRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
+                    @Override
+                    public void onRequesSuccess(String data) {
+                        view.onPublicInterfaceSuccess(data, tag);
+                    }
+
+                    @Override
+                    public void onRequesError(String meessage) {
+                        view.onPublicInterfaceError(meessage, tag);
+                    }
+                }
+        );
     }
     public void getGetRequest(Activity context, String url, final int tag) {
-            biz.publicGetRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
-                        @Override
-                        public void onRequesSuccess(String data) {
-                            view.onPublicInterfaceSuccess(data, tag);
-                        }
-
-                        @Override
-                        public void onRequesError(String meessage) {
-                            view.onPublicInterfaceError(meessage, tag);
-                        }
+        biz.publicGetRequest(context, view.setPublicInterfaceData(tag), url, new PublicInterfaceBiz.OnRequestListener() {
+                    @Override
+                    public void onRequesSuccess(String data) {
+                        view.onPublicInterfaceSuccess(data, tag);
                     }
-            );
+
+                    @Override
+                    public void onRequesError(String meessage) {
+                        view.onPublicInterfaceError(meessage, tag);
+                    }
+                }
+        );
     }
 }

@@ -12,6 +12,7 @@ import java.util.Map;
 public interface PublicInterfaceBiz {
     void publicPostStringRequest(Activity context, Map<String, Object> paramsMap, String url, OnRequestListener requestListener);
     void publicPostRequest(Activity context, Map<String, Object> paramsMap, String url, OnRequestListener requestListener);
+    void publicPostTokenRequest(Activity context, Map<String, Object> paramsMap, String url, OnRequestListener requestListener);
     void publicGetRequest(Activity context, Map<String, Object> paramsMap, String url, OnRequestListener requestListener);
 
     interface OnRequestListener {

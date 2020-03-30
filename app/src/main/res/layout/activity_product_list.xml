@@ -12,10 +12,6 @@
         android:layout_height="wrap_content"
         app:title="商品列表" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_products_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </androidx.recyclerview.widget.RecyclerView>
+   <include layout="@layout/pubiu_layout_rv_data"/>
 </LinearLayout>

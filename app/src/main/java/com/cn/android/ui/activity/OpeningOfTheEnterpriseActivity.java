@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cn.android.R;
 import com.cn.android.common.MyActivity;
@@ -27,6 +28,8 @@ public class OpeningOfTheEnterpriseActivity extends MyActivity {
     RelativeLayout Rl02;
     @BindView(R.id.btn_bind_commit)
     Button btnBindCommit;
+    @BindView(R.id.tv)
+    TextView tv;
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class OpeningOfTheEnterpriseActivity extends MyActivity {
 
     @Override
     protected void initView() {
-
+        tv.setText(getString(R.string.test01)+"300");
     }
 
     @Override
@@ -51,21 +54,21 @@ public class OpeningOfTheEnterpriseActivity extends MyActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
         // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        ButterKnife.bind( this );
     }
 
     @OnClick({R.id.Rl_01, R.id.Rl_02, R.id.btn_bind_commit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.Rl_01:
-                tvUpper.setChecked(true);
-                cb02.setChecked(false);
+                tvUpper.setChecked( true );
+                cb02.setChecked( false );
                 break;
             case R.id.Rl_02:
-                tvUpper.setChecked(false);
-                cb02.setChecked(true);
+                tvUpper.setChecked( false );
+                cb02.setChecked( true );
                 break;
             case R.id.btn_bind_commit:
                 finish();

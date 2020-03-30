@@ -2,14 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cn.android">
-    <!-- 外部存储读写权限 -->
+
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 外部存储读写权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 拍照权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 联网权限 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 安装包的权限 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 用于获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:name=".common.MyApplication"
@@ -22,7 +28,10 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.ModifyTheNicknameActivity"></activity>
+        <!-- //开发者申请的key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="0c399b60af90ceccd04389d870d605f6" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -275,7 +284,29 @@
         <activity
             android:name=".ui.activity.Genderctivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 昵称 -->
+        <activity
+            android:name=".ui.activity.ModifyTheNicknameActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- 绑定账号 -->
+        <activity
+            android:name=".ui.activity.BindingAccountActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
+
+        <!--设置店铺分类-->
+        <activity
+            android:name=".ui.activity.SetupshopCalssActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!--    设置店铺    -->
+        <activity
+            android:name=".ui.activity.SetupshopActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
     </application>
 
 </manifest>

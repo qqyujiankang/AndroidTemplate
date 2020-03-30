@@ -13,9 +13,9 @@
         app:title="企业入驻" />
 
     <ScrollView
-        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +48,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="上传法人身份证正面" />
+                        android:text="上传法人身份证正面"
+                        android:textColor="#666666" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -68,7 +69,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="上传法人身份证反面" />
+                        android:text="上传法人身份证反面"
+                        android:textColor="#666666" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -99,7 +101,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="上传营业执照电子版" />
+                        android:text="上传营业执照电子版"
+                        android:textColor="#666666" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -133,15 +136,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="姓名" />
+                    android:text="姓名"
+                    android:textSize="15sp" />
 
                 <EditText
+                    android:id="@+id/et_realname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:background="@null"
-                    android:hint="请输入姓名" />
+                    android:hint="请输入姓名"
+                    android:textColorHint="#999999" />
 
             </LinearLayout>
 
@@ -155,34 +161,68 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="电话" />
+                    android:text="电话"
+                    android:textSize="15sp" />
 
                 <EditText
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:background="@null"
-                    android:hint="请输入电话" />
+                    android:hint="请输入电话"
+                    android:textColorHint="#999999" />
 
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:background="@color/white"
                 android:padding="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="是否餐饮行业" />
+                    android:text="店铺"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_store_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:hint="请输入店铺名称"
+                    android:textColorHint="#999999" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="是否餐饮行业"
+                    android:textSize="15sp" />
 
                 <com.hjq.widget.view.SwitchButton
                     android:id="@+id/sb_test_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
                     android:checked="true" />
             </RelativeLayout>
 
@@ -212,7 +252,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="上传营业执照电子版" />
+                        android:text="上传营业执照电子版"
+                        android:textColor="#666666" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -236,8 +277,8 @@
                 </LinearLayout>
 
 
-
             </LinearLayout>
+
             <Button
                 android:id="@+id/btn_bind_commit"
                 style="@style/MyButtonStyle"
@@ -246,8 +287,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
-                android:textColor="@color/textColor"
-                android:text="@string/common_step_next" />
+                android:text="@string/common_step_next"
+                android:textColor="@color/textColor" />
         </LinearLayout>
 
     </ScrollView>

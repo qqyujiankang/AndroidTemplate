@@ -19,13 +19,15 @@ import com.cn.android.ui.activity.MyFavoriteActivity;
 import com.cn.android.ui.activity.MyOrderActivity;
 import com.cn.android.ui.activity.MyTeamActivity;
 import com.cn.android.ui.activity.NewPersonalDataActivity;
+import com.cn.android.ui.activity.OpeningOfTheEnterpriseActivity;
 import com.cn.android.ui.activity.ProductsCoverActivity;
 import com.cn.android.ui.activity.ServiceActivity;
 import com.cn.android.ui.activity.SetActivity;
+import com.cn.android.ui.activity.SetupshopActivity;
 import com.cn.android.ui.activity.ShippingAddressActivity;
 import com.cn.android.ui.activity.ThebalanceDetailsActivity;
-import com.cn.android.ui.activity.TheloginIdActivity;
 import com.cn.android.ui.activity.WithdrawDepositActivity;
+import com.hjq.image.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -80,6 +82,14 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
     LinearLayout llProductsCoverActivity;
     @BindView(R.id.ll_service)
     LinearLayout llService;
+    @BindView(R.id.tvplis)
+    TextView tvplis;
+    @BindView(R.id.tvplis01)
+    TextView tvplis01;
+    @BindView(R.id.iv_tui)
+    ImageView ivTui;
+    @BindView(R.id.ll_updateStore)
+    LinearLayout llUpdateStore;
     private int order = 0;
 
     public static PersonalCenterFragment newInstance() {
@@ -93,10 +103,21 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @Override
     protected void initView() {
-//        ImageLoader.with(this)
-//                .circle()
-//                .load("https://www.baidu.com/img/bd_logo.png")
-//                .into(ivHear);
+        tvBalanceOfAccount.setText( userdata().getUmoney() );
+        ImageLoader.with( this )
+                .circle()
+                .load( userdata().getHeadImg() )
+                .into( ivHear );
+
+        if (userdata().getType() == 1) {
+            tvEnterprises.setText( "已入驻" );
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
     }
 
     @Override
@@ -111,96 +132,111 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
             R.id.ll_obligation, R.id.ll_To_send_the_good,
             R.id.ll_wait_for_receiving, R.id.ll_remain_to_be_evaluated,
             R.id.ll_isell, R.id.ll_CommodityManagement,
-            R.id.ll_Products_Cover_Activity, R.id.iv_information,R.id.ll_service})
+            R.id.ll_Products_Cover_Activity, R.id.iv_information,
+            R.id.ll_service, R.id.tv_add, R.id.ll_updateStore})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
-            case R.id.ll_service://
-                startActivity(ServiceActivity.class);
+            case R.id.ll_updateStore:
+                startActivity( SetupshopActivity.class );
                 break;
+            case R.id.ll_service://
+                startActivity( ServiceActivity.class );
+                break;
+            case R.id.tv_add:
+                order = 1;
+                order( 1 );
+                break;
+
             case R.id.iv_information:
-                startActivity(InformActivity.class);
+                startActivity( InformActivity.class );
                 break;
             case R.id.ll_Products_Cover_Activity:
-                if (TheloginIdActivity.state == 0) {
-                    startActivity(ProductsCoverActivity.class);//商品管理
+                if (userdata().getType() == 1) {
+                    startActivity( ProductsCoverActivity.class );//商品管理
                 } else {
-                    toast("您还不是企业用户，请前往认证");
+                    startActivity( EnterprisesActivity.class );
                 }//商品管理
 
                 break;
             case R.id.ll_CommodityManagement:
-                if (TheloginIdActivity.state == 0) {
-                    startActivity(CommodityManagementActivity.class);//商品管理
+                if (userdata().getType() == 1) {
+                    startActivity( CommodityManagementActivity.class );//商品管理
                 } else {
-                    toast("您还不是企业用户，请前往认证");
+                    startActivity( EnterprisesActivity.class );
                 }
 
                 break;
             case R.id.tv_Enterprises:
-                startActivity(EnterprisesActivity.class);
+                if (userdata().getIsReal() == 0) {
+                    startActivity( EnterprisesActivity.class );
+                } else if (userdata().getIsReal() == 1) {
+                    startActivity( OpeningOfTheEnterpriseActivity.class );
+
+                }
                 break;
             case R.id.tv_withdraw_deposit://提现
-                startActivity(WithdrawDepositActivity.class);
+                startActivity( WithdrawDepositActivity.class );
                 break;
             case R.id.ll_favorite:
-                startActivity(MyFavoriteActivity.class);//我的收藏
+                startActivity( MyFavoriteActivity.class );//我的收藏
                 break;
             case R.id.tv_view_details:
-                startActivity(ThebalanceDetailsActivity.class);
+                startActivity( ThebalanceDetailsActivity.class );
                 break;
             case R.id.ll_Invitation_Code://邀请码
-                if (TheloginIdActivity.state == 0) {
-                    startActivity(InvitationCodeActivity.class);
+                if (userdata().getType() == 1) {
+                    startActivity( InvitationCodeActivity.class );
                 } else {
-                    toast("您还不是企业用户，请前往认证");
+                    startActivity( EnterprisesActivity.class );
                 }
 
                 break;
             case R.id.ll_AddressDetail:
-                startActivity(ShippingAddressActivity.class);
+                startActivity( ShippingAddressActivity.class );
                 break;
             case R.id.ll_Discount_Coupon:
-                startActivity(DiscountCouponActivity.class);
+                startActivity( DiscountCouponActivity.class );
                 break;
             case R.id.iv_set:
-                startActivity(SetActivity.class);
+                startActivity( SetActivity.class );
                 break;
             case R.id.iv_hear:
-                startActivity(NewPersonalDataActivity.class);
+                startActivity( NewPersonalDataActivity.class );
                 break;
             case R.id.ll_my_team:
-                if (TheloginIdActivity.state == 0) {
-                    startActivity(MyTeamActivity.class);
+                if (userdata().getType() == 1) {
+                    startActivity( MyTeamActivity.class );
                 } else {
-                    toast("您还不是企业用户，请前往认证");
+                    startActivity( EnterprisesActivity.class );
                 }
 
                 break;
             case R.id.ll_obligation:
                 order = 1;
-                order(1);
+                order( 1 );
                 break;
             case R.id.ll_To_send_the_good:
                 order = 2;
-                order(2);
+                order( 2 );
                 break;
             case R.id.ll_wait_for_receiving:
                 order = 3;
-                order(3);
+                order( 3 );
                 break;
             case R.id.ll_remain_to_be_evaluated:
                 order = 4;
-                order(4);
+                order( 4 );
                 break;
             case R.id.ll_isell:
-                if (TheloginIdActivity.state == 0) {
-                    startActivity(IsellActivity.class);
+                if (userdata().getType() == 1) {
+                    startActivity( IsellActivity.class );
                 } else {
-                    toast("您还不是企业用户，请前往认证");
+                    startActivity( EnterprisesActivity.class );
                 }
 
                 break;
+            default:
         }
     }
 
@@ -211,9 +247,9 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
      */
     private void order(int i) {
         Intent intent = new Intent();
-        intent.setClass(getContext(), MyOrderActivity.class);
-        intent.putExtra("order", i);
-        startActivity(intent);
+        intent.setClass( getContext(), MyOrderActivity.class );
+        intent.putExtra( "order", i );
+        startActivity( intent );
     }
 
 

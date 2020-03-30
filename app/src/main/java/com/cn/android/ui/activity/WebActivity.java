@@ -19,28 +19,44 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-
 import com.cn.android.R;
 import com.cn.android.common.MyActivity;
 import com.cn.android.helper.WebViewLifecycleUtils;
 import com.cn.android.other.IntentKey;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import butterknife.BindView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2018/10/18
- *    desc   : 浏览器界面
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/AndroidProject
+ * time   : 2018/10/18
+ * desc   : 浏览器界面
  */
 public final class WebActivity extends MyActivity {
+    private static String dataKey = "url";
 
     public static void start(Context context, String url) {
         if (url == null || "".equals(url)) {
             return;
         }
+        dataKey = "url";
         Intent intent = new Intent(context, WebActivity.class);
         intent.putExtra(IntentKey.URL, url);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, String key, String data) {
+        if (data == null || "".equals(data)) {
+            return;
+        }
+        dataKey = key;
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra(IntentKey.URL, data);
         context.startActivity(intent);
     }
 
@@ -89,7 +105,29 @@ public final class WebActivity extends MyActivity {
         mWebView.setWebChromeClient(new MyWebChromeClient());
 
         String url = getIntent().getStringExtra(IntentKey.URL);
-        mWebView.loadUrl(url);
+        switch (dataKey) {
+            case "url":
+                mWebView.loadUrl(url);
+                break;
+            default:
+                setTitle("详情");
+                WebSettings settings = mWebView.getSettings();
+                settings.setJavaScriptEnabled(true);
+                settings.setSupportZoom(true);
+                mWebView.loadDataWithBaseURL(null, getNewContent(url), "text/html", "utf-8", null);
+                mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+                mWebView.setWebViewClient(new WebViewClient());
+                break;
+        }
+    }
+
+    private String getNewContent(String htmltext) {
+        Document doc = Jsoup.parse(htmltext);
+        Elements elements = doc.getElementsByTag("img");
+        for (Element element : elements) {
+            element.attr("width", "100%").attr("height", "auto");
+        }
+        return doc.toString();
     }
 
     @Override
@@ -125,7 +163,7 @@ public final class WebActivity extends MyActivity {
         super.onDestroy();
     }
 
-    private class MyWebViewClient extends WebViewClient {
+    class MyWebViewClient extends WebViewClient {
 
         /**
          * 同名 API 兼容
@@ -202,7 +240,7 @@ public final class WebActivity extends MyActivity {
         }
     }
 
-    private class MyWebChromeClient extends WebChromeClient {
+    class MyWebChromeClient extends WebChromeClient {
 
         /**
          * 收到网页标题
@@ -210,7 +248,14 @@ public final class WebActivity extends MyActivity {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             if (title != null) {
-                setTitle(title);
+                switch (dataKey) {
+                    case "url":
+                        setTitle(title);
+                        break;
+                    default:
+                        setTitle("详情");
+                        break;
+                }
             }
         }
 

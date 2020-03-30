@@ -16,9 +16,12 @@
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/t_test_title"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_above="@+id/btn_bind_commit"
+        android:layout_below="@+id/t_test_title"
+      />
 
     <Button
+
         android:id="@+id/btn_bind_commit"
         style="@style/MyButtonStyle"
         android:layout_width="match_parent"

@@ -19,7 +19,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
 
                 <RelativeLayout
@@ -67,7 +68,8 @@
                         android:layout_height="wrap_content"
                         android:text="EthweY"
                         android:textColor="#ff222222"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_Enterprises"
@@ -94,6 +96,7 @@
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="15.5dp"
                     android:layout_marginEnd="7dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@mipmap/balance_of_account">
 
                     <TextView
@@ -160,25 +163,26 @@
                     android:layout_marginTop="15.5dp">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15.5dp"
                         android:text="我的订单"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:gravity="center"
-                        android:drawablePadding="5dp"
-                        android:layout_marginRight="20dp"
+
                         android:id="@+id/tv_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
                         android:drawableRight="@mipmap/more"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
                         android:text="更多"
                         android:textColor="#ff999999"
-                        android:layout_alignParentRight="true"
                         android:textSize="10sp" />
 
                     <ImageView
@@ -291,6 +295,122 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="成为PLUS会员"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/plus_vip">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="35dp"
+                            android:text="￥1980"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvplis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:ems="1"
+                            android:text="立即购买" />
+
+                        <TextView
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_toLeftOf="@+id/tvplis"
+                            android:background="@drawable/line_vertical_01" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="@mipmap/plus_vip">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="35dp"
+                                android:text="￥4980"
+                                android:textSize="25sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvplis01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:ems="1"
+                                android:text="立即购买" />
+
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/iv_tui"
+                            android:layout_width="42dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:src="@mipmap/tuijian01" />
+
+                        <TextView
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/iv_tui"
+                            android:layout_marginBottom="10dp"
+                            android:layout_toLeftOf="@+id/iv_tui"
+                            android:background="@drawable/line_vertical_01" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="#FFFFFF"
                 android:orientation="vertical">
@@ -301,12 +421,12 @@
                     android:layout_marginTop="15.5dp">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15.5dp"
                         android:text="基础服务"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
 
                 </RelativeLayout>
@@ -419,12 +539,12 @@
                     android:layout_marginTop="15.5dp">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15.5dp"
                         android:text="企业服务"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
 
                 </RelativeLayout>
@@ -552,23 +672,23 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_updateStore"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@mipmap/favorite" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/test40" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
-                            android:text="我的收藏" />
+                            android:text="店铺设置" />
 
                     </LinearLayout>
                 </LinearLayout>

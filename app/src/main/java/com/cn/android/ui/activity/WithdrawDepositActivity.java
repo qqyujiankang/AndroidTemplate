@@ -1,5 +1,6 @@
 package com.cn.android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,8 +9,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.android.R;
+import com.cn.android.bean.Userdata;
 import com.cn.android.common.MyActivity;
-import com.cn.android.ui.dialog.BindingAccountDialog;
+import com.cn.android.network.Constant;
+import com.cn.android.network.ServerUrl;
+import com.cn.android.presenter.PublicInterfaceePresenetr;
+import com.cn.android.presenter.view.PublicInterfaceView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +26,7 @@ import butterknife.OnClick;
 /**
  * 提现
  */
-public class WithdrawDepositActivity extends MyActivity {
+public class WithdrawDepositActivity extends MyActivity implements PublicInterfaceView {
 
 
     @BindView(R.id.tv_balance_of_account)
@@ -35,6 +43,10 @@ public class WithdrawDepositActivity extends MyActivity {
     RelativeLayout rlSearch;
     @BindView(R.id.tv02)
     CheckBox tv02;
+    @BindView(R.id.tv_money)
+    TextView tvMoney;
+    private int anInt = 1;
+    PublicInterfaceePresenetr presenetr;
 
     @Override
     protected int getLayoutId() {
@@ -43,7 +55,7 @@ public class WithdrawDepositActivity extends MyActivity {
 
     @Override
     protected void initView() {
-
+        presenetr = new PublicInterfaceePresenetr( this );
     }
 
     @Override
@@ -51,31 +63,85 @@ public class WithdrawDepositActivity extends MyActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);//
-    }
-
 
     @OnClick({R.id.tv_view_details, R.id.relativeLayout, R.id.rl_search, R.id.btn_bind_commit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_view_details:
-                startActivity(ThebalanceDetailsActivity.class);
+                startActivity( ThebalanceDetailsActivity.class );
                 break;
             case R.id.relativeLayout:
-                tvUpper.setChecked(true);
-                tv02.setChecked(false);
+                anInt = 1;
+                tvUpper.setChecked( true );
+                tv02.setChecked( false );
                 break;
             case R.id.rl_search:
-                tvUpper.setChecked(false);
-                tv02.setChecked(true);
+                anInt = 2;
+                tvUpper.setChecked( false );
+                tv02.setChecked( true );
                 break;
             case R.id.btn_bind_commit:
-                new BindingAccountDialog.Builder(getActivity()).show();
+                if (anInt == 1) {
+                    if (userdata().getIsWechat() == 2) {
+                        Intent intent = new Intent( getActivity(), BindingAccountActivity.class );
+                        intent.putExtra( "name", anInt );
+                        startActivity( intent );
+
+                    } else {
+                        addAccountByUserid();
+                    }
+                } else if (anInt == 2) {
+                    if (userdata().getIsAlipay() == 2) {
+                        Intent intent = new Intent( getActivity(), BindingAccountActivity.class );
+                        intent.putExtra( "name", anInt );
+                        startActivity( intent );
+                    } else {
+                        addAccountByUserid();
+                    }
+                }
+
+                //     new BindingAccountDialog.Builder(getActivity()).show();
+                //finish();
+
                 break;
         }
     }
+
+    /**
+     * @param
+     */
+    private void addAccountByUserid() {
+        showLoading();
+        presenetr.getPostTokenRequest( getActivity(), ServerUrl.addAccountByUserid, Constant.addAccountByUserid );
+    }
+
+    @Override
+    public Map<String, Object> setPublicInterfaceData(int tag) {
+        Map<String, Object> paramsMap = new HashMap<>();
+        switch (tag) {
+            case Constant.addAccountByUserid:
+                paramsMap.put( "userid", userdata().getId() );
+                paramsMap.put( "money", tvMoney.getText().toString() );
+                paramsMap.put( "type", anInt );
+                return paramsMap;
+
+        }
+        return null;
+    }
+
+    @Override
+    public void onPublicInterfaceSuccess(String data, int tag) {
+        showComplete();
+        Userdata userdata = userdata();
+        userdata.setUmoney( Double.valueOf( userdata.getUmoney() ) - Double.valueOf( tvMoney.getText().toString() ) +"");
+        SaveUserBean( userdata );
+        finish();
+    }
+
+    @Override
+    public void onPublicInterfaceError(String error, int tag) {
+        showComplete();
+    }
+
+
 }

@@ -2,18 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/test15"
     tools:context="com.cn.android.ui.activity.DetailsOfMarketingDivisionActivity">
 
-    <com.hjq.bar.TitleBar
-        app:lineVisible="false"
+
+    <ImageView
+        android:id="@+id/activity_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00000000" />
+        android:background="@mipmap/test15" />
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        app:lineVisible="false" />
 
     <RelativeLayout
+        android:layout_marginTop="-20dp"
+        android:layout_below="@+id/activity_view"
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -34,8 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/tv01"
-            android:layout_toRightOf="@id/tv01"
-            android:src="@mipmap/test17" />
+            android:layout_toRightOf="@id/tv01" />
 
         <ImageView
             android:id="@+id/iv_02"
@@ -67,6 +76,7 @@
             android:text="工作职称:" />
 
         <TextView
+            android:id="@+id/tv_job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv03"
@@ -85,6 +95,7 @@
             android:text="工作年限:" />
 
         <TextView
+            android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv04"
@@ -103,6 +114,7 @@
             android:text="个性签名:" />
 
         <TextView
+            android:id="@+id/tv_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv05"

@@ -10,9 +10,9 @@
     <com.hjq.bar.TitleBar
 
         android:id="@+id/tite_bar"
-        app:rightTitle="上传"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:rightTitle="上传"
         app:title="商品管理" />
 
     <RadioGroup
@@ -48,11 +48,5 @@
 
     </RadioGroup>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/iv"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        />
+    <include layout="@layout/pubiu_layout_rv_data" />
 </LinearLayout>

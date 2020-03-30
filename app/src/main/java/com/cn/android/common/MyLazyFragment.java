@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import com.cn.android.bean.Userdata;
+import com.cn.android.network.GsonUtils;
 import com.cn.android.other.EventBusManager;
 import com.cn.android.other.StatusManager;
+import com.cn.android.utils.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
@@ -39,7 +42,7 @@ public abstract class MyLazyFragment<A extends MyActivity>
     private ImmersionBar mImmersionBar;
     /** ButterKnife 注解 */
     private Unbinder mButterKnife;
-
+    private Userdata userBean;
     /**
      * 获取标题栏 id
      */
@@ -278,5 +281,13 @@ public abstract class MyLazyFragment<A extends MyActivity>
 
     public void showLayout(Drawable drawable, CharSequence hint) {
         mStatusManager.showLayout(getView(), drawable, hint);
+    }
+    public Userdata userdata() {
+        userBean = GsonUtils.getPerson( SPUtils.getString( "AppUser", "" ), Userdata.class );
+        return userBean;
+    }
+
+    public boolean isLogin() {
+        return SPUtils.contains( "AppUser" );
     }
 }

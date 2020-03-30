@@ -133,15 +133,20 @@ android {
 
 // api 与 implementation 的区别：https://www.jianshu.com/p/8962d6ba936e
 dependencies {
+
     // 依赖 libs 目录下所有 jar 包
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     // 依赖 libs 目录下所有 aar 包
+
     //implementation fileTree(include: ['*.aar'], dir: 'libs')
 
     // 基础库（不包任何第三方框架）
     implementation project(':base')
+
     // 自定义 View
     implementation project(':widget')
+
     // Glide 隔离
     implementation project(':image')
     implementation project(':dialog')
@@ -151,6 +156,7 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
 
     // Dex 分包，解决 64k 方法问题
+
     //implementation 'androidx.multidex:multidex:2.0.1'
 
     // ButterKnife 注解库：https://github.com/JakeWharton/butterknife
@@ -162,7 +168,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     // EventBus 事件总线：https://github.com/greenrobot/EventBus
-    implementation "org.greenrobot:eventbus:3.1.1"
+    implementation 'org.greenrobot:eventbus:3.1.1'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
 
     // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
@@ -179,6 +185,7 @@ dependencies {
 
     // 支持放大缩放的 ImageView：https://github.com/chrisbanes/PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
     // ViewPager 指示器：https://github.com/romandanylyk/PageIndicatorView
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 
@@ -207,36 +214,50 @@ dependencies {
 
     //崩溃后重启,优雅的退出应用 https://github.com/nanchen2251/AppManager
     implementation 'com.github.nanchen2251:AppManager:1.0.1'
+
     // 应用更新 功能强大，链式编程，调用简单，集成轻松，扩展性强大
     implementation 'com.allenliu.versionchecklib:library:2.2.1'
 
     // 轮播图 https://github.com/xiaohaibin/XBanner
     implementation 'com.github.xiaohaibin:XBanner:1.7.0'
-
     androidTestImplementation 'junit:junit:4.12'
-    testImplementation "junit:junit:4.12"
+    testImplementation 'junit:junit:4.12'
+
     // 网络请求（待发布）：https://github.com/getActivity/EasyHttp
+
     //第三方登录、分享封装库: https://github.com/tianzhijiexian/ShareLoginLib
+
     // 国际化：https://github.com/getActivity/MultiLanguages
+
     // 悬浮窗：https://github.com/getActivity/XToast
+
     // 上拉刷新下拉加载：https://github.com/scwang90/SmartRefreshLayout
+
     // 工具类：https://github.com/Blankj/AndroidUtilCode
+
     // 轮播图：https://github.com/bingoogolapple/BGABanner-Android
+
     // test18：https://github.com/bingoogolapple/BGAQRCode-Android
+
     // 第三方支付：https://github.com/getActivity/RxPay
+
     // Log 打印：https://github.com/elvishew/XLog
+
     // 图片压缩：https://github.com/Curzibn/Luban
+
     // 对象存储：https://github.com/leavesC/DoKV
+
     // 数据注入：https://github.com/JumeiRdGroup/Parceler
     implementation 'com.android.support:appcompat-v7:24.2.0'
     implementation 'com.android.support:cardview-v7:24.2.0'
-
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
-
-    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-
     implementation 'cn.bertsir.zbarLibary:zbarlibary:latest.release'
+    implementation 'com.amap.api:location:4.9.0'
 
-
+    // 上拉刷新下拉加载：https://github.com/scwang90/SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
+    implementation files('libs/jsoup-1.8.3.jar')
 }

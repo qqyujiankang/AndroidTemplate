@@ -19,5 +19,7 @@
     <color name="colorConfirm">#007AFF</color>
     <!-- 对话框取消按钮文本颜色 -->
     <color name="colorCancel">#F44336</color>
+    <color name="color666666">#666666</color>
+    #666666
 
 </resources>

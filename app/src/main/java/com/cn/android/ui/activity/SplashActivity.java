@@ -116,7 +116,7 @@ public final class SplashActivity extends MyActivity
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (XXPermissions.isHasPermission(SplashActivity.this, Permission.Group.STORAGE)) {
+        if (XXPermissions.isHasPermission(SplashActivity.this, Permission.Group.STORAGE,Permission.Group.LOCATION)) {
             hasPermission(null, true);
         } else {
             requestPermission();

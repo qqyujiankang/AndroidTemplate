@@ -13,6 +13,104 @@
         app:title="开通企业"
         tools:ignore="MissingConstraints" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@mipmap/plus_no">
+
+            <TextView
+                android:id="@+id/tv_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="1年"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_02"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="25dp"
+                android:text="￥1980"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_01"
+                android:layout_centerHorizontal="true"
+                android:text="￥138/月"
+                android:textColor="#DAB100" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@mipmap/puls_yes">
+
+                <TextView
+                    android:id="@+id/tv_03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="3年"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_03"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="25dp"
+                    android:text="￥4980"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_money"
+                    android:layout_centerHorizontal="true"
+                    android:text="￥138/月"
+                    android:textColor="#DAB100" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_tui"
+                android:layout_width="42dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/tuijian01" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,12 +121,14 @@
         android:paddingBottom="20dp">
 
         <TextView
+            android:id="@+id/tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="21dp"
             android:text="￥300"
+            android:textSize="18sp"
 
-            android:textSize="18sp" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="21dp"
-            android:text="提现至"
+            android:text="支付方式"
             android:textSize="18sp" />
 
         <View
@@ -102,7 +202,7 @@
                 android:layout_marginLeft="21dp"
                 android:drawableLeft="@mipmap/zhifubao"
                 android:drawablePadding="20dp"
-                android:text="微信支付"
+                android:text="支付宝支付"
                 android:textSize="18sp" />
 
             <CheckBox

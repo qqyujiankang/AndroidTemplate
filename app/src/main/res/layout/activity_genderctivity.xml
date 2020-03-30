@@ -36,7 +36,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:button="@drawable/shopcart_check"
-            android:checked="true" />
+            android:checked="true"
+            android:enabled="false" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -61,7 +62,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:button="@drawable/shopcart_check" />
+            android:button="@drawable/shopcart_check"
+            android:enabled="false" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -86,6 +88,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:button="@drawable/shopcart_check" />
+            android:button="@drawable/shopcart_check"
+            android:enabled="false" />
     </RelativeLayout>
 </LinearLayout>

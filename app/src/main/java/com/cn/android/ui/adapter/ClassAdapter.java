@@ -10,8 +10,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.cn.android.R;
 import com.cn.android.bean.ClassifyBean;
+import com.cn.android.bean.HomeData;
 
-public final class ClassAdapter extends BaseQuickAdapter<ClassifyBean, BaseViewHolder> {
+public final class ClassAdapter extends BaseQuickAdapter<HomeData.ShopTypeListBean, BaseViewHolder> {
     private Context context;
 
     public ClassAdapter(Context context) {
@@ -20,9 +21,10 @@ public final class ClassAdapter extends BaseQuickAdapter<ClassifyBean, BaseViewH
     }
 
     @Override
-    protected void convert(BaseViewHolder helper,ClassifyBean item) {
+    protected void convert(BaseViewHolder helper, HomeData.ShopTypeListBean item) {
         TextView view = helper.getView(R.id.tv_class_name);
         helper.setText(R.id.tv_class_name,item.getName());
+
         if(item.isClick()){
             view.setTextColor(Color.parseColor("#FF222222"));
             view.setBackgroundColor(Color.parseColor("#F6F6F6"));

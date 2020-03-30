@@ -31,7 +31,8 @@ public class shopCartAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> 
         final int pos = helper.getAdapterPosition();
         RecyclerView recyclerView = helper.getView(R.id.shop_recycle);
         recyclerView.setLayoutManager(new LinearLayoutManager(helper.itemView.getContext()));
-        recyclerView.addItemDecoration(new SpaceItemDecoration(1));
+
+        //recyclerView.addItemDecoration(new SpaceItemDecoration(1));
         adapter = new goodsCartAdapter(item.getList(),pos,onShopCartItemListener);
         recyclerView.setAdapter(adapter);
         helper.getView(R.id.goods_num);
