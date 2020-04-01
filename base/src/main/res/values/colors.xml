@@ -68,5 +68,6 @@
     <color name="pink">#FFC0CB</color>
     <!-- 橙色 -->
     <color name="orange">#FFA500</color>
+    <color name="huise">#666666</color>
 
 </resources>

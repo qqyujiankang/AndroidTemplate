@@ -54,6 +54,9 @@
         <item name="android:paddingLeft">@dimen/space_10</item>
         <item name="android:paddingRight">@dimen/space_10</item>
     </style>
+    <style name="MyCustomTabTextAppearance">
+        <item name="android:textSize">17sp</item>
+    </style>
     <declare-styleable name="CircularProgressDrawable" ns1:ignore="ResourceName">
         <attr format="reference|dimension" name="cpd_padding"/>
         <attr format="reference|integer" name="cpd_initialAngle"/>

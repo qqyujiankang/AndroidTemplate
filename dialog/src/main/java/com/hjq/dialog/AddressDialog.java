@@ -75,7 +75,7 @@ public final class AddressDialog {
 
             setContentView(R.layout.dialog_address);
             setGravity(Gravity.BOTTOM);
-            setAnimStyle(BaseDialog.AnimStyle.LEFT);
+
 
             DisplayMetrics displayMetrics = new DisplayMetrics();
             ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);

@@ -825,6 +825,7 @@ color gray
 color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color huise
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -2688,6 +2689,7 @@ style MaterialAlertDialog_MaterialComponents_Title_Panel
 style MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked
 style MaterialAlertDialog_MaterialComponents_Title_Text
 style MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked
+style MyCustomTabTextAppearance
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_MaterialComponents
