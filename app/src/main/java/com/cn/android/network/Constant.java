@@ -40,4 +40,13 @@ public class Constant {
     public static final int selectMarketingUserById = 1122;
     public static final int selectShopListByShopType = 1123;
     public static final int selectShopsByUserid = 1124;
+    public static final int selectShopListByUserid = 1125;
+    public static final int deleteShopByUserid = 1126;
+    public static final int selecttTeamByUserid = 1127;
+    public static final int selectConlectShopsByUserid = 1128;
+    public static final int sureConlectShopsByUserid = 1129;
+    public static final int addShopEva = 1130;
+    public static final int selectOrderListByStatus = 1131;
+    public static final int upShopByUserid = 1133;
+    public static final int sortShopByUserid = 1134;
 }

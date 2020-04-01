@@ -8,12 +8,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.cn.android.R;
 import com.cn.android.bean.Commodity;
 import com.cn.android.bean.HomeData;
+import com.cn.android.bean.SelectNewShop;
 import com.hjq.image.ImageLoader;
 
 /**
  * 每日爆品
  */
-public class NotCommodityAdapter extends BaseQuickAdapter<HomeData.ShopInfoListBean, BaseViewHolder> {
+public class NotCommodityAdapter extends BaseQuickAdapter<SelectNewShop, BaseViewHolder> {
     private Context context;
 
     public NotCommodityAdapter(Context context) {
@@ -22,7 +23,7 @@ public class NotCommodityAdapter extends BaseQuickAdapter<HomeData.ShopInfoListB
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, HomeData.ShopInfoListBean item) {
+    protected void convert(BaseViewHolder helper, SelectNewShop item) {
         ImageView imageView = helper.getView( R.id.iv_commodity );
         ImageLoader.with( context ).load( item.getShopImg() ).into( imageView );
         helper.setText( R.id.tv_name, item.getShopName() );

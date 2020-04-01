@@ -65,7 +65,8 @@ import cn.bertsir.zbar.QrManager;
 /**
  * 首页
  */
-public class HomePageFragment extends MyLazyFragment<HomeActivity> implements PublicInterfaceView, OnRefreshListener, OnLoadMoreListener {
+public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
+        PublicInterfaceView, OnRefreshListener, OnLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
 
 
     GridLayoutManager gridLayoutManager;
@@ -146,36 +147,19 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
         theMarketingDivisionAdapter = new TheMarketingDivisionAdapter( getContext() );
         rv03.setAdapter( theMarketingDivisionAdapter );
 
-        theMarketingDivisionAdapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent=new Intent( getActivity(),DetailsOfMarketingDivisionActivity .class);
-                intent.putExtra( "id",marketingUserListBeanList.get( position).getId() );
-                startActivity( intent);
-            }
-        } );
+        theMarketingDivisionAdapter.setOnItemChildClickListener( this );
 
         rv05.setLayoutManager( new LinearLayoutManager( getContext(), LinearLayoutManager.HORIZONTAL, false ) );
         rv05.addItemDecoration( new SpaceItemDecoration( 20 ) );
         highQualityShopsAdapter = new HighQualityShopsAdapter( getContext() );
         rv05.setAdapter( highQualityShopsAdapter );
-        highQualityShopsAdapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity( StoreNameDetailsActivity.class );
-            }
-        } );
+        highQualityShopsAdapter.setOnItemChildClickListener( this );
 
         messageRecycler.setLayoutManager( new LinearLayoutManager( getContext(), LinearLayoutManager.HORIZONTAL, false ) );
         messageRecycler.addItemDecoration( new SpaceItemDecoration( 30 ) );
         notCommodityAdapter = new NotCommodityAdapter( getContext() );
         messageRecycler.setAdapter( notCommodityAdapter );
-        notCommodityAdapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity( CommodityDetailsActivity.class );
-            }
-        } );
+        notCommodityAdapter.setOnItemChildClickListener( this );
 
         //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
         gridLayoutManager = new GridLayoutManager( getContext(), 5 );
@@ -187,12 +171,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
         messageRecycler1.setAdapter( commodityClassifyAdapter );
 
 
-        commodityClassifyAdapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                ((HomeActivity) getActivity()).onFragmentClick( position );
-            }
-        } );
+        commodityClassifyAdapter.setOnItemChildClickListener( this );
 
         //布局管理器对象 参数1.上下文 2.规定一行显示几列的参数常量
         gridLayoutManager = new GridLayoutManager( getContext(), 2 );
@@ -203,12 +182,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
         messageRecycler2.addItemDecoration( new SpaceItemDecoration( 8 ) );
         commodityAdapte1r = new CommodityAdapter( getContext(), 0 );
         messageRecycler2.setAdapter( commodityAdapte1r );
-        commodityAdapte1r.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity( CommodityDetailsActivity.class );
-            }
-        } );
+        commodityAdapte1r.setOnItemChildClickListener( this );
 
 
         gridLayoutManager = new GridLayoutManager( getContext(), 1 );
@@ -216,14 +190,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
         rv04.setLayoutManager( gridLayoutManager );
         marketingDivisionAdapter = new MarketingDivisionAdapter( getActivity() );
         rv04.setAdapter( marketingDivisionAdapter );
-        marketingDivisionAdapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent( getActivity(), NformationForDetailsActivity.class );
-                intent.putExtra( "id", wordsInfoListBeanList.get( position ).getId() );
-                startActivity( intent );
-            }
-        } );
+        marketingDivisionAdapter.setOnItemChildClickListener( this );
 
 
     }
@@ -241,11 +208,12 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rbn_02:
+                selectNewShopArrayList.clear();
                 category = 2;
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectNewShopList, Constant.selectNewShopList );
                 break;
             case R.id.rbn_01:
-
+                selectNewShopArrayList.clear();
                 category = 1;
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectNewShopList, Constant.selectNewShopList );
                 break;
@@ -330,7 +298,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
     private List<HomeData.AppUserListBean> appUserListBeanList = new ArrayList<>();
 
     //    每日爆品
-    private List<HomeData.ShopInfoListBean> shopInfoListBeanArrayList = new ArrayList<>();
+    private List<SelectNewShop> shopInfoListBeanArrayList = new ArrayList<>();
     //分类
     private List<HomeData.ShopTypeListBean> shopTypeListBeanList = new ArrayList<>();
 
@@ -351,7 +319,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
                 marketingUserListBeanList = GsonUtils.getPersons( marketingUserList, HomeData.MarketingUserListBean.class );
                 wordsInfoListBeanList = GsonUtils.getPersons( wordsInfoList, HomeData.WordsInfoListBean.class );
                 appUserListBeanList = GsonUtils.getPersons( appUserList, HomeData.AppUserListBean.class );
-                shopInfoListBeanArrayList = GsonUtils.getPersons( shopInfoList, HomeData.ShopInfoListBean.class );
+                shopInfoListBeanArrayList = GsonUtils.getPersons( shopInfoList, SelectNewShop.class );
                 shopTypeListBeanList = GsonUtils.getPersons( shopTypeList, HomeData.ShopTypeListBean.class );
 
                 if (userdata().getType() == 1) {
@@ -380,7 +348,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
             case Constant.selectNewShopList:
                 if (isUpRefresh) {
                     selectNewShopArrayList.clear();
-                    if (data.equals("null")) {
+                    if (data.equals( "null" )) {
                         showEmpty();
                         return;
                     }
@@ -398,7 +366,9 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
     public void onPublicInterfaceError(String error, int tag) {
 
     }
+
     private boolean isUpRefresh = true;
+
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         isUpRefresh = false;
@@ -411,5 +381,42 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements Pu
         isUpRefresh = true;
         page = 1;
         initData();
+    }
+
+    private SelectNewShop selectNewShop;
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        if (adapter instanceof MarketingDivisionAdapter) {
+            Intent intent = new Intent( getActivity(), NformationForDetailsActivity.class );
+            intent.putExtra( "id", wordsInfoListBeanList.get( position ).getId() );
+            startActivity( intent );
+        } else if (adapter instanceof CommodityAdapter) {
+            selectNewShop = shopInfoListBeanArrayList.get( position );
+            Intent intent = new Intent( getActivity(), CommodityDetailsActivity.class );
+            intent.putExtra( "SelectNewShop", selectNewShop );
+            startActivity( intent );
+        } else if (adapter instanceof CommodityClassifyAdapter) {
+            if (position!=9){
+                ((HomeActivity) getActivity()).onFragmentClick( position );
+            }else {
+                ((HomeActivity) getActivity()).onFragmentClick( 0 );
+            }
+
+        } else if (adapter instanceof HighQualityShopsAdapter) {
+            Intent intent = new Intent( getActivity(), StoreNameDetailsActivity.class );
+            intent.putExtra( "AppUserListBean", appUserListBeanList.get( position ) );
+            startActivity( intent );
+        } else if (adapter instanceof TheMarketingDivisionAdapter) {
+            Intent intent = new Intent( getActivity(), DetailsOfMarketingDivisionActivity.class );
+            intent.putExtra( "id", marketingUserListBeanList.get( position ).getId() );
+            startActivity( intent );
+        } else if (adapter instanceof NotCommodityAdapter) {//每日爆品
+            selectNewShop = shopInfoListBeanArrayList.get( position );
+            Intent intent = new Intent( getActivity(), CommodityDetailsActivity.class );
+            intent.putExtra( "SelectNewShop", selectNewShop );
+
+            startActivity( intent );
+        }
     }
 }

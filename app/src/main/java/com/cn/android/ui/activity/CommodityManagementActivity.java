@@ -1,9 +1,12 @@
 package com.cn.android.ui.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
 import com.cn.android.bean.SelectNewShop;
 import com.cn.android.common.MyActivity;
@@ -16,6 +19,7 @@ import com.cn.android.ui.adapter.CommodityManagementAdapter;
 import com.cn.android.widget.SpaceItemDecoration;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
+import com.hjq.dialog.MessageDialog;
 import com.hjq.widget.layout.HintLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -37,7 +41,8 @@ import butterknife.OnClick;
 /**
  * 商品管理
  */
-public class CommodityManagementActivity extends MyActivity implements OnTitleBarListener, PublicInterfaceView, OnRefreshListener, OnLoadMoreListener {
+public class CommodityManagementActivity extends MyActivity implements OnTitleBarListener, PublicInterfaceView,
+        OnRefreshListener, OnLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
 
     @BindView(R.id.tite_bar)
     TitleBar titeBar;
@@ -62,12 +67,16 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
 
     @Override
     protected void initView() {
+
         presenetr = new PublicInterfaceePresenetr( this );
         titeBar.setOnTitleBarListener( this );
+        smartRefresh.setOnRefreshListener( this );
+        smartRefresh.setOnLoadMoreListener( this );
         recyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
         recyclerView.addItemDecoration( new SpaceItemDecoration( 1 ) );
-        commodityManagementAdapter = new CommodityManagementAdapter( getActivity(), 0 );
+        commodityManagementAdapter = new CommodityManagementAdapter( getActivity() );
         recyclerView.setAdapter( commodityManagementAdapter );
+        commodityManagementAdapter.setOnItemChildClickListener( this );
     }
 
 
@@ -108,28 +117,51 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
     @Override
     public Map<String, Object> setPublicInterfaceData(int tag) {
         Map<String, Object> paramsMap = new HashMap<>();
-        paramsMap.put( "userid", userdata().getId() );
-        paramsMap.put( "page", page );
-        paramsMap.put( "rows", rows );
-        paramsMap.put( "type", type );
+        switch (tag) {
+            case Constant.selectShopsByUserid:
 
-
-        return paramsMap;
+                paramsMap.put( "userid", userdata().getId() );
+                paramsMap.put( "page", page );
+                paramsMap.put( "rows", rows );
+                paramsMap.put( "type", type );
+                return paramsMap;
+            case Constant.deleteShopByUserid:
+                paramsMap.put( "shopid", shopid );
+                return paramsMap;
+            case Constant.upShopByUserid:
+                paramsMap.put( "shopid", shopid );
+                return paramsMap;
+        }
+        return null;
     }
 
     private List<SelectNewShop> shopInfoListBeanArrayList = new ArrayList<>();
     private List<SelectNewShop> shopInfoListBeanArrayLis1 = new ArrayList<>();
+    private String shopid = "";
+    private int position;
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
-        if (isUpRefresh) {
-            shopInfoListBeanArrayLis1.clear();
-        }
-        if (!data.equals( "" )) {
-            smartRefresh.closeHeaderOrFooter();
-            shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
-            shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
-            commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+        switch (tag) {
+            case Constant.selectShopsByUserid:
+                if (isUpRefresh) {
+                    shopInfoListBeanArrayLis1.clear();
+                }
+                if (!data.equals( "" )) {
+                    smartRefresh.closeHeaderOrFooter();
+                    shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
+                    shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
+                    commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+                }
+                break;
+            case Constant.deleteShopByUserid:
+                shopInfoListBeanArrayLis1.remove( position );
+                commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+                break;
+            case Constant.upShopByUserid:
+                shopInfoListBeanArrayLis1.remove( position );
+                commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+                break;
         }
     }
 
@@ -157,5 +189,49 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
         isUpRefresh = true;
         page = 1;
         initData();
+    }
+
+    SelectNewShop selectNewShop;
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        position = position;
+        selectNewShop = shopInfoListBeanArrayLis1.get( position );
+        shopid = shopInfoListBeanArrayLis1.get( position ).getId();
+        switch (view.getId()) {
+            case R.id.tv_03:
+                presenetr.getPostTokenRequest( getActivity(), ServerUrl.upShopByUserid, Constant.upShopByUserid );
+
+                break;
+            case R.id.tv_02:
+
+                Intent intent = new Intent( getActivity(), UploadTheGoodsActivity.class );
+                intent.putExtra( "selectNewShop", selectNewShop );
+                startActivity( intent );
+                break;
+            case R.id.tv_01:
+
+                new MessageDialog.Builder( this )
+                        .setMessage( "确定要删除此商品吗？" )
+                        .setConfirm( "删除" )
+                        .setCancel( "再想想" )
+                        .setListener( new MessageDialog.OnListener() {
+
+                            @Override
+                            public void onConfirm(Dialog dialog) {
+
+                                presenetr.getPostTokenRequest( getActivity(), ServerUrl.deleteShopByUserid, Constant.deleteShopByUserid );
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void onCancel(Dialog dialog) {
+                                //  toast("取消了");
+                                dialog.dismiss();
+                            }
+                        } )
+                        .show();
+                break;
+        }
     }
 }

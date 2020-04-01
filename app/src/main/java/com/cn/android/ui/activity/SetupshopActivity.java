@@ -74,7 +74,9 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
 
     @Override
     protected void initData() {
-
+        tv01.setText( userdata().getStoreTypName() );
+        et01.setText( userdata().getStoreName() );
+        ImageLoader.with( getActivity() ).load( userdata().getStoreImg() ).into( ivHintIcon );
     }
 
 
@@ -118,9 +120,9 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
             case R.id.tv01:
                 break;
             case R.id.Rl_01:
-                Intent intent3 = new Intent(this, SetupshopCalssActivity.class);
+                Intent intent3 = new Intent( this, SetupshopCalssActivity.class );
                 int code = 3;
-                startActivityForResult(intent3, code);
+                startActivityForResult( intent3, code );
                 break;
             case R.id.iv_hint_icon:
                 PhotoActivity.start( this, new PhotoActivity.OnPhotoSelectListener() {

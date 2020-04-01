@@ -22,12 +22,12 @@ import androidx.annotation.Nullable;
  */
 public class CommodityManagementAdapter extends BaseQuickAdapter<SelectNewShop, BaseViewHolder> {
     private Context context;
-    private int anInt;
 
-    public CommodityManagementAdapter(Context context, int i) {
+
+    public CommodityManagementAdapter(Context context) {
         super( R.layout.adapter_commodity_management );
         this.context = context;
-        this.anInt = i;
+
     }
 
     @Override
@@ -37,24 +37,36 @@ public class CommodityManagementAdapter extends BaseQuickAdapter<SelectNewShop, 
         helper.setText( R.id.tv_name, item.getShopName() );
         helper.setText( R.id.tv_price, context.getString( R.string.test01 ) + item.getSellPrice() );
         helper.setText( R.id.iv_vpi_price, context.getString( R.string.test01 ) + " " + item.getVipPrice() );
+        helper.addOnClickListener( R.id.tv_02 );
+        helper.addOnClickListener( R.id.tv_03 );
+        helper.addOnClickListener( R.id.tv_01 );
         ImageView imageView = helper.getView( R.id.iv_commodity );
         ImageLoader.with( context ).load( item.getShopImg() ).into( imageView );
-        if (item.getIsBurst()==1) {
+        if (item.getIsBurst() == 1) {
             helper.setGone( R.id.iv_bao, true );
         } else {
             helper.setGone( R.id.iv_bao, false );
         }
-        if (context instanceof ProductsCoverActivity) {
-            if (anInt == 1) {
-                if (item.getIsSort()==1) {
-                    helper.setBackgroundRes( R.id.iv, R.mipmap.test34 );
-                } else {
-                   helper.setBackgroundRes( R.id.iv, R.mipmap.test35 );
-                }
-                helper.setGone( R.id.rl_search, false );
-            }
-        } else {
+        helper.addOnClickListener( R.id.tv_03 );
+        if (item.getIsUp() == 1) {
+            helper.setText( R.id.tv_03, "上架" );
 
+        } else if (item.getIsUp() == 2) {
+            helper.setText( R.id.tv_03, "下架" );
+        }
+        if (context instanceof ProductsCoverActivity) {
+
+//            if (item.getIsSort() == 1) {
+//                helper.setBackgroundRes( R.id.iv, R.mipmap.test34 );
+//            } else {
+//
+//            }
+            helper.setBackgroundRes( R.id.iv, R.mipmap.test35 );
+            helper.setGone( R.id.rl_search, false );
+            helper.addOnClickListener( R.id.rl_search );
+
+        } else {
+            helper.setGone( R.id.rl_search, true );
         }
 
     }

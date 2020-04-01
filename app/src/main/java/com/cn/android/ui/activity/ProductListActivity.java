@@ -1,6 +1,7 @@
 package com.cn.android.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
@@ -118,10 +119,13 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
     public void onPublicInterfaceError(String error, int tag) {
 
     }
-
+    private SelectNewShop selectNewShop;
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        startActivity( CommodityDetailsActivity.class );
+        selectNewShop = shopInfoListBeanArrayLis1.get( position );
+        Intent intent = new Intent( getActivity(), CommodityDetailsActivity.class );
+        intent.putExtra( "SelectNewShop", selectNewShop );
+        startActivity( intent );
     }
 
 

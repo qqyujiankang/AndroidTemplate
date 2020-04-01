@@ -3,42 +3,49 @@ package com.cn.android.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+
 public class Userdata implements Parcelable {
 
+
     /**
-     * id : 008987
+     * id : 899079
      * isPlatform : 2
-     * type : 2
-     * userphone : 15535958282
+     * type : 1
+     * userphone : 15535958281
      * pid :
      * province : 陕西省
      * city : 西安市
      * area : 雁塔区
-     * isReal : 0
+     * isReal : 2
      * applyTime :
-     * auditTime :
-     * idcardFront :
-     * idcardBack :
-     * businessImg :
+     * idcardFront : http://192.168.0.168:8077/upload/c44edac6c1e64241afc092f2c9ada62f.png
+     * idcardBack : http://192.168.0.168:8077/upload/4975b0064d074ad0964d4a00f3df701e.jpg
+     * businessImg : http://192.168.0.168:8077/upload/c20c6086ffb94a1e9539fadd295037d4.jpg
      * realname :
      * phone :
-     * isCater : 2
-     * caterImg :
-     * storeName :
+     * isCater : 1
+     * caterImg : http://192.168.0.168:8077/upload/f3f6174277ff4b9d801dc8f69a5859fb.jpg
+     * storeTypeId : 3
+     * storeTypName : 调料干杂
+     * storeName : 禹城市
+     * storeImg : http://118.24.159.31:80/upload/ad0dbf2a5d8f452f8909e381c6e9cb97.png
      * status : 1
-     * token : 7352110517
-     * umoney : 0
-     * isWechat : 2
-     * wechatno :
-     * wechatName :
-     * isAlipay : 2
-     * alipayno :
-     * alipayName :
-     * nickname :
-     * sex :
-     * headImg :
+     * token : 1247387702
+     * umoney : 8500.0
+     * isWechat : 1
+     * wechatno : 15535958281
+     * wechatName : 庾建康
+     * isAlipay : 1
+     * alipayno : 15535958281
+     * alipayName : 庾建康
+     * nickname : 1111111111165656明年明年哦漏哦欧诺
+     * sex : 保密
+     * headImg : http://118.24.159.31:80/upload/1131b962b5564611a2cf805b79739415.png
      * isGood : 2
-     * ctime : 2020-03-26 14:03:39
+     * ctime : 2020-03-26 12:10:57
+     * stime :
+     * etime :
      */
 
     private String id;
@@ -51,7 +58,6 @@ public class Userdata implements Parcelable {
     private String area;
     private int isReal;
     private String applyTime;
-    private String auditTime;
     private String idcardFront;
     private String idcardBack;
     private String businessImg;
@@ -59,10 +65,13 @@ public class Userdata implements Parcelable {
     private String phone;
     private int isCater;
     private String caterImg;
+    private String storeTypeId;
+    private String storeTypName;
     private String storeName;
+    private String storeImg;
     private int status;
     private String token;
-    private String umoney;
+    private double umoney;
     private int isWechat;
     private String wechatno;
     private String wechatName;
@@ -74,6 +83,13 @@ public class Userdata implements Parcelable {
     private String headImg;
     private int isGood;
     private String ctime;
+    private String stime;
+    private String etime;
+
+    public static Userdata objectFromData(String str) {
+
+        return new Gson().fromJson( str, Userdata.class );
+    }
 
     public String getId() {
         return id;
@@ -155,14 +171,6 @@ public class Userdata implements Parcelable {
         this.applyTime = applyTime;
     }
 
-    public String getAuditTime() {
-        return auditTime;
-    }
-
-    public void setAuditTime(String auditTime) {
-        this.auditTime = auditTime;
-    }
-
     public String getIdcardFront() {
         return idcardFront;
     }
@@ -219,12 +227,36 @@ public class Userdata implements Parcelable {
         this.caterImg = caterImg;
     }
 
+    public String getStoreTypeId() {
+        return storeTypeId;
+    }
+
+    public void setStoreTypeId(String storeTypeId) {
+        this.storeTypeId = storeTypeId;
+    }
+
+    public String getStoreTypName() {
+        return storeTypName;
+    }
+
+    public void setStoreTypName(String storeTypName) {
+        this.storeTypName = storeTypName;
+    }
+
     public String getStoreName() {
         return storeName;
     }
 
     public void setStoreName(String storeName) {
         this.storeName = storeName;
+    }
+
+    public String getStoreImg() {
+        return storeImg;
+    }
+
+    public void setStoreImg(String storeImg) {
+        this.storeImg = storeImg;
     }
 
     public int getStatus() {
@@ -243,11 +275,11 @@ public class Userdata implements Parcelable {
         this.token = token;
     }
 
-    public String getUmoney() {
+    public double getUmoney() {
         return umoney;
     }
 
-    public void setUmoney(String umoney) {
+    public void setUmoney(double umoney) {
         this.umoney = umoney;
     }
 
@@ -339,6 +371,22 @@ public class Userdata implements Parcelable {
         this.ctime = ctime;
     }
 
+    public String getStime() {
+        return stime;
+    }
+
+    public void setStime(String stime) {
+        this.stime = stime;
+    }
+
+    public String getEtime() {
+        return etime;
+    }
+
+    public void setEtime(String etime) {
+        this.etime = etime;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -356,7 +404,6 @@ public class Userdata implements Parcelable {
         dest.writeString( this.area );
         dest.writeInt( this.isReal );
         dest.writeString( this.applyTime );
-        dest.writeString( this.auditTime );
         dest.writeString( this.idcardFront );
         dest.writeString( this.idcardBack );
         dest.writeString( this.businessImg );
@@ -364,10 +411,13 @@ public class Userdata implements Parcelable {
         dest.writeString( this.phone );
         dest.writeInt( this.isCater );
         dest.writeString( this.caterImg );
+        dest.writeString( this.storeTypeId );
+        dest.writeString( this.storeTypName );
         dest.writeString( this.storeName );
+        dest.writeString( this.storeImg );
         dest.writeInt( this.status );
         dest.writeString( this.token );
-        dest.writeString( this.umoney );
+        dest.writeDouble( this.umoney );
         dest.writeInt( this.isWechat );
         dest.writeString( this.wechatno );
         dest.writeString( this.wechatName );
@@ -379,6 +429,8 @@ public class Userdata implements Parcelable {
         dest.writeString( this.headImg );
         dest.writeInt( this.isGood );
         dest.writeString( this.ctime );
+        dest.writeString( this.stime );
+        dest.writeString( this.etime );
     }
 
     public Userdata() {
@@ -395,7 +447,6 @@ public class Userdata implements Parcelable {
         this.area = in.readString();
         this.isReal = in.readInt();
         this.applyTime = in.readString();
-        this.auditTime = in.readString();
         this.idcardFront = in.readString();
         this.idcardBack = in.readString();
         this.businessImg = in.readString();
@@ -403,10 +454,13 @@ public class Userdata implements Parcelable {
         this.phone = in.readString();
         this.isCater = in.readInt();
         this.caterImg = in.readString();
+        this.storeTypeId = in.readString();
+        this.storeTypName = in.readString();
         this.storeName = in.readString();
+        this.storeImg = in.readString();
         this.status = in.readInt();
         this.token = in.readString();
-        this.umoney = in.readString();
+        this.umoney = in.readDouble();
         this.isWechat = in.readInt();
         this.wechatno = in.readString();
         this.wechatName = in.readString();
@@ -418,6 +472,8 @@ public class Userdata implements Parcelable {
         this.headImg = in.readString();
         this.isGood = in.readInt();
         this.ctime = in.readString();
+        this.stime = in.readString();
+        this.etime = in.readString();
     }
 
     public static final Parcelable.Creator<Userdata> CREATOR = new Parcelable.Creator<Userdata>() {

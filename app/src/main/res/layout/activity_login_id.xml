@@ -38,11 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-
             android:hint="@string/common_phone_input_hint"
-            android:inputType="textVisiblePassword"
             android:singleLine="true"
-            app:regexType="mobile" />
+             />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -50,7 +48,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@mipmap/delete" />
+            android:src="@mipmap/delete"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -82,23 +81,22 @@
 
             android:layout_toStartOf="@+id/cv_bind_countdown"
             android:layout_toLeftOf="@+id/cv_bind_countdown"
-            android:hint="@string/common_password_input_error"
-            android:inputType="textVisiblePassword"
-            android:singleLine="true"
-          />
+            android:hint="请输入验证码"
+            android:singleLine="true" />
 
         <com.hjq.widget.view.CountdownView
-
             android:id="@+id/cv_bind_countdown"
             style="@style/CountdownViewStyle"
             android:layout_alignParentRight="true"
             android:textColor="#333333" />
 
     </RelativeLayout>
+
     <View
         style="@style/HorizontalLineStyle"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp" />
+
     <Button
         android:id="@+id/btn_login_commit"
         android:layout_width="match_parent"
@@ -111,12 +109,9 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="登录"
-        android:textColor="#FFE300"
-         />
+        android:textColor="#FFE300" />
 
     <Button
-        android:textColor="#222222"
-        android:background="@drawable/bg_dialog_rounded_corner_yellow"
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,9 +119,10 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
-
+        android:background="@drawable/bg_dialog_rounded_corner_yellow"
         android:paddingLeft="10dp"
+
         android:paddingRight="10dp"
         android:text="注册"
-       />
+        android:textColor="#222222" />
 </LinearLayout>

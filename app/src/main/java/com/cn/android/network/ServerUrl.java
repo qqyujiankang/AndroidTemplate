@@ -84,6 +84,24 @@ public class ServerUrl {
     public static String selectShopListByShopType = defaultIp + "/app/home/selectShopListByShopType";
     //    商品管理
     public static String selectShopsByUserid = defaultIp + "/app/shop/selectShopsByUserid";
+    //企业 商品自荐/店铺每日爆品/店铺商品
+    public static String selectShopListByUserid = defaultIp + "/app/shop/selectShopListByUserid";
+    //    企业 商品管理-删除
+    public static String deleteShopByUserid = defaultIp + "/app/shop/deleteShopByUserid";
+    //      我的团队
+    public static String selecttTeamByUserid = defaultIp + "/app/user/selecttTeamByUserid";
+    //    我的收藏
+    public static String selectConlectShopsByUserid = defaultIp + "/app/shop/selectConlectShopsByUserid";
+    //    收藏/取消收藏
+    public static String sureConlectShopsByUserid = defaultIp + "/app/shop/sureConlectShopsByUserid";
+    //    评价
+    public static String addShopEva = defaultIp + "/app/order/addShopEva";
+    //    我的订单  状态  1待付款 2代发货 3已发货 4已完成 5已评价
+    public static String selectOrderListByStatus = defaultIp + "/app/order/selectOrderListByStatus";
+    //    企业 商品管理-上架/下架
+    public static String upShopByUserid = defaultIp + "/app/shop/upShopByUserid";
+    //    企业 自荐商品排序
+    public static String sortShopByUserid = defaultIp + "/app/shop/sortShopByUserid";
 
 
 }

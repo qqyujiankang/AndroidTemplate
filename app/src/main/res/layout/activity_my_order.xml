@@ -64,10 +64,5 @@
 
     </RadioGroup>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@color/white" />
+    <include layout="@layout/pubiu_layout_rv_data" />
 </LinearLayout>

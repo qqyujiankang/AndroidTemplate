@@ -27,12 +27,9 @@
                     android:id="@+id/xbanner"
                     android:layout_width="match_parent"
                     android:layout_height="375dp"
-                    android:background="@mipmap/test10"
                     app:AutoPlayTime="3000"
-                    app:isClipChildrenMode="true"
                     app:isShowIndicatorOnlyOne="true"
                     app:isShowNumberIndicator="true"
-                    app:pageChangeDuration="800"
                     app:pointsPosition="RIGHT"
                     app:tipTextSize="12sp">
 
@@ -54,7 +51,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="商品名称商品名称商品名称商品名称商品名称商品名 称商品名称商品名称商品名称" />
+                    android:text=""
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/tv_02"
@@ -63,19 +61,21 @@
                     android:layout_below="@+id/tv_01"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="￥29.90"
-                    android:textColor="#333333"
-                    android:textSize="15sp" />
+                    android:drawableLeft="@mipmap/vip"
+                    android:textColor="#EF4321"
+                    android:textSize="16sp" />
 
                 <TextView
+
+                    android:id="@+id/tv_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_02"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_toRightOf="@+id/tv_02"
-                    android:text="￥39.00"
-                    android:textColor="#333333"
-                    android:textSize="15sp" />
+                    android:text=""
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -86,16 +86,7 @@
                     android:text="成交量"
                     android:textColor="#AAAAAA" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_02"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@mipmap/vip"
-                    android:text="￥29.90"
-                    android:textColor="#EF4321"
-                    android:textSize="16sp" />
+
             </RelativeLayout>
 
             <com.hjq.widget.layout.SettingBar
@@ -111,7 +102,6 @@
                 android:id="@+id/sb_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
                 app:bar_leftColor="#AAAAAA"
                 app:bar_leftText="收货地址"
                 app:bar_rightIcon="@drawable/ico_go_black" />
@@ -121,7 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_07"
@@ -187,10 +178,10 @@
                     android:textSize="14sp"></TextView>
 
                 <ImageView
+                    android:id="@+id/iv_seal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/test23" />
+                 />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

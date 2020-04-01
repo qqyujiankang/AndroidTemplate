@@ -54,28 +54,27 @@ public class SetActivity extends MyActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sb_account_management://账号管理
-                startActivity(AccountManagementActivity.class);
+                startActivity( AccountManagementActivity.class );
                 break;
             case R.id.sb_personal_data_title://个人资料
-                startActivity(NewPersonalDataActivity.class);
+                startActivity( NewPersonalDataActivity.class );
                 break;
             case R.id.sb_Comments_and_feedback://意见与反馈
-                startActivity(FeedbackActivity.class);
+                startActivity( FeedbackActivity.class );
                 break;
             case R.id.sb_user_agreement:
                 break;
             case R.id.sb_Version_checking:
-                ToastUtils.show("您目前是版本检测！！！");
+                ToastUtils.show( "您目前是版本检测！！！" );
                 break;
             case R.id.sb_log_out:
                 finish();
 
-                startActivity(LoginIDActivity.class);
+                startActivity( TheloginIdActivity.class );
                 break;
             case R.id.btn_bind_commit:
                 finish();
-
-                startActivity(LoginIDActivity.class);
+                startActivity( TheloginIdActivity.class );
                 break;
         }
     }

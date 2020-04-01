@@ -14,6 +14,7 @@ import com.cn.android.R;
 import com.cn.android.bean.Commodity;
 import com.cn.android.bean.SelectTypeListByPid;
 import com.cn.android.bean.ShopBean;
+import com.cn.android.ui.activity.CommodityClassificationActivity;
 import com.cn.android.ui.activity.ProductListActivity;
 
 import java.util.List;
@@ -34,12 +35,16 @@ public final class ShopAdapter extends BaseQuickAdapter<SelectTypeListByPid, Bas
     public ShopAdapter(Context context) {
         super( R.layout.item_shop );
         this.context = context;
+
     }
 
     @Override
     protected void convert(BaseViewHolder helper, SelectTypeListByPid item) {
         recyclerView = helper.getView( R.id.shop );
         helper.setText( R.id.name, item.getName() );
+        if (context instanceof CommodityClassificationActivity) {
+            helper.setGone( R.id.shop, false );
+        }
         adapter = new ShopItemAdapter( context );
         recyclerView.setLayoutManager( new GridLayoutManager( context, 3 ) );
         recyclerView.setAdapter( adapter );

@@ -1,8 +1,11 @@
 package com.cn.android.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 
-public class SelectNewShop {
+public class SelectNewShop implements Parcelable {
 
     /**
      * id : 5
@@ -242,4 +245,77 @@ public class SelectNewShop {
     public void setShareUrl(String shareUrl) {
         this.shareUrl = shareUrl;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString( this.id );
+        dest.writeInt( this.type );
+        dest.writeString( this.shopImg );
+        dest.writeString( this.imgUrls );
+        dest.writeString( this.shopName );
+        dest.writeDouble( this.sellPrice );
+        dest.writeDouble( this.realPrice );
+        dest.writeDouble( this.vipPrice );
+        dest.writeInt( this.isBurst );
+        dest.writeString( this.firstTypeId );
+        dest.writeString( this.secondeTypeId );
+        dest.writeString( this.threeTypeId );
+        dest.writeInt( this.stockNum );
+        dest.writeInt( this.saleNum );
+        dest.writeString( this.userid );
+        dest.writeInt( this.isSort );
+        dest.writeString( this.sortTime );
+        dest.writeString( this.ctime );
+        dest.writeInt( this.status );
+        dest.writeInt( this.isUp );
+        dest.writeString( this.detilas );
+        dest.writeInt( this.isSend );
+        dest.writeString( this.shareUrl );
+    }
+
+    public SelectNewShop() {
+    }
+
+    protected SelectNewShop(Parcel in) {
+        this.id = in.readString();
+        this.type = in.readInt();
+        this.shopImg = in.readString();
+        this.imgUrls = in.readString();
+        this.shopName = in.readString();
+        this.sellPrice = in.readDouble();
+        this.realPrice = in.readDouble();
+        this.vipPrice = in.readDouble();
+        this.isBurst = in.readInt();
+        this.firstTypeId = in.readString();
+        this.secondeTypeId = in.readString();
+        this.threeTypeId = in.readString();
+        this.stockNum = in.readInt();
+        this.saleNum = in.readInt();
+        this.userid = in.readString();
+        this.isSort = in.readInt();
+        this.sortTime = in.readString();
+        this.ctime = in.readString();
+        this.status = in.readInt();
+        this.isUp = in.readInt();
+        this.detilas = in.readString();
+        this.isSend = in.readInt();
+        this.shareUrl = in.readString();
+    }
+
+    public static final Parcelable.Creator<SelectNewShop> CREATOR = new Parcelable.Creator<SelectNewShop>() {
+        @Override
+        public SelectNewShop createFromParcel(Parcel source) {
+            return new SelectNewShop( source );
+        }
+
+        @Override
+        public SelectNewShop[] newArray(int size) {
+            return new SelectNewShop[size];
+        }
+    };
 }

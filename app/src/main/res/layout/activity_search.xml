@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.cn.android.ui.activity.SearchActivity">
 
@@ -25,6 +25,7 @@
             android:background="@mipmap/bar_icon_back_black" />
 
         <com.hjq.widget.view.ClearEditText
+
             android:id="@+id/search_txt"
             style="@style/EditTextStyle"
             android:layout_width="wrap_content"
@@ -38,10 +39,8 @@
             android:drawablePadding="10dp"
             android:hint="请输入想要的商品"
             android:imeOptions="actionSearch"
-            android:inputType="text"
             android:singleLine="true"
-            android:textColor="#F7F7F7"
-            app:regexType="nonnull" />
+            android:textColor="#333333" />
 
         <TextView
             android:id="@+id/tv_cancel"

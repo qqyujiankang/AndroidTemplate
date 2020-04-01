@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,18 +34,18 @@ public class WithdrawDepositActivity extends MyActivity implements PublicInterfa
     TextView tvBalanceOfAccount;
     @BindView(R.id.tv_view_details)
     TextView tvViewDetails;
+    @BindView(R.id.tv_money)
+    EditText tvMoney;
     @BindView(R.id.tv_upper)
     CheckBox tvUpper;
-    @BindView(R.id.btn_bind_commit)
-    Button btnBindCommit;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
-    @BindView(R.id.rl_search)
-    RelativeLayout rlSearch;
     @BindView(R.id.tv02)
     CheckBox tv02;
-    @BindView(R.id.tv_money)
-    TextView tvMoney;
+    @BindView(R.id.rl_search)
+    RelativeLayout rlSearch;
+    @BindView(R.id.btn_bind_commit)
+    Button btnBindCommit;
     private int anInt = 1;
     PublicInterfaceePresenetr presenetr;
 
@@ -55,11 +56,13 @@ public class WithdrawDepositActivity extends MyActivity implements PublicInterfa
 
     @Override
     protected void initView() {
+        tvBalanceOfAccount.setText( userdata().getUmoney() + "" );
         presenetr = new PublicInterfaceePresenetr( this );
     }
 
     @Override
     protected void initData() {
+
 
     }
 
@@ -133,7 +136,7 @@ public class WithdrawDepositActivity extends MyActivity implements PublicInterfa
     public void onPublicInterfaceSuccess(String data, int tag) {
         showComplete();
         Userdata userdata = userdata();
-        userdata.setUmoney( Double.valueOf( userdata.getUmoney() ) - Double.valueOf( tvMoney.getText().toString() ) +"");
+        userdata.setUmoney( userdata.getUmoney() - Double.valueOf( tvMoney.getText().toString() ) );
         SaveUserBean( userdata );
         finish();
     }
@@ -144,4 +147,10 @@ public class WithdrawDepositActivity extends MyActivity implements PublicInterfa
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind( this );
+    }
 }

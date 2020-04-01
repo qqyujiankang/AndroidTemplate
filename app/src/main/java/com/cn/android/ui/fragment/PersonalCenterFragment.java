@@ -1,6 +1,7 @@
 package com.cn.android.ui.fragment;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +28,13 @@ import com.cn.android.ui.activity.SetupshopActivity;
 import com.cn.android.ui.activity.ShippingAddressActivity;
 import com.cn.android.ui.activity.ThebalanceDetailsActivity;
 import com.cn.android.ui.activity.WithdrawDepositActivity;
+import com.cn.android.utils.DataUtils;
 import com.hjq.image.ImageLoader;
+
+import org.jsoup.helper.DataUtil;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -103,11 +110,19 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @Override
     protected void initView() {
-        tvBalanceOfAccount.setText( userdata().getUmoney() );
-        ImageLoader.with( this )
-                .circle()
-                .load( userdata().getHeadImg() )
-                .into( ivHear );
+
+        tvBalanceOfAccount.setText( DataUtils.getMoney( userdata().getUmoney() ) );
+        if (TextUtils.isEmpty( userdata().getHeadImg() )) {
+            ImageLoader.with( this )
+                    .circle()
+                    .load( R.mipmap.test24 )
+                    .into( ivHear );
+        } else {
+            ImageLoader.with( this )
+                    .circle()
+                    .load( userdata().getHeadImg() )
+                    .into( ivHear );
+        }
 
         if (userdata().getType() == 1) {
             tvEnterprises.setText( "已入驻" );

@@ -812,6 +812,7 @@ color gray
 color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color huise
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1898,6 +1899,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable test400
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light

@@ -19,10 +19,10 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2018/10/18
- *    desc   : 闪屏界面
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/AndroidProject
+ * time   : 2018/10/18
+ * desc   : 闪屏界面
  */
 public final class SplashActivity extends MyActivity
         implements OnPermission, Animation.AnimationListener {
@@ -47,25 +47,25 @@ public final class SplashActivity extends MyActivity
     @Override
     protected void initView() {
         // 初始化动画
-        AlphaAnimation aa = new AlphaAnimation(0.4f, 1.0f);
-        aa.setDuration(ANIM_TIME * 2);
-        aa.setAnimationListener(this);
-        mImageView.startAnimation(aa);
+        AlphaAnimation aa = new AlphaAnimation( 0.4f, 1.0f );
+        aa.setDuration( ANIM_TIME * 2 );
+        aa.setAnimationListener( this );
+        mImageView.startAnimation( aa );
 
-        ScaleAnimation sa = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        sa.setDuration(ANIM_TIME);
-        mIconView.startAnimation(sa);
+        ScaleAnimation sa = new ScaleAnimation( 0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f );
+        sa.setDuration( ANIM_TIME );
+        mIconView.startAnimation( sa );
 
-        RotateAnimation ra = new RotateAnimation(180, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        ra.setDuration(ANIM_TIME);
-        mNameView.startAnimation(ra);
+        RotateAnimation ra = new RotateAnimation( 180, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f );
+        ra.setDuration( ANIM_TIME );
+        mNameView.startAnimation( ra );
 
         // 设置状态栏和导航栏参数
         getStatusBarConfig()
                 // 有导航栏的情况下，activity全屏显示，也就是activity最下面被导航栏覆盖，不写默认非全屏
-                .fullScreen(true)
+                .fullScreen( true )
                 // 隐藏状态栏
-                .hideBar(BarHide.FLAG_HIDE_STATUS_BAR)
+                .hideBar( BarHide.FLAG_HIDE_STATUS_BAR )
                 // 透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为true)
                 .transparentNavigationBar()
                 .init();
@@ -74,16 +74,16 @@ public final class SplashActivity extends MyActivity
     @Override
     protected void initData() {
         if (AppConfig.isDebug()) {
-            mDebugView.setVisibility(View.VISIBLE);
+            mDebugView.setVisibility( View.VISIBLE );
         } else {
-            mDebugView.setVisibility(View.INVISIBLE);
+            mDebugView.setVisibility( View.INVISIBLE );
         }
     }
 
     private void requestPermission() {
-        XXPermissions.with(this)
-                .permission(Permission.Group.STORAGE)
-                .request(this);
+        XXPermissions.with( this )
+                .permission( Permission.Group.STORAGE, Permission.Group.LOCATION )
+                .request( this );
     }
 
     /**
@@ -92,18 +92,23 @@ public final class SplashActivity extends MyActivity
 
     @Override
     public void hasPermission(List<String> granted, boolean isAll) {
-       // startActivityFinish(HomeActivity.class);
-        startActivityFinish(TheloginIdActivity.class);
+        // startActivityFinish(HomeActivity.class);
+        if (!isLogin()) {
+            startActivityFinish( TheloginIdActivity.class );
+        } else {
+            startActivityFinish( HomeActivity.class );
+        }
+
     }
 
     @Override
     public void noPermission(List<String> denied, boolean quick) {
         if (quick) {
-            toast(R.string.common_permission_fail);
-            XXPermissions.gotoPermissionSettings(SplashActivity.this, true);
+            toast( R.string.common_permission_fail );
+            XXPermissions.gotoPermissionSettings( SplashActivity.this, true );
         } else {
-            toast(R.string.common_permission_hint);
-            postDelayed(this::requestPermission, 1000);
+            toast( R.string.common_permission_hint );
+            postDelayed( this::requestPermission, 1000 );
         }
     }
 
@@ -116,8 +121,8 @@ public final class SplashActivity extends MyActivity
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (XXPermissions.isHasPermission(SplashActivity.this, Permission.Group.STORAGE,Permission.Group.LOCATION)) {
-            hasPermission(null, true);
+        if (XXPermissions.isHasPermission( SplashActivity.this, Permission.Group.STORAGE, Permission.Group.LOCATION )) {
+            hasPermission( null, true );
         } else {
             requestPermission();
         }
@@ -128,7 +133,8 @@ public final class SplashActivity extends MyActivity
      */
 
     @Override
-    public void onAnimationStart(Animation animation) {}
+    public void onAnimationStart(Animation animation) {
+    }
 
     @Override
     public void onAnimationEnd(Animation animation) {
@@ -136,5 +142,6 @@ public final class SplashActivity extends MyActivity
     }
 
     @Override
-    public void onAnimationRepeat(Animation animation) {}
+    public void onAnimationRepeat(Animation animation) {
+    }
 }

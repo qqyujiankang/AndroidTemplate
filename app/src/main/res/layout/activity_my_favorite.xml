@@ -10,11 +10,9 @@
     <com.hjq.bar.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         app:title="我的收藏" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rev"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10" />
+
+    <include layout="@layout/pubiu_layout_rv_data" />
 </LinearLayout>

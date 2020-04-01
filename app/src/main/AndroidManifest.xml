@@ -28,6 +28,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
+        <activity android:name=".ui.activity.CommodityClassificationActivity"></activity>
         <!-- //开发者申请的key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -292,21 +293,17 @@
         <activity
             android:name=".ui.activity.BindingAccountActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
-
-        <!--设置店铺分类-->
+            android:screenOrientation="portrait" /> <!-- 设置店铺分类 -->
         <activity
             android:name=".ui.activity.SetupshopCalssActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
-        <!--    设置店铺    -->
+            android:screenOrientation="portrait" /> <!-- 设置店铺 -->
         <activity
             android:name=".ui.activity.SetupshopActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 
         <service android:name="com.amap.api.location.APSService" />
-
     </application>
 
 </manifest>

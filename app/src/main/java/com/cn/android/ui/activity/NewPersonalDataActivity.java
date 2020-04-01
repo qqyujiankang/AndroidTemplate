@@ -1,6 +1,7 @@
 package com.cn.android.ui.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -52,6 +53,17 @@ public class NewPersonalDataActivity extends MyActivity implements FileOperation
 
     @Override
     protected void initView() {
+        if (TextUtils.isEmpty( userdata().getHeadImg() )) {
+            ImageLoader.with( this )
+                    .circle()
+                    .load( R.mipmap.test24 )
+                    .into( iv );
+        } else {
+            ImageLoader.with( this )
+                    .circle()
+                    .load( userdata().getHeadImg() )
+                    .into( iv );
+        }
         presenetr = new PublicInterfaceePresenetr( this );
         filePresenetr = new FileOperationPresenetr( this );
     }
@@ -136,9 +148,9 @@ public class NewPersonalDataActivity extends MyActivity implements FileOperation
         showComplete();
         switch (tag) {
             case Constant.updateHeadImg:
-                Userdata userBean=userdata();
-                userBean.setHeadImg(head_img);
-                SaveUserBean(userBean);
+                Userdata userBean = userdata();
+                userBean.setHeadImg( head_img );
+                SaveUserBean( userBean );
                 break;
 
         }

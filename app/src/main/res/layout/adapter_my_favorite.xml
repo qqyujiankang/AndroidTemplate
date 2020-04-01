@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -26,37 +26,37 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@+id/iv_tu"
-            android:text="伯纳天纯幼猫粮1.5kg离乳期幼猫天然 粮接口为奇偶将饿哦爱谁就懂啊"></TextView>
+            android:text=""></TextView>
 
         <TextView
-            android:id="@+id/tv01"
+            android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_bame"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/iv_tu"
-            android:text="￥10.9"
+            android:text=""
             android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tv_vip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv01"
-            android:layout_alignLeft="@+id/tv01"
+            android:layout_below="@+id/tv_price"
+            android:layout_alignLeft="@+id/tv_price"
             android:layout_marginTop="5dp"
             android:drawableLeft="@mipmap/vip"
-            android:text="￥9.9"
+            android:text=""
             android:textColor="#EF4321" />
 
-        <CheckBox
+        <ImageView
+            android:id="@+id/cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/tv_vip"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:background="@drawable/checkbox_xin"
-            android:button="@null" />
+            android:src="@mipmap/xin" />
     </RelativeLayout>
 </LinearLayout>

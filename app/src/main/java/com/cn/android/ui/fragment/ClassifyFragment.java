@@ -80,7 +80,11 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
         return new ClassifyFragment();
     }
 
+     int aposition = -1;
+
     public void onClick(int position) {
+        aposition = position;
+        initData();
         //toast("分类 = "+position);
     }
 
@@ -107,7 +111,7 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
         shopRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
         classAdapter = new ClassAdapter( getActivity() );
         adapter = new ShopAdapter( getActivity() );
-        classAdapter.setOnItemClickListener(this);
+        classAdapter.setOnItemClickListener( this );
         shopRecyclerView.setAdapter( adapter );
 
         rvClassNmae.setAdapter( classAdapter );
@@ -217,8 +221,13 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
             case Constant.selectFristTypeList:
                 log( "selectFristTypeList=============" + data );
                 shopTypeListBeanList = GsonUtils.getPersons( data, HomeData.ShopTypeListBean.class );
-                shopTypeListBeanList.get( 0 ).setClick( true );
-                pid = shopTypeListBeanList.get( 0 ).getId();
+                if (aposition == -1) {
+                    shopTypeListBeanList.get( 0).setClick( true );
+                    pid = shopTypeListBeanList.get( 0).getId();
+                }else {
+                    shopTypeListBeanList.get( aposition).setClick( true );
+                    pid = shopTypeListBeanList.get( aposition).getId();
+                }
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectTypeListByPid, Constant.selectTypeListByPid );
 
                 classAdapter.replaceData( shopTypeListBeanList );
