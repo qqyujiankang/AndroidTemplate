@@ -40,7 +40,7 @@
             android:layout_marginLeft="20dp"
             android:hint="@string/common_phone_input_hint"
             android:singleLine="true"
-             />
+             android:text="15535958281"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-
+            android:text="123456"
             android:layout_toStartOf="@+id/cv_bind_countdown"
             android:layout_toLeftOf="@+id/cv_bind_countdown"
             android:hint="请输入验证码"

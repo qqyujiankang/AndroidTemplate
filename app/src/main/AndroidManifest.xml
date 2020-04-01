@@ -53,13 +53,6 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/SplashTheme">
 
-            <!-- 程序入口 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity> <!-- App 首页 -->
         <activity
             android:name=".ui.activity.HomeActivity"
@@ -221,7 +214,15 @@
         <activity
             android:name=".ui.activity.UploadTheGoodsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" /> <!-- 商品管理 -->
+            android:screenOrientation="portrait" >
+            <!-- 程序入口 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- 商品管理 -->
         <activity
             android:name=".ui.activity.CommodityManagementActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

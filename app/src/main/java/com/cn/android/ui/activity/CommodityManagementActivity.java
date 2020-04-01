@@ -201,7 +201,6 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
         switch (view.getId()) {
             case R.id.tv_03:
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.upShopByUserid, Constant.upShopByUserid );
-
                 break;
             case R.id.tv_02:
 

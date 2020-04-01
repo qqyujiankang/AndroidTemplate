@@ -1,19 +1,25 @@
 package com.cn.android.ui.activity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
 import com.cn.android.bean.Commodity;
+import com.cn.android.bean.ShopGuiGeBean;
 import com.cn.android.common.MyActivity;
 import com.cn.android.presenter.view.FileOperationView;
 import com.cn.android.presenter.view.PublicInterfaceView;
 import com.cn.android.ui.adapter.CommercialSpecificationAdapter;
 import com.cn.android.ui.adapter.MorepicturesAdapter;
+import com.cn.android.utils.L;
+import com.google.gson.Gson;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.widget.view.SwitchButton;
 
@@ -21,19 +27,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
  * Upload the goods 上传商品
  */
-public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapter.OnItemChildClickListener, OnTitleBarListener , FileOperationView, PublicInterfaceView {
+public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapter.OnItemChildClickListener, OnTitleBarListener, FileOperationView, PublicInterfaceView {
 
     CommercialSpecificationAdapter commercialSpecificationAdapter;
-    List<Commodity.DataBean> strings = new ArrayList<>();
+    List<ShopGuiGeBean> strings = new ArrayList<>();
     @BindView(R.id.rv)
     RecyclerView rv;
     @BindView(R.id.iv_particulars)
@@ -47,6 +50,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     MorepicturesAdapter morepicturesAdapter;
     @BindView(R.id.relativeLayout)
     RecyclerView relativeLayout;
+    private ArrayList<String> morepicturesArrayList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -55,25 +59,23 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
 
     @Override
     protected void initView() {
-        relativeLayout.setLayoutManager( new GridLayoutManager( getActivity(), 3 ) );
-        morepicturesAdapter = new MorepicturesAdapter( getActivity(), morepicturesArrayList );
-        relativeLayout.setAdapter( morepicturesAdapter );
-        rv.setLayoutManager( new LinearLayoutManager( getActivity() ) );
-        commercialSpecificationAdapter = new CommercialSpecificationAdapter( getActivity() );
-        rv.setAdapter( commercialSpecificationAdapter );
-        commercialSpecificationAdapter.setNewData( strings );
-        commercialSpecificationAdapter.setOnItemChildClickListener( this );
-        morepicturesAdapter.setOnItemChildClickListener( this );
+        relativeLayout.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        morepicturesAdapter = new MorepicturesAdapter(getActivity());
+        relativeLayout.setAdapter(morepicturesAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        commercialSpecificationAdapter = new CommercialSpecificationAdapter(getActivity(),strings);
+        rv.setAdapter(commercialSpecificationAdapter);
+        commercialSpecificationAdapter.setNewData(strings);
+        commercialSpecificationAdapter.setOnItemChildClickListener(this);
+        morepicturesAdapter.setOnItemChildClickListener(this);
 
     }
 
-    List<String> morepicturesArrayList = new ArrayList<>();
-
     @Override
     protected void initData() {
-        strings.add( new Commodity.DataBean( "fdsdfds", "455", "45", "455", 4 ) );
-        morepicturesArrayList.add( "" );
-        morepicturesAdapter.setNewData( morepicturesArrayList );
+        strings.add(new ShopGuiGeBean("",true));
+        morepicturesArrayList.add("");
+        morepicturesAdapter.setNewData(morepicturesArrayList);
     }
 
 
@@ -82,38 +84,38 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
         if (adapter instanceof CommercialSpecificationAdapter) {
             switch (view.getId()) {
                 case R.id.iv_add:
-                    CheckBox checkBox = view.findViewById( R.id.iv_add );
+                    L.e("123","strings = "+ new Gson().toJson(strings));
+                    CheckBox checkBox = view.findViewById(R.id.iv_add);
                     if (!checkBox.isChecked()) {
-                        strings.add( new Commodity.DataBean( "fdsdfds", "456", "45", "455", 4 ) );
+                        strings.add(0,new ShopGuiGeBean("",false));
                     } else if (strings.size() != 1) {
-                        checkBox.setChecked( true );
-                        strings.remove( position );
+                        strings.remove(position);
                     }
-                    commercialSpecificationAdapter.setNewData( strings );
+                    commercialSpecificationAdapter.replaceData(strings);
                     break;
             }
         } else if (adapter instanceof MorepicturesAdapter) {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.iv_particulars:
-
-                        PhotoActivity.start( this, 5, new PhotoActivity.OnPhotoSelectListener() {
+                    if(position==morepicturesArrayList.size()-1){
+                        int page=6-morepicturesArrayList.size();
+                        PhotoActivity.start(this, page, new PhotoActivity.OnPhotoSelectListener() {
                             @Override
                             public void onSelect(List<String> data) {
-
-                                morepicturesArrayList.remove( morepicturesArrayList.size() - 1 );
-                                if (data.size() < 5) {
-                                    data.add( "" );
+                                morepicturesArrayList.addAll(0,data);
+                                if(morepicturesArrayList.size()==6){
+                                    morepicturesArrayList.remove(5);
                                 }
-                                morepicturesArrayList.addAll( data );
-                                Log.e( "上传商品", "===1=====" + morepicturesArrayList.size() );
-                                morepicturesAdapter.setNewData( morepicturesArrayList );
+                                morepicturesAdapter.replaceData(morepicturesArrayList);
                             }
-
                             @Override
                             public void onCancel() {
 
                             }
-                        } );
+                        });
+                    }else{
+                        ImageActivity.start(UploadTheGoodsActivity.this,morepicturesArrayList,position);
+                    }
                     break;
             }
 
@@ -126,7 +128,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
         switch (view.getId()) {
 
             case R.id.iv_particulars:
-                ivview( ivParticulars );
+                ivview(ivParticulars);
 
                 break;
             case R.id.ll_01:
@@ -139,7 +141,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     }
 
     private void ivview(ImageView ivParticulars) {
-        PhotoActivity.start( this, 5, new PhotoActivity.OnPhotoSelectListener() {
+        PhotoActivity.start(this, 5, new PhotoActivity.OnPhotoSelectListener() {
             @Override
             public void onSelect(List<String> data) {
             }
@@ -148,12 +150,12 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
             public void onCancel() {
 
             }
-        } );
+        });
     }
 
     @Override
     public void onRightClick(View v) {
-        super.onRightClick( v );
+        super.onRightClick(v);
         finish();
     }
 

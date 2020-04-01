@@ -58,7 +58,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrder, BaseViewHolder> {
             helper.setText( R.id.btn_01, "确认收货" );
             helper.setText( R.id.btn_02, "查看物流" );
 
-            helper.setTextColor( R.id.btn_02, context.getResources().getColor( R.color.huise ) );
+            helper.setTextColor( R.id.btn_02, context.getResources().getColor(R.color.huise) );
             helper.setBackgroundRes( R.id.btn_02, R.drawable.bg_home_search_bar_transparent );
 
 

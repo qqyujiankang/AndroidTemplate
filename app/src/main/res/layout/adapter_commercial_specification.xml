@@ -25,6 +25,7 @@
             android:padding="@dimen/dp_10">
 
             <EditText
+                android:id="@+id/guige"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_20"
@@ -32,7 +33,7 @@
                 android:layout_toStartOf="@+id/iv_add"
                 android:layout_toLeftOf="@+id/iv_add"
                 android:background="@null"
-                android:hint="请输入宝贝名称"
+                android:hint="请输入规格"
                 android:textSize="14sp" />
 
             <CheckBox
@@ -63,15 +64,17 @@
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商品价格:" />
+                    android:text="VIP价格" />
 
                 <EditText
+                    android:id="@+id/vipmoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_20"
                     android:layout_marginTop="@dimen/dp_10"
                     android:background="@null"
-                    android:hint="请输入宝贝名称"
+                    android:inputType="numberDecimal"
+                    android:hint="0.0"
                     android:textSize="12dp" />
             </LinearLayout>
 
@@ -90,24 +93,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商品价格:" />
+                    android:text="市场指导价格" />
 
                 <EditText
+                    android:id="@+id/money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_20"
                     android:layout_marginTop="@dimen/dp_10"
                     android:background="@null"
-                    android:hint="请输入宝贝名称"
+                    android:inputType="numberDecimal"
+                    android:hint="0.0"
                     android:textSize="12dp" />
             </LinearLayout>
-
-
-
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 </LinearLayout>

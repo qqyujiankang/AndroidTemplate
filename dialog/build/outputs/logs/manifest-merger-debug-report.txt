@@ -1,25 +1,25 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml:1:1-38
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml:1:1-38
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml:1:1-38
+ADDED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml:1:1-38
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml:1:1-38
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml:1:1-38
 	package
-		ADDED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml:1:11-35
-		INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-		INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
+		ADDED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml:1:11-35
+		INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+		INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml:1:1-38
+		ADDED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml:1:1-38
 uses-sdk
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-		ADDED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-		INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
+		INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+		ADDED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+		INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-		ADDED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
-		INJECTED from E:\xiaofeishu\AndroidTemplate\dialog\src\main\AndroidManifest.xml
+		INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+		ADDED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
+		INJECTED from E:\work\yuGouShop\dialog\src\main\AndroidManifest.xml
