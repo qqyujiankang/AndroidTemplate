@@ -100,7 +100,7 @@ public class AddressDetailActivity extends MyActivity implements PublicInterface
                         // 内容必须要填写
                         .setMessage( "确定要删除此地址吗？" )
                         // 确定按钮文本
-                        .setConfirm( "删除" )
+                        .setConfirm( "确定" )
                         // 设置 null 表示不显示取消按钮
                         .setCancel( "再想想" )
 
@@ -149,6 +149,23 @@ public class AddressDetailActivity extends MyActivity implements PublicInterface
                         .show();
                 break;
             case R.id.btn_bind_commit:
+                if (etName.getText().toString().equals( "" )) {
+                    toast( "请输入收货人" );
+                    return;
+                }
+                if (etPhone.getText().toString().equals( "" )) {
+                    toast( "请输入收货人" );
+                    return;
+                }
+                if (sb01.getLeftText().toString().equals( "" )) {
+                    toast( "请输入选择地区" );
+                    return;
+                }
+                if (etAddress.getText().toString().equals( "" )) {
+                    toast( "请输入详情地址" );
+                    return;
+                }
+
                 showLoading();
                 if (addressByUserid == null) {
                     url = ServerUrl.addAddress;
@@ -190,7 +207,7 @@ public class AddressDetailActivity extends MyActivity implements PublicInterface
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
         showComplete();
-        aBoolean=true;
+        aBoolean = true;
         finish();
 
 

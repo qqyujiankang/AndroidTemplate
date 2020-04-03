@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.cn.android.R;
 import com.cn.android.bean.HomeData;
+import com.cn.android.bean.Userdata;
 import com.cn.android.common.MyActivity;
 import com.cn.android.network.Constant;
 import com.cn.android.network.ServerUrl;
@@ -55,11 +56,13 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
     TitleBar tb;
     private PublicInterfaceePresenetr presenetr;
     private FileOperationPresenetr filePresenetr;
+    private String storeTypeId;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_setupshop;
     }
+
 
     HomeData.ShopTypeListBean shopTypeListBean;
 
@@ -69,22 +72,18 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
 
         presenetr = new PublicInterfaceePresenetr( this );
         filePresenetr = new FileOperationPresenetr( this );
-
+        tv01.setText( userdata().getStoreTypName() );
+        et01.setText( userdata().getStoreName() );
+        store_img = userdata().getStoreImg();
+        ImageLoader.with( getActivity() ).load( userdata().getStoreImg() ).into( ivHintIcon );
+        tvClassName.setText( userdata().getStoreTypName() );
+        storeTypeId = userdata().getStoreTypeId();
     }
 
     @Override
     protected void initData() {
-        tv01.setText( userdata().getStoreTypName() );
-        et01.setText( userdata().getStoreName() );
-        ImageLoader.with( getActivity() ).load( userdata().getStoreImg() ).into( ivHintIcon );
-    }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
     }
 
 
@@ -94,8 +93,8 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
         paramsMap.put( "userid", userdata().getId() );
         paramsMap.put( "store_name", et01.getText().toString() );
         paramsMap.put( "store_img", store_img );
-        paramsMap.put( "store_type_id", shopTypeListBean.getId() );
-        paramsMap.put( "store_typ_name", shopTypeListBean.getName() );
+        paramsMap.put( "store_type_id", storeTypeId );
+        paramsMap.put( "store_typ_name", tvClassName.getText().toString() );
 
         return paramsMap;
     }
@@ -104,6 +103,14 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
     public void onPublicInterfaceSuccess(String data, int tag) {
         showComplete();
         if (!data.equals( "" )) {
+//            tv01.setText( userdata().getStoreTypName() );
+//        et01.setText( userdata().getStoreName() );
+//        store_img = userdata().getStoreImg();
+            Userdata userdata = userdata();
+            userdata.setStoreName( et01.getText().toString().trim() );
+            userdata.setStoreImg( store_img );
+            userdata.setStoreTypName( tvClassName.getText().toString().trim() );
+            SaveUserBean( userdata );
             finish();
         }
 
@@ -111,7 +118,7 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
 
     @Override
     public void onPublicInterfaceError(String error, int tag) {
-
+        showComplete();
     }
 
     @OnClick({R.id.tv01, R.id.Rl_01, R.id.iv_hint_icon})
@@ -166,7 +173,7 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
     @Override
     public void onRightClick(View v) {
         super.onRightClick( v );
-        showLoading();
+
         if (tvClassName.getText().toString().equals( "" )) {
             toast( "请选择分类" );
             return;
@@ -176,9 +183,10 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
             return;
         }
         if (store_img.equals( "" )) {
-            toast( "请选择分类" );
+            toast( "请选择店铺图爿" );
             return;
         }
+        showLoading();
         presenetr.getPostTokenRequest( getActivity(), ServerUrl.updateStore, Constant.updateStore );
 
     }
@@ -190,6 +198,7 @@ public class SetupshopActivity extends MyActivity implements PublicInterfaceView
 
             shopTypeListBean = data.getParcelableExtra( "shopTypeListBean" );
             if (shopTypeListBean != null) {
+                storeTypeId = shopTypeListBean.getId();
                 tvClassName.setText( shopTypeListBean.getName() );
             }
         }

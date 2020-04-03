@@ -44,6 +44,7 @@
                 </com.stx.xhb.xbanner.XBanner>
 
                 <TextView
+
                     android:id="@+id/tv_01"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,29 +52,32 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:text=""
-                    android:textColor="#666666" />
+                    android:text="商品名称商品名称商品名称商品名称商品名称商品名 称商品名称商品名称商品名称"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
 
                 <TextView
+                    android:text="29.00"
                     android:id="@+id/tv_02"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_01"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="22dp"
                     android:drawableLeft="@mipmap/vip"
+                    android:drawablePadding="10dp"
                     android:textColor="#EF4321"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <TextView
-
+                    android:layout_marginTop="5dp"
                     android:id="@+id/tv_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_02"
                     android:layout_marginLeft="40dp"
                     android:layout_toRightOf="@+id/tv_02"
-                    android:text=""
+                    android:text="155"
                     android:textColor="#999999"
                     android:textSize="12sp" />
 
@@ -155,6 +159,7 @@
 
                 <com.hjq.widget.layout.SettingBar
                     android:id="@+id/sb_add0"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
@@ -180,8 +185,7 @@
                 <ImageView
                     android:id="@+id/iv_seal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                 />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -233,7 +237,6 @@
                     android:id="@+id/tv_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginRight="@dimen/dp_10"
                     android:layout_toRightOf="@+id/tv_2"
                     android:button="@null"

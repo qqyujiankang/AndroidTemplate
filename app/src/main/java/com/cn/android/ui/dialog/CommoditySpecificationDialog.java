@@ -5,12 +5,16 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.cn.android.R;
+import com.cn.android.bean.ProductDetails;
 import com.cn.android.common.MyDialogFragment;
 import com.cn.android.ui.activity.ConfirmAnOrderActivity;
-import com.cn.android.ui.activity.StoreNameDetailsActivity;
+import com.cn.android.utils.DataUtils;
 import com.hjq.dialog.base.BaseDialog;
 
 import androidx.fragment.app.FragmentActivity;
@@ -49,15 +53,30 @@ public class CommoditySpecificationDialog {
         TextView tv01;
         @BindView(R.id.tv_04)
         TextView tv04;
+        @BindView(R.id.tv_money)
+        TextView tvMoney;
+        @BindView(R.id.rbn_01)
+        RadioButton rbn01;
+        @BindView(R.id.rg)
+        RadioGroup rg;
+        @BindView(R.id.rbn_03)
+        RadioButton rbn03;
+        @BindView(R.id.rg1)
+        RadioGroup rg1;
         private FragmentActivity fragmentActivity;
+        private ProductDetails productDetails;
 
-        public Builder(FragmentActivity activity) {
-            super(activity);
+        public Builder(FragmentActivity activity, ProductDetails productDetails) {
+            super( activity );
             this.fragmentActivity = activity;
+            this.productDetails = productDetails;
 
-            setContentView(R.layout.dialog_commodity_specification);
-            setAnimStyle(BaseDialog.AnimStyle.BOTTOM);
-            setGravity(Gravity.BOTTOM);
+            setContentView( R.layout.dialog_commodity_specification );
+            setAnimStyle( BaseDialog.AnimStyle.BOTTOM );
+            setGravity( Gravity.BOTTOM );
+            setCanceledOnTouchOutside( true );
+            Glide.with( getActivity() ).load( productDetails.getDetilas() ).into( iv01 );
+            tvMoney.setText( activity.getText( R.string.test01 ) + DataUtils.getMoney( productDetails.getSellPrice() ) );
         }
 
         @OnClick({R.id.goods_add, R.id.goods_jian, R.id.tv_04, R.id.tv01})
@@ -67,8 +86,8 @@ public class CommoditySpecificationDialog {
                     dismiss();
                     break;
                 case R.id.tv_04:
-                    Intent intent = new Intent(getActivity(), ConfirmAnOrderActivity.class);
-                    fragmentActivity.startActivity(intent);
+                    Intent intent = new Intent( getActivity(), ConfirmAnOrderActivity.class );
+                    fragmentActivity.startActivity( intent );
                     break;
                 case R.id.goods_add:
 
@@ -85,11 +104,11 @@ public class CommoditySpecificationDialog {
             //控件初始化的时候已经给了  1  获取
             String sub = tv.getText().toString();
             //String类型转换成Int类型
-            int parseInt = Integer.parseInt(sub);
+            int parseInt = Integer.parseInt( sub );
             //判断
             if (parseInt > 1) {
                 parseInt--;
-                tv.setText(String.valueOf(parseInt));
+                tv.setText( String.valueOf( parseInt ) );
                 // setCurentCount(parseInt);
             } else {
                 // ToastUtil.showToast("不能再少了");
@@ -100,9 +119,9 @@ public class CommoditySpecificationDialog {
             //控件初始化的时候已经给了  1 获取
             String add = tv.getText().toString();
             //String类型转换成Int类型
-            int parseInt = Integer.parseInt(add);
+            int parseInt = Integer.parseInt( add );
             parseInt++;
-            tv.setText(String.valueOf(parseInt));
+            tv.setText( String.valueOf( parseInt ) );
         }
 
     }

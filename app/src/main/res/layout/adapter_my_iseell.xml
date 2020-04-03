@@ -16,15 +16,26 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:text="订单编号：24354135435435" />
+            android:text="订单编号:"
+            android:textColor="#3C3C3C" />
 
         <TextView
+            android:id="@+id/tv_ordercode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_order_reference"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_order_reference"
+            android:text=""
+            android:textColor="#969696" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_order_reference"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:text="待付款" />
+            android:layout_marginRight="15dp" />
 
         <View
             android:id="@+id/vv"
@@ -34,66 +45,17 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp" />
 
-        <ImageView
-            android:id="@+id/iv01"
-            android:layout_width="70dp"
-            android:layout_height="59dp"
-            android:layout_below="@+id/vv"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/test10" />
-
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv01"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/iv01"
-            android:text="酒心巧克力美味更持久" />
+            android:layout_below="@+id/vv" />
 
-        <TextView
-            android:id="@+id/tv_02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/iv01"
-            android:text="规格 389" />
-
-        <TextView
-            android:id="@+id/tv_sum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv01"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/iv01"
-            android:text="订单时间：2019-02-17"
-            android:textColor="#999999"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv1"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:text="￥198.00"
-            android:textColor="#EF4321" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_02"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:text="x1" />
 
         <View
             android:id="@+id/vv1"
             style="@style/HorizontalLineStyle"
-            android:layout_below="@+id/iv01"
+            android:layout_below="@+id/recyclerView"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp" />
@@ -162,9 +124,12 @@
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="收件人： 马爸爸" />
+                android:text=""
+                android:textColor="#333333"
+                android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/tv_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -172,6 +137,7 @@
                 android:textColor="#666666" />
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name"

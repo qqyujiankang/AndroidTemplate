@@ -49,4 +49,15 @@ public class Constant {
     public static final int selectOrderListByStatus = 1131;
     public static final int upShopByUserid = 1133;
     public static final int sortShopByUserid = 1134;
+    public static final int selectAppUserByUserid = 1135;
+    public static final int sureSendOrder = 1136;
+    public static final int surePickOrder = 1137;
+    public static final int selectOrdersByStatus = 1140;
+    public static final int selectShopListBySearch = 1141;
+    public static final int saveShopByUserid = 1142;
+    public static final int updateHeadImg01 = 1143;
+    public static final int selectStoreListByPid = 1143;
+    public static final int selectShopByid = 1144;
+    public static final int selectShopByID = 1144;
+
 }

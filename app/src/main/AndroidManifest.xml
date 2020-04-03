@@ -28,7 +28,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.CommodityClassificationActivity"></activity>
+        <activity android:name=".ui.activity.TheEvaluationlistActivity"></activity>
         <!-- //开发者申请的key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -53,6 +53,13 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/SplashTheme">
 
+            <!-- 程序入口 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity> <!-- App 首页 -->
         <activity
             android:name=".ui.activity.HomeActivity"
@@ -214,15 +221,7 @@
         <activity
             android:name=".ui.activity.UploadTheGoodsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" >
-            <!-- 程序入口 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- 商品管理 -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.CommodityManagementActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -301,6 +300,10 @@
             android:screenOrientation="portrait" /> <!-- 设置店铺 -->
         <activity
             android:name=".ui.activity.SetupshopActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CommodityClassificationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 

@@ -114,10 +114,11 @@ public class BindingAccountActivity extends MyActivity implements OnTitleBarList
         Userdata userdata = userdata();
         if (anInt == 1) {
             userdata.setIsWechat( 1 );
-        }else if (anInt==1){
+        } else if (anInt == 1) {
             userdata.setIsAlipay( 1 );
         }
         SaveUserBean( userdata );
+        finish();
     }
 
     @Override

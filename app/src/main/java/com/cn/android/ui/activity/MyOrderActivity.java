@@ -1,5 +1,6 @@
 package com.cn.android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -34,6 +35,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.cn.android.network.Constant.sureSendOrder;
 
 /**
  * 我的订单
@@ -114,6 +117,7 @@ public class MyOrderActivity extends MyActivity implements
 
     @OnClick({R.id.rbt_obligation, R.id.rbt_To_send_the_goods, R.id.rbt_off_the_stocks, R.id.btn_remain_to_be_evaluated})
     public void onViewClicked(View view) {
+        page = 1;
         shopInfoListBeanArrayLis1.clear();
         switch (view.getId()) {
             case R.id.rbt_obligation:
@@ -140,9 +144,10 @@ public class MyOrderActivity extends MyActivity implements
 
     @Override
     public Map<String, Object> setPublicInterfaceData(int tag) {
+        Map<String, Object> paramsMap = new HashMap<>();
         switch (tag) {
             case Constant.selectOrderListByStatus:
-                Map<String, Object> paramsMap = new HashMap<>();
+
                 paramsMap.put( "userid", userdata().getId() );
                 paramsMap.put( "type", userdata().getType() );
                 paramsMap.put( "status", order );
@@ -150,23 +155,39 @@ public class MyOrderActivity extends MyActivity implements
                 paramsMap.put( "rows", rows );
 
                 return paramsMap;
+            case Constant.surePickOrder:
+                paramsMap.put( "ordercode", ordercode );
+                paramsMap.put( "shop_userid", shop_userid );
+                return paramsMap;
         }
         return null;
     }
+
+    private String ordercode, shop_userid;
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
         switch (tag) {
             case Constant.selectOrderListByStatus:
+                smartRefresh.closeHeaderOrFooter();
                 if (isUpRefresh) {
                     shopInfoListBeanArrayLis1.clear();
                 }
-                if (!data.equals( "" )) {
-                    smartRefresh.closeHeaderOrFooter();
+                if (!data.equals( "[]" )) {
+
                     shopInfoListBeanArrayList = GsonUtils.getPersons( data, MyOrder.class );
                     shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
                     adapter.replaceData( shopInfoListBeanArrayLis1 );
+                } else {
+                    if (shopInfoListBeanArrayLis1.size() == 0) {
+                        ivHintIcon.show();
+                    }
                 }
+                break;
+            case Constant.surePickOrder:
+                shopInfoListBeanArrayLis1.remove( getPage );
+                adapter.replaceData( shopInfoListBeanArrayLis1 );
+
                 break;
         }
     }
@@ -174,6 +195,7 @@ public class MyOrderActivity extends MyActivity implements
     private List<MyOrder> shopInfoListBeanArrayList = new ArrayList<>();
     private List<MyOrder> shopInfoListBeanArrayLis1 = new ArrayList<>();
     private String shopid = "";
+    private int getPage;
 
     @Override
     public void onPublicInterfaceError(String error, int tag) {
@@ -182,11 +204,19 @@ public class MyOrderActivity extends MyActivity implements
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        getPage = position;
         switch (view.getId()) {
+            case R.id.btn_01:
+                //   toast( "6565+" );
+                shop_userid = shopInfoListBeanArrayLis1.get( position ).getShop_user_id();
+                ordercode = shopInfoListBeanArrayLis1.get( position ).getOrdercode();
+                presenetr.getPostTokenRequest( getActivity(), ServerUrl.surePickOrder, Constant.surePickOrder );
+                break;
             case R.id.Rl_01:
                 startActivity( TheOrderDetailsActivity.class );
                 break;
             case R.id.btn_02://CheckTheLogisticsActivity
+
                 startActivity( CheckTheLogisticsActivity.class );
                 break;
             case R.id.btn_login_commit:
@@ -197,10 +227,15 @@ public class MyOrderActivity extends MyActivity implements
                     startActivity( ConfirmAnOrderActivity.class );
                 } else if (shopInfoListBeanArrayLis1.get( position ).getStatus() == 2) {
                     startActivity( ServiceActivity.class );
-                } else if (shopInfoListBeanArrayLis1.get( position ).getStatus() == 3) {
-                    startActivity( PostEvaluationActivity.class );
                 }
 
+                break;
+            case R.id.tv_status:
+                if (shopInfoListBeanArrayLis1.get( position ).getStatus() == 4) {
+                    Intent intent = new Intent( getActivity(), PostEvaluationActivity.class );
+                    intent.putExtra( "myOrder", shopInfoListBeanArrayLis1.get( position ) );
+                    startActivity( intent );
+                }
                 break;
         }
     }

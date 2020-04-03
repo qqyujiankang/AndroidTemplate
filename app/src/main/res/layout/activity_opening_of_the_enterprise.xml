@@ -10,7 +10,7 @@
     <com.hjq.bar.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="开通企业"
+        app:title="企业入驻"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -20,6 +20,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/Rl_pus_01"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -43,11 +44,12 @@
                 android:layout_below="@+id/tv_02"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="25dp"
-                android:text="￥1980"
+                android:text=""
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_01"
@@ -57,6 +59,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/Rl_pus_02"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -64,6 +67,7 @@
             android:layout_weight="1">
 
             <RelativeLayout
+                android:id="@+id/rl_03"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -85,16 +89,17 @@
                     android:layout_below="@+id/tv_03"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="25dp"
-                    android:text="￥4980"
+                    android:text=""
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_04"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_money"
                     android:layout_centerHorizontal="true"
-                    android:text="￥138/月"
+                    android:text=""
                     android:textColor="#DAB100" />
 
 
@@ -120,15 +125,29 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/tv"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:text="￥300"
-            android:textSize="18sp"
+            android:layout_height="wrap_content">
 
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="支付金额"
+                android:textColor="#333333"
+                android:textSize="18sp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp" />
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -226,6 +245,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:text="确认开通"
+        android:text="开通PLUS会员"
         android:textColor="@color/textColor" />
 </LinearLayout>

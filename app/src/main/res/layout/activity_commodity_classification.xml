@@ -20,6 +20,8 @@
         app:tabSelectedTextColor="#262626"
         app:tabTextColor="#262626">
 
+
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView

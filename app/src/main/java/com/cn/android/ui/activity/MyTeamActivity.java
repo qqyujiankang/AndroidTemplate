@@ -66,7 +66,7 @@ public class MyTeamActivity extends MyActivity implements PublicInterfaceView, O
 
     @Override
     protected void initView() {
-        tvBalanceOfAccount.setText( userdata().getUmoney()+"" );
+        tvBalanceOfAccount.setText( userdata().getUmoney() + "" );
         presenetr = new PublicInterfaceePresenetr( this );
         smartRefresh.setOnRefreshListener( this );
         smartRefresh.setOnLoadMoreListener( this );
@@ -112,11 +112,13 @@ public class MyTeamActivity extends MyActivity implements PublicInterfaceView, O
         if (isUpRefresh) {
             userBeanArrayList.clear();
         }
-        if (!data.equals( "null" )) {
+        if (!data.equals( "[]" )) {
             smartRefresh.closeHeaderOrFooter();
             userBeans = GsonUtils.getPersons( data, Userdata.class );
             userBeanArrayList.addAll( userBeans );
             myTeamAdapter.replaceData( userBeanArrayList );
+        } else if (userBeanArrayList.size()==0){
+            ivHintIcon.show();
         }
     }
 

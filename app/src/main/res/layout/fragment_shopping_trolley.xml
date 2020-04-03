@@ -7,10 +7,10 @@
     android:orientation="vertical">
 
     <com.hjq.bar.TitleBar
-        android:background="#F6F6F6"
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F6F6F6"
         app:layout_constraintTop_toTopOf="parent"
         app:leftColor="#333333"
         app:leftIcon="@color/white"
@@ -51,7 +51,8 @@
         <RelativeLayout
             android:id="@+id/Rl_01"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
 
             <CheckBox

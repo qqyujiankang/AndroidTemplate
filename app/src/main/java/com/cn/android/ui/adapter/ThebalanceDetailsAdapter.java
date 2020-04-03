@@ -27,12 +27,14 @@ public class ThebalanceDetailsAdapter extends BaseQuickAdapter<SelectAccountByUs
     @Override
     protected void convert(BaseViewHolder helper, SelectAccountByUserid item) {
         helper.setText( R.id.tv_time, item.getCtime() );
+
         String type = "";
         if (item.getType() == 1) {
             type = "-";
+            helper.setText( R.id.tv_01, "订单支付" );
         } else if (item.getType() == 2) {
             type = "+";
-
+            helper.setText( R.id.tv_01, "提现" );
         }
         helper.setText( R.id.tv_payMoney, type + item.getPayMoney() );
 

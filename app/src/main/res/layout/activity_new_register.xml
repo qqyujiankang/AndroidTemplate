@@ -40,9 +40,9 @@
             android:layout_marginLeft="20dp"
 
             android:hint="请输入11位手机号"
-            android:inputType="textVisiblePassword"
+
             android:singleLine="true"
-            app:regexType="mobile" />
+             />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -83,9 +83,9 @@
             android:layout_toStartOf="@+id/cv_bind_countdown"
             android:layout_toLeftOf="@+id/cv_bind_countdown"
             android:hint="请输入验证码"
-            android:inputType="textVisiblePassword"
+
             android:singleLine="true"
-            app:regexType="mobile" />
+            />
 
         <com.hjq.widget.view.CountdownView
             android:id="@+id/cv_bind_countdown"
@@ -123,7 +123,7 @@
             android:layout_marginLeft="20dp"
 
             android:hint="请输入邀请码"
-            android:inputType="textVisiblePassword"
+
             android:singleLine="true"
             app:regexType="mobile" />
 

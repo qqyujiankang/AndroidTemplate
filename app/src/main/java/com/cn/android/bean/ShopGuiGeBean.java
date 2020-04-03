@@ -1,13 +1,12 @@
 package com.cn.android.bean;
 
 public class ShopGuiGeBean {
-    private String guiGe;
-    private String vipMoney;
-    private String money;
+    private String sku_name;
+    private String price;
     private boolean isClick;
 
-    public ShopGuiGeBean(String guiGe, boolean isClick) {
-        this.guiGe = guiGe;
+    public ShopGuiGeBean(String sku_name, boolean isClick) {
+        this.sku_name = sku_name;
         this.isClick = isClick;
     }
 
@@ -20,26 +19,21 @@ public class ShopGuiGeBean {
     }
 
     public String getGuiGe() {
-        return guiGe;
+        return sku_name;
     }
 
-    public void setGuiGe(String guiGe) {
-        this.guiGe = guiGe;
+    public void setGuiGe(String sku_name) {
+        this.sku_name = sku_name;
     }
 
-    public String getVipMoney() {
-        return vipMoney;
+
+
+
+    public String getprice() {
+        return price;
     }
 
-    public void setVipMoney(String vipMoney) {
-        this.vipMoney = vipMoney;
-    }
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
+    public void setprice(String price) {
+        this.price = price;
     }
 }

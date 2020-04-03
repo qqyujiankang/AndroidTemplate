@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
@@ -14,98 +15,57 @@
         android:paddingBottom="@dimen/dp_10">
 
         <TextView
+            android:textSize="12sp"
+            android:id="@+id/tv_01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space_20"
             android:text="商品规格:" />
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv02"
+            android:textSize="12sp"
+            android:text="价格："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+
+        <EditText
+            android:layout_toLeftOf="@+id/et_more"
+            android:id="@+id/guige"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dp_10">
+            android:layout_below="@+id/tv_01"
+            android:layout_marginStart="@dimen/space_20"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:hint="请输入规格"
+            android:textSize="14sp" />
+        <EditText
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:background="@null"
+            android:hint="请输入价格"
+            android:id="@+id/et_money"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/guige"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_20"
-                android:layout_marginLeft="@dimen/space_20"
-                android:layout_toStartOf="@+id/iv_add"
-                android:layout_toLeftOf="@+id/iv_add"
-                android:background="@null"
-                android:hint="请输入规格"
-                android:textSize="14sp" />
-
-            <CheckBox
-                android:id="@+id/iv_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/space_20"
-                android:background="@drawable/checkbox_add"
-                android:button="@null"
-                android:checked="true" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/iv_add"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:orientation="horizontal">
+            android:layout_alignBottom="@+id/guige"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/checkbox_add"
+            android:button="@null"
+            android:checked="true" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="VIP价格" />
-
-                <EditText
-                    android:id="@+id/vipmoney"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_20"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:background="@null"
-                    android:inputType="numberDecimal"
-                    android:hint="0.0"
-                    android:textSize="12dp" />
-            </LinearLayout>
-
-            <View
-                style="@style/VerticalLineStyle"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="市场指导价格" />
-
-                <EditText
-                    android:id="@+id/money"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_20"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:background="@null"
-                    android:inputType="numberDecimal"
-                    android:hint="0.0"
-                    android:textSize="12dp" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

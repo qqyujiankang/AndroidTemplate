@@ -76,7 +76,7 @@ public class NewRegisterActivity extends MyActivity implements PublicInterfaceVi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cv_bind_countdown:
-                if (etLoginPhone.getText().toString().equals( "" )){
+                if (etLoginPhone.getText().toString().equals( "" )) {
                     return;
                 }
                 showLoading();
@@ -87,10 +87,11 @@ public class NewRegisterActivity extends MyActivity implements PublicInterfaceVi
                 finish();
                 break;
             case R.id.btn_register:
-                if (etLoginPhone.getText().toString().equals( "" )){
+                if (etLoginPhone.getText().toString().equals( "" )) {
                     toast( "请输入11位手机号" );
                     return;
-                }else if (etSmscode.getText().toString().equals( "" )){
+                }
+                if (etSmscode.getText().toString().equals( "" )) {
                     toast( "请输入验证码" );
                 }
                 showLoading();
@@ -107,9 +108,9 @@ public class NewRegisterActivity extends MyActivity implements PublicInterfaceVi
                 paramsMap.put( "userphone", etLoginPhone.getText().toString() );
                 paramsMap.put( "smscode", etSmscode.getText().toString() );
                 paramsMap.put( "pid", etInvitationCode.getText().toString() );
-                paramsMap.put( "province", "陕西省" );
-                paramsMap.put( "city", "西安市" );
-                paramsMap.put( "area", "雁塔区" );
+                paramsMap.put( "province", Province );
+                paramsMap.put( "city", City );
+                paramsMap.put( "area", District );
 
                 return paramsMap;
             case Constant.sendSms:
@@ -128,7 +129,7 @@ public class NewRegisterActivity extends MyActivity implements PublicInterfaceVi
         switch (tag) {
             case Constant.register:
                 register = GsonUtils.getPerson( data, Register.class );
-                if (!data.equals( "" )||data!=null) {
+                if (!data.equals( "null" )) {
                     finish();
                 }
                 break;

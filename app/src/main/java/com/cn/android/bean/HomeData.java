@@ -10,19 +10,18 @@ import java.util.List;
 
 public class HomeData implements Parcelable {
 
-    //优秀营销师
-    private List<MarketingUserListBean> marketingUserList;
-    //咨询列表
-    private List<WordsInfoListBean> wordsInfoList;
-    //    优质店铺
-    private List<AppUserListBean> appUserList;
 
+    private List<MarketingUserListBean> marketingUserList;
+    private List<WordsInfoListBean> wordsInfoList;
+    private List<AppUserListBean> appUserList;
     private List<ShufflingInfoListBean> shufflingInfoList;
-    //    每日爆品
     private List<ShopInfoListBean> shopInfoList;
-    //分类
     private List<ShopTypeListBean> shopTypeList;
 
+    public static HomeData objectFromData(String str) {
+
+        return new Gson().fromJson( str, HomeData.class );
+    }
 
     public List<MarketingUserListBean> getMarketingUserList() {
         return marketingUserList;
@@ -72,10 +71,8 @@ public class HomeData implements Parcelable {
         this.shopTypeList = shopTypeList;
     }
 
-    /**
-     * 优秀营销师
-     */
     public static class MarketingUserListBean implements Parcelable {
+
         /**
          * headImg : http://129.28.62.84/seal/m1.png
          * jobYear : 1
@@ -365,12 +362,12 @@ public class HomeData implements Parcelable {
          * caterImg :
          * isPlatform : 2
          * storeTypeId : 1
-         * pid :
+         * pid : 899079
          * stime :
          * isWechat : 2
-         * type : 2
+         * type : 1
          * province : 陕西省
-         * nickname :
+         * nickname : fff
          * ctime : 2020-03-26 14:03:39
          * storeName : 店铺名称
          * id : 008987
@@ -378,14 +375,14 @@ public class HomeData implements Parcelable {
          * wechatName :
          * area : 雁塔区
          * businessImg :
-         * headImg :
+         * headImg : http://118.24.159.31:80/upload/1131b962b5564611a2cf805b79739415.png
          * isGood : 1
          * userphone : 15535958282
          * idcardBack :
          * sex :
          * alipayName :
          * realname :
-         * token : 4556808165
+         * token : 4325543387
          * isCater : 2
          * umoney : 0
          * alipayno :
@@ -839,11 +836,7 @@ public class HomeData implements Parcelable {
         };
     }
 
-    /**
-     *
-     */
-    public static class ShufflingInfoListBean implements Parcelable {
-
+    public static class ShufflingInfoListBean {
         /**
          * imgUrl : http://129.28.62.84/seal/1.png
          * ctime : 2020-03-27 12:12:12
@@ -892,50 +885,15 @@ public class HomeData implements Parcelable {
         public void setStatus(int status) {
             this.status = status;
         }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString( this.imgUrl );
-            dest.writeString( this.ctime );
-            dest.writeString( this.id );
-            dest.writeInt( this.status );
-        }
-
-        public ShufflingInfoListBean() {
-        }
-
-        protected ShufflingInfoListBean(Parcel in) {
-            this.imgUrl = in.readString();
-            this.ctime = in.readString();
-            this.id = in.readString();
-            this.status = in.readInt();
-        }
-
-        public static final Creator<ShufflingInfoListBean> CREATOR = new Creator<ShufflingInfoListBean>() {
-            @Override
-            public ShufflingInfoListBean createFromParcel(Parcel source) {
-                return new ShufflingInfoListBean( source );
-            }
-
-            @Override
-            public ShufflingInfoListBean[] newArray(int size) {
-                return new ShufflingInfoListBean[size];
-            }
-        };
     }
 
     public static class ShopInfoListBean implements Parcelable {
 
         /**
          * isSort : 2
-         * threeTypeId :
+         * threeTypeId : 11
          * firstTypeId : 1
-         * secondeTypeId :
+         * secondeTypeId : 10
          * imgUrls : http://129.28.62.84/seal/2.png,http://129.28.62.84/seal/2.png,http://129.28.62.84/seal/2.png
          * sortTime :
          * shopName : 商品名称商品名称商品名称商品名称
@@ -1263,7 +1221,7 @@ public class HomeData implements Parcelable {
         private String id;
         private int type;
         private int status;
-        private boolean isClick=false;
+        private boolean isClick;
 
         public boolean isClick() {
             return isClick;

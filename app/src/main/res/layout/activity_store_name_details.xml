@@ -8,9 +8,14 @@
     tools:context="com.cn.android.ui.activity.StoreNameDetailsActivity">
 
     <RelativeLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/test19">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_shop_img"
+            android:layout_width="match_parent"
+            android:layout_height="198dp" />
 
         <com.hjq.bar.TitleBar
             android:id="@+id/tv_title"
@@ -19,14 +24,32 @@
             android:background="#00000000"
             app:lineVisible="false" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="@dimen/dp_10"
-            android:drawableLeft="@mipmap/test1"
-            android:drawablePadding="20dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_hear"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+
+
+                android:src="@mipmap/test1" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ll02"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/ll02"
             android:gravity="center"
             android:text="店铺名称"
             android:textColor="#FFFFFF" />
@@ -37,37 +60,50 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-40dp"
+        android:layout_marginTop="-60dp"
         android:background="@drawable/bg_huise_top_20">
 
-        <TextView
-            android:id="@+id/tv_01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:text="每日爆品"
-            android:textColor="#333333"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_01"
-            android:layout_marginLeft="25dp"
-            android:layout_toRightOf="@+id/tv_01"
-            android:text="商品"
-            android:textColor="#999999"
-            android:textSize="12sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
+        <RadioGroup
+            android:id="@+id/rl_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_01"
-            android:layout_marginTop="10dp">
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <RadioButton
+                android:id="@+id/rbn_01"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:checked="true"
+                android:text="每日爆品"
+                android:textColor="@drawable/rb_text_drawable_selector"
+                android:textSize="@dimen/sp_16" />
+
+            <RadioButton
+                android:id="@+id/rbn_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:button="@null"
+                android:text="商品"
+                android:textColor="@drawable/rb_text_drawable_selector"
+                android:textSize="@dimen/sp_16" />
+
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_search"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <include layout="@layout/pubiu_layout_rv_data" />
+        </RelativeLayout>
+
 
     </RelativeLayout>
 </LinearLayout>

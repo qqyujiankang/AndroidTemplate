@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.cn.android.R;
 import com.cn.android.bean.MyOrder;
 import com.cn.android.network.Constant;
+import com.cn.android.utils.DataUtils;
 import com.hjq.image.ImageLoader;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class MyordeshopListAdapter extends BaseQuickAdapter<MyOrder.ShopListBean
         helper.setText( R.id.tv_shop_name, item.getShop_name() );
         helper.setText( R.id.tv_sku_name, "规格" + item.getSku_name() );//
         helper.setText( R.id.tv_time, item.getCtime() );
-        helper.setText( R.id.tv_shop_money, item.getShop_money() );
+        helper.setText( R.id.tv_shop_money, context.getString( R.string.test01 ) + DataUtils.getMoney( item.getShop_money() ) );
         helper.setText( R.id.tv_shop_num, "x" + item.getShop_num() );
     }
 }

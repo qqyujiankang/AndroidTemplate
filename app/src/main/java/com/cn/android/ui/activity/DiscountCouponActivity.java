@@ -99,19 +99,19 @@ public class DiscountCouponActivity extends MyActivity implements PublicInterfac
     }
 
     List<DiscountCoupon> couponArrayList = new ArrayList<>();
-    List<DiscountCoupon> couponArrayList1= new ArrayList<>();
+    List<DiscountCoupon> couponArrayList1 = new ArrayList<>();
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
         showComplete();
 
-        if (data != null) {
+        if (!data.equals( "[]" )) {
             smartRefresh.closeHeaderOrFooter();
             couponArrayList = GsonUtils.getPersons( data, DiscountCoupon.class );
             couponArrayList1.addAll( couponArrayList );
-            Log.i( "Https=================" ,couponArrayList1.size()+"");
+            Log.i( "Https=================", couponArrayList1.size() + "" );
             discountCouponAdapter.replaceData( couponArrayList1 );
-        } else {
+        } else if (couponArrayList.size()==0){
             ivHintIcon.show();
         }
     }

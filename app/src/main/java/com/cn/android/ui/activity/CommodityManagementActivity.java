@@ -60,6 +60,13 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
     CommodityManagementAdapter commodityManagementAdapter;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind( this );
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_commodity_management;
 
@@ -147,11 +154,14 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
                 if (isUpRefresh) {
                     shopInfoListBeanArrayLis1.clear();
                 }
-                if (!data.equals( "" )) {
-                    smartRefresh.closeHeaderOrFooter();
+                smartRefresh.closeHeaderOrFooter();
+                if (!data.equals( "[]" )) {
+
                     shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
                     shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
                     commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+                } else if (shopInfoListBeanArrayLis1.size()==0){
+                    ivHintIcon.show();
                 }
                 break;
             case Constant.deleteShopByUserid:
@@ -168,13 +178,6 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
     @Override
     public void onPublicInterfaceError(String error, int tag) {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
     }
 
     @Override

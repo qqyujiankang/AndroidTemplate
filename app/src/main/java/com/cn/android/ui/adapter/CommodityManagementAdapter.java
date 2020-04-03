@@ -63,7 +63,7 @@ public class CommodityManagementAdapter extends BaseQuickAdapter<SelectNewShop, 
 //            }
             helper.setBackgroundRes( R.id.iv, R.mipmap.test35 );
             helper.setGone( R.id.rl_search, false );
-            helper.addOnClickListener( R.id.rl_search );
+            helper.addOnClickListener( R.id.iv );
 
         } else {
             helper.setGone( R.id.rl_search, true );

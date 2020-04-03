@@ -106,7 +106,6 @@ public class LoginIDActivity extends MyActivity implements PublicInterfaceView {
                 paramsMap.put( "province", Province );
                 paramsMap.put( "city", City );
                 paramsMap.put( "area", District );
-
                 return paramsMap;
             case Constant.sendSms:
                 paramsMap.put( "loginName", etLoginPhone.getText().toString() );
@@ -120,9 +119,10 @@ public class LoginIDActivity extends MyActivity implements PublicInterfaceView {
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
 
-        showComplete();
+
         switch (tag) {
             case Constant.login:
+                showComplete();
                 if (!data.equals( "null" )) {
                     userdata = GsonUtils.getPerson( data, Userdata.class );
                     SPUtils.putString( "AppUser", data );

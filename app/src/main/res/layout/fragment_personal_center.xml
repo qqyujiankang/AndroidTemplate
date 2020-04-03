@@ -63,10 +63,11 @@
                     android:layout_marginRight="11dp">
 
                     <TextView
+                        android:maxLength="5"
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="EthweY"
+                        android:text="EthweYddddd"
                         android:textColor="#ff222222"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -293,6 +294,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Rl_01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -300,9 +302,9 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:paddingTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -313,10 +315,10 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginRight="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
                         android:drawableRight="@mipmap/more"
                         android:drawablePadding="5dp"
                         android:text="立即续费"
@@ -333,18 +335,20 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
+
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="75dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15.5dp"
+                        android:layout_marginTop="12.5dp"
                         android:layout_weight="1"
                         android:background="@mipmap/plus_vip">
 
                         <TextView
+                            android:id="@+id/tv_01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="25dp"
                             android:text="￥1980"
                             android:textSize="25sp"
                             android:textStyle="bold" />
@@ -354,11 +358,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="9dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:ems="1"
-                            android:text="立即购买" />
+                            android:text="立即购买"
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="2dp"
@@ -380,15 +385,16 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="75dp"
                             android:layout_marginTop="12dp"
                             android:background="@mipmap/plus_vip">
 
                             <TextView
+                                android:id="@+id/tv_02"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="25dp"
-                                android:layout_marginTop="35dp"
+                                android:layout_marginTop="28dp"
                                 android:text="￥4980"
                                 android:textSize="25sp"
                                 android:textStyle="bold" />
@@ -398,11 +404,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginTop="12dp"
+                                android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:ems="1"
-                                android:text="立即购买" />
+                                android:text="立即购买"
+                                android:textSize="10sp" />
 
 
                         </RelativeLayout>

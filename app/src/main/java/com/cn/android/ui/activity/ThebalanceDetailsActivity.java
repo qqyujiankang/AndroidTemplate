@@ -15,6 +15,7 @@ import com.cn.android.network.ServerUrl;
 import com.cn.android.presenter.PublicInterfaceePresenetr;
 import com.cn.android.presenter.view.PublicInterfaceView;
 import com.cn.android.ui.adapter.ThebalanceDetailsAdapter;
+import com.cn.android.utils.DataUtils;
 import com.hjq.widget.layout.HintLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -60,6 +61,7 @@ public class ThebalanceDetailsActivity extends MyActivity implements PublicInter
 
     @Override
     protected void initView() {
+        tvBalanceOfAccount.setText( DataUtils.getMoney( userdata().getUmoney() ) );
         presenetr = new PublicInterfaceePresenetr( this );
         smartRefresh.setOnRefreshListener( this );
         smartRefresh.setOnLoadMoreListener( this );
@@ -93,13 +95,16 @@ public class ThebalanceDetailsActivity extends MyActivity implements PublicInter
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
         showComplete();
+        smartRefresh.closeHeaderOrFooter();
+        if (isUpRefresh) {
+            selectAccountByUseridArrayList.clear();
+        }
+        if (!data.equals( "[]" )) {
 
-        if (data != null) {
-            smartRefresh.closeHeaderOrFooter();
             selectAccountByUserids = GsonUtils.getPersons( data, SelectAccountByUserid.class );
             selectAccountByUseridArrayList.addAll( selectAccountByUserids );
             thebalanceDetailsAdapter.replaceData( selectAccountByUseridArrayList );
-        } else {
+        } else if (selectAccountByUseridArrayList.size() == 0) {
             ivHintIcon.show();
         }
     }
@@ -109,15 +114,18 @@ public class ThebalanceDetailsActivity extends MyActivity implements PublicInter
         showComplete();
     }
 
+    private boolean isUpRefresh = true;
+
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        isUpRefresh = false;
         page = page + 1;
         initData();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        selectAccountByUseridArrayList.clear();
+        isUpRefresh = true;
         page = 1;
         initData();
     }

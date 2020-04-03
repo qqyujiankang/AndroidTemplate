@@ -119,11 +119,13 @@ public class MyFavoriteActivity extends MyActivity implements PublicInterfaceVie
                 if (isUpRefresh) {
                     shopInfoListBeanArrayLis1.clear();
                 }
-                if (!data.equals( "" )) {
+                if (!data.equals( "[]" )) {
                     smartRefresh.closeHeaderOrFooter();
                     shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
                     shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
                     adapter.replaceData( shopInfoListBeanArrayLis1 );
+                } else if (shopInfoListBeanArrayLis1.size()==0){
+                    ivHintIcon.show();
                 }
                 break;
             case Constant.sureConlectShopsByUserid:
@@ -167,7 +169,7 @@ public class MyFavoriteActivity extends MyActivity implements PublicInterfaceVie
                         // 内容必须要填写
                         .setMessage( "确定要取消收藏的商品吗？" )
                         // 确定按钮文本
-                        .setConfirm( "取消" )
+                        .setConfirm( "确定" )
                         // 设置 null 表示不显示取消按钮
                         .setCancel( "再想想" )
 

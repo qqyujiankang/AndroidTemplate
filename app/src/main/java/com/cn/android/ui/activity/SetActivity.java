@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import com.cn.android.R;
 import com.cn.android.common.MyActivity;
+import com.cn.android.helper.ActivityStackManager;
+import com.cn.android.utils.SPUtils;
 import com.hjq.toast.ToastUtils;
 import com.hjq.widget.layout.SettingBar;
 
@@ -41,7 +43,11 @@ public class SetActivity extends MyActivity {
 
     @Override
     protected void initView() {
-
+        if (userdata().getType() == 2) {
+            btnBindCommit.setText( "切换企业账号" );
+        } else if (userdata().getType() == 1) {
+            btnBindCommit.setText( "切换个人账号" );
+        }
     }
 
     @Override
@@ -68,13 +74,16 @@ public class SetActivity extends MyActivity {
                 ToastUtils.show( "您目前是版本检测！！！" );
                 break;
             case R.id.sb_log_out:
-                finish();
-
-                startActivity( TheloginIdActivity.class );
+                // 退出登录
+                startActivity(TheloginIdActivity.class);
+                // 进行内存优化，销毁掉所有的界面
+                ActivityStackManager.getInstance().finishAllActivities(TheloginIdActivity.class);
                 break;
             case R.id.btn_bind_commit:
-                finish();
-                startActivity( TheloginIdActivity.class );
+                // 退出登录
+                startActivity(TheloginIdActivity.class);
+                // 进行内存优化，销毁掉所有的界面
+                ActivityStackManager.getInstance().finishAllActivities(TheloginIdActivity.class);
                 break;
         }
     }

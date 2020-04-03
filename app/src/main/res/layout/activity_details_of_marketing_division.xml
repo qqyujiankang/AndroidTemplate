@@ -21,12 +21,12 @@
         app:lineVisible="false" />
 
     <RelativeLayout
-        android:layout_marginTop="-20dp"
-        android:layout_below="@+id/activity_view"
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_view"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="-20dp"
         android:background="@drawable/bg_whilte_top_20">
 
         <TextView
@@ -67,6 +67,7 @@
             android:textColor="#666666" />
 
         <TextView
+            android:textColor="#666666"
             android:id="@+id/tv03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +93,8 @@
             android:layout_below="@+id/tv03"
             android:layout_alignLeft="@id/tv03"
             android:layout_marginTop="15dp"
-            android:text="工作年限:" />
+            android:text="工作年限:"
+            android:textColor="#666666" />
 
         <TextView
             android:id="@+id/tv_age"
@@ -111,7 +113,8 @@
             android:layout_below="@+id/tv04"
             android:layout_alignLeft="@id/tv04"
             android:layout_marginTop="15dp"
-            android:text="个性签名:" />
+            android:text="个性签名:"
+            android:textColor="#666666" />
 
         <TextView
             android:id="@+id/tv_label"

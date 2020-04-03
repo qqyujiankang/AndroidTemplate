@@ -1,5 +1,6 @@
 package com.cn.android.ui.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 
 import com.cn.android.R;
 import com.cn.android.common.MyLazyFragment;
+import com.cn.android.helper.ActivityStackManager;
+import com.cn.android.network.Constant;
+import com.cn.android.network.ServerUrl;
 import com.cn.android.ui.activity.CommodityManagementActivity;
 import com.cn.android.ui.activity.DiscountCouponActivity;
 import com.cn.android.ui.activity.EnterprisesActivity;
@@ -27,14 +31,12 @@ import com.cn.android.ui.activity.SetActivity;
 import com.cn.android.ui.activity.SetupshopActivity;
 import com.cn.android.ui.activity.ShippingAddressActivity;
 import com.cn.android.ui.activity.ThebalanceDetailsActivity;
+import com.cn.android.ui.activity.TheloginIdActivity;
 import com.cn.android.ui.activity.WithdrawDepositActivity;
 import com.cn.android.utils.DataUtils;
+import com.cn.android.utils.SPUtils;
+import com.hjq.dialog.MessageDialog;
 import com.hjq.image.ImageLoader;
-
-import org.jsoup.helper.DataUtil;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,36 +45,27 @@ import butterknife.OnClick;
  * 个人中心
  */
 public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
+
     @BindView(R.id.iv_information)
     ImageView ivInformation;
     @BindView(R.id.iv_set)
     ImageView ivSet;
     @BindView(R.id.tv_name)
     TextView tvName;
+    @BindView(R.id.tv_Enterprises)
+    TextView tvEnterprises;
     @BindView(R.id.iv_hear)
     ImageView ivHear;
     @BindView(R.id.tv_balance_of_account)
     TextView tvBalanceOfAccount;
+    @BindView(R.id.tv_view_details)
+    TextView tvViewDetails;
+    @BindView(R.id.tv_withdraw_deposit)
+    TextView tvWithdrawDeposit;
     @BindView(R.id.tv_add)
     TextView tvAdd;
     @BindView(R.id.more)
     ImageView more;
-    @BindView(R.id.tv_view_details)
-    TextView tvViewDetails;
-    @BindView(R.id.ll_AddressDetail)
-    LinearLayout llAddressDetail;
-    @BindView(R.id.ll_Discount_Coupon)
-    LinearLayout llDiscountCoupon;
-    @BindView(R.id.ll_Invitation_Code)
-    LinearLayout llInvitationCode;
-    @BindView(R.id.ll_my_team)
-    LinearLayout llMyTeam;
-    @BindView(R.id.tv_withdraw_deposit)
-    TextView tvWithdrawDeposit;
-    @BindView(R.id.ll_favorite)
-    LinearLayout llFavorite;
-    @BindView(R.id.tv_Enterprises)
-    TextView tvEnterprises;
     @BindView(R.id.ll_obligation)
     LinearLayout llObligation;
     @BindView(R.id.ll_To_send_the_good)
@@ -81,20 +74,34 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
     LinearLayout llWaitForReceiving;
     @BindView(R.id.ll_remain_to_be_evaluated)
     LinearLayout llRemainToBeEvaluated;
-    @BindView(R.id.ll_CommodityManagement)
-    LinearLayout llCommodityManagement;
-    @BindView(R.id.ll_isell)
-    LinearLayout llIsell;
-    @BindView(R.id.ll_Products_Cover_Activity)
-    LinearLayout llProductsCoverActivity;
-    @BindView(R.id.ll_service)
-    LinearLayout llService;
     @BindView(R.id.tvplis)
     TextView tvplis;
     @BindView(R.id.tvplis01)
     TextView tvplis01;
     @BindView(R.id.iv_tui)
     ImageView ivTui;
+    @BindView(R.id.ll)
+    LinearLayout ll;
+    @BindView(R.id.Rl_01)
+    LinearLayout llPul;
+    @BindView(R.id.ll_AddressDetail)
+    LinearLayout llAddressDetail;
+    @BindView(R.id.ll_service)
+    LinearLayout llService;
+    @BindView(R.id.ll_Discount_Coupon)
+    LinearLayout llDiscountCoupon;
+    @BindView(R.id.ll_favorite)
+    LinearLayout llFavorite;
+    @BindView(R.id.ll_Products_Cover_Activity)
+    LinearLayout llProductsCoverActivity;
+    @BindView(R.id.ll_Invitation_Code)
+    LinearLayout llInvitationCode;
+    @BindView(R.id.ll_my_team)
+    LinearLayout llMyTeam;
+    @BindView(R.id.ll_CommodityManagement)
+    LinearLayout llCommodityManagement;
+    @BindView(R.id.ll_isell)
+    LinearLayout llIsell;
     @BindView(R.id.ll_updateStore)
     LinearLayout llUpdateStore;
     private int order = 0;
@@ -110,8 +117,8 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @Override
     protected void initView() {
-
         tvBalanceOfAccount.setText( DataUtils.getMoney( userdata().getUmoney() ) );
+
         if (TextUtils.isEmpty( userdata().getHeadImg() )) {
             ImageLoader.with( this )
                     .circle()
@@ -124,9 +131,10 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                     .into( ivHear );
         }
 
-        if (userdata().getType() == 1) {
+        if (userdata().getIsReal() == 2) {
             tvEnterprises.setText( "已入驻" );
         }
+        tvName.setText( userdata().getNickname() );
     }
 
     @Override
@@ -148,12 +156,23 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
             R.id.ll_wait_for_receiving, R.id.ll_remain_to_be_evaluated,
             R.id.ll_isell, R.id.ll_CommodityManagement,
             R.id.ll_Products_Cover_Activity, R.id.iv_information,
-            R.id.ll_service, R.id.tv_add, R.id.ll_updateStore})
+            R.id.ll_service, R.id.tv_add, R.id.ll_updateStore, R.id.Rl_01})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
+            case R.id.Rl_01:
+                if (userdata().getType() == 1 && userdata().getIsReal() == 2) {
+                    startActivity( OpeningOfTheEnterpriseActivity.class );
+                } else {
+                    bushiqie();
+                }
+                break;
             case R.id.ll_updateStore:
-                startActivity( SetupshopActivity.class );
+                if (userdata().getType() == 1 && userdata().getIsReal() == 2) {
+                    startActivity( SetupshopActivity.class );
+                } else {
+                    bushiqie();
+                }
                 break;
             case R.id.ll_service://
                 startActivity( ServiceActivity.class );
@@ -167,18 +186,24 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 startActivity( InformActivity.class );
                 break;
             case R.id.ll_Products_Cover_Activity:
-                if (userdata().getType() == 1) {
-                    startActivity( ProductsCoverActivity.class );//商品管理
+                if (userdata().getType() == 1 && userdata().getIsReal() == 2) {
+
+                    startActivity( ProductsCoverActivity.class );//cover商品自荐
+
+
                 } else {
-                    startActivity( EnterprisesActivity.class );
+                    //startActivity( EnterprisesActivity.class );
+                    bushiqie();
                 }//商品管理
 
                 break;
             case R.id.ll_CommodityManagement:
-                if (userdata().getType() == 1) {
+                if (userdata().getType() == 1 && userdata().getIsReal() == 2) {
+
                     startActivity( CommodityManagementActivity.class );//商品管理
                 } else {
-                    startActivity( EnterprisesActivity.class );
+                    bushiqie();
+                    //startActivity( EnterprisesActivity.class );
                 }
 
                 break;
@@ -200,11 +225,12 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 startActivity( ThebalanceDetailsActivity.class );
                 break;
             case R.id.ll_Invitation_Code://邀请码
-                if (userdata().getType() == 1) {
-                    startActivity( InvitationCodeActivity.class );
-                } else {
-                    startActivity( EnterprisesActivity.class );
-                }
+                // if (userdata().getType() == 1) {
+                startActivity( InvitationCodeActivity.class );
+                //  } else {
+                //startActivity( EnterprisesActivity.class );
+                //  bushiqie();
+                // }
 
                 break;
             case R.id.ll_AddressDetail:
@@ -220,10 +246,10 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 startActivity( NewPersonalDataActivity.class );
                 break;
             case R.id.ll_my_team:
-                if (userdata().getType() == 1) {
+                if (userdata().getType() == 1 && userdata().getIsReal() == 2) {
                     startActivity( MyTeamActivity.class );
                 } else {
-                    startActivity( EnterprisesActivity.class );
+                    bushiqie();
                 }
 
                 break;
@@ -244,15 +270,53 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
                 order( 4 );
                 break;
             case R.id.ll_isell:
-                if (userdata().getType() == 1) {
+
+                if (userdata().getType() == 1 && userdata().getIsReal() == 2) {
                     startActivity( IsellActivity.class );
                 } else {
-                    startActivity( EnterprisesActivity.class );
+                    //startActivity( EnterprisesActivity.class );
+                    bushiqie();
                 }
 
                 break;
             default:
         }
+    }
+
+    private void bushiqie() {
+        new MessageDialog.Builder( getAttachActivity() )
+                // 标题可以不用填写
+                //.setTitle("我是标题")
+                // 内容必须要填写
+                .setMessage( "请您登录企业账号" )
+                // 确定按钮文本
+                .setConfirm( "确定" )
+                // 设置 null 表示不显示取消按钮
+                .setCancel( "取消" )
+
+                // 设置点击按钮后不关闭对话框
+                //.setAutoDismiss(false)
+                .setListener( new MessageDialog.OnListener() {
+
+                    @Override
+                    public void onConfirm(Dialog dialog) {
+                        // 退出登录
+                        startActivity( TheloginIdActivity.class );
+                        // 进行内存优化，销毁掉所有的界面
+                        ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                        // toast("确定了");
+                        //presenetr.getPostTokenRequest( getActivity(), ServerUrl.deleteAddress, Constant.deleteAddress );
+
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onCancel(Dialog dialog) {
+                        //  toast("取消了");
+                        dialog.dismiss();
+                    }
+                } )
+                .show();
     }
 
     /**

@@ -29,7 +29,10 @@ public class MyTeamAdapter extends BaseQuickAdapter<Userdata, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, Userdata item) {
         ImageView imageView=helper.getView( R.id.iv_01 );
-        ImageLoader.with( context ).load( item.getHeadImg() ).into( imageView );
+        ImageLoader.with( context )
+                .circle()
+                .load( item.getHeadImg() )
+                .into( imageView );
         helper.setText(R.id.tv_name, item.getNickname());
 
     }

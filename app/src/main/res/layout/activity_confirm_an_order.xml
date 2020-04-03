@@ -90,7 +90,7 @@
             android:layout_width="94.5dp"
             android:layout_height="94.5dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             android:src="@mipmap/test10" />
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_test02"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/iv_tet10"
 
             android:text="规格 350g" />

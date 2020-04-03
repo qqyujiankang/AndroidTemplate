@@ -3,6 +3,7 @@ package com.cn.android.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.GridLayout;
 
@@ -57,12 +58,14 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
         return R.layout.activity_product_list;
     }
 
-    private String typeid;
+    private String typeid,search;
 
     @SuppressLint("WrongConstant")
     @Override
     protected void initView() {
+
         typeid = getIntent().getStringExtra( "typeid" );
+        search = getIntent().getStringExtra( "search" );
         presenetr = new PublicInterfaceePresenetr( this );
         smartRefresh.setOnRefreshListener( this );
         smartRefresh.setOnLoadMoreListener( this );
@@ -77,7 +80,14 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
 
     @Override
     protected void initData() {
-        presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopListByShopType, Constant.selectShopListByShopType );
+
+        if (typeid != null) {
+            presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopListByShopType, Constant.selectShopListByShopType );
+
+        } else {
+            presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopListBySearch, Constant.selectShopListBySearch );
+
+        }
 
     }
 
@@ -86,13 +96,23 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
     @Override
     public Map<String, Object> setPublicInterfaceData(int tag) {
         Map<String, Object> paramsMap = new HashMap<>();
-        paramsMap.put( "type", userdata().getType() );
         paramsMap.put( "province", userdata().getProvince() );
         paramsMap.put( "city", userdata().getCity() );
         paramsMap.put( "area", userdata().getArea() );
         paramsMap.put( "page", page );
         paramsMap.put( "rows", rows );
-        paramsMap.put( "typeid", typeid );
+        paramsMap.put( "type", userdata().getType() );
+        switch (tag) {
+            case Constant.selectShopListByShopType:
+                paramsMap.put( "typeid", typeid );
+                break;
+            case Constant.selectShopListBySearch:
+                paramsMap.put( "search", search );
+                break;
+        }
+
+
+
 
 
         return paramsMap;
@@ -107,11 +127,13 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
         if (isUpRefresh) {
             shopInfoListBeanArrayLis1.clear();
         }
-        if (!data.equals( "" )) {
+        if (!data.equals( "[]" )) {
             smartRefresh.closeHeaderOrFooter();
             shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
             shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
             commodityAdapte1r.replaceData( shopInfoListBeanArrayLis1 );
+        } else if (shopInfoListBeanArrayLis1.size()==0){
+            ivHintIcon.show();
         }
     }
 
@@ -119,7 +141,9 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
     public void onPublicInterfaceError(String error, int tag) {
 
     }
+
     private SelectNewShop selectNewShop;
+
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         selectNewShop = shopInfoListBeanArrayLis1.get( position );

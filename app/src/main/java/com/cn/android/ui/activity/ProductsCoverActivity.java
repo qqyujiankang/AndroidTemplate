@@ -128,16 +128,19 @@ public class ProductsCoverActivity extends MyActivity implements
                 if (isUpRefresh) {
                     shopInfoListBeanArrayLis1.clear();
                 }
-                if (!data.equals( "" )) {
-                    smartRefresh.closeHeaderOrFooter();
+                smartRefresh.closeHeaderOrFooter();
+                if (!data.equals( "[]" )) {
+
                     shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
                     shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
                     commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+                }else if (shopInfoListBeanArrayLis1.size()==0){
+                    ivHintIcon.show();
                 }
                 break;
             case Constant.sortShopByUserid:
-                shopInfoListBeanArrayLis1.remove( position );
-                commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
+               // shopInfoListBeanArrayLis1.remove( position );
+                //commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
                 break;
         }
 
@@ -169,7 +172,7 @@ public class ProductsCoverActivity extends MyActivity implements
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         switch (view.getId()) {
 
-            case R.id.rl_search:
+            case R.id.iv:
                 position = position;
                 shopid = shopInfoListBeanArrayLis1.get( position ).getId();
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.sortShopByUserid, Constant.sortShopByUserid );

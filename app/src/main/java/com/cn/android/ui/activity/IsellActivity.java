@@ -1,23 +1,33 @@
 package com.cn.android.ui.activity;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.RadioButton;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
 import com.cn.android.bean.Commodity;
+import com.cn.android.bean.MyOrder;
 import com.cn.android.common.MyActivity;
-import com.cn.android.ui.adapter.MyOrderAdapter;
+import com.cn.android.network.Constant;
+import com.cn.android.network.GsonUtils;
+import com.cn.android.network.ServerUrl;
+import com.cn.android.presenter.PublicInterfaceePresenetr;
+import com.cn.android.presenter.view.PublicInterfaceView;
 import com.cn.android.ui.adapter.Myiseelladapter;
-import com.cn.android.ui.dialog.QRcoDialog;
 import com.cn.android.widget.SpaceItemDecoration;
+import com.hjq.widget.layout.HintLayout;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -27,7 +37,7 @@ import butterknife.OnClick;
 /**
  * 我卖出的
  */
-public class IsellActivity extends MyActivity {
+public class IsellActivity extends MyActivity implements PublicInterfaceView, BaseQuickAdapter.OnItemChildClickListener, OnRefreshListener, OnLoadMoreListener {
 
 
     @BindView(R.id.rbt_obligation)
@@ -38,109 +48,170 @@ public class IsellActivity extends MyActivity {
     RadioButton rbtOffTheStocks;
     @BindView(R.id.btn_remain_to_be_evaluated)
     RadioButton btnRemainToBeEvaluated;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.iv_hint_icon)
+    HintLayout ivHintIcon;
+    @BindView(R.id.smart_refresh)
+    SmartRefreshLayout smartRefresh;
+    private String ordercode, shop_userid;
+    private String order = "";
+    private int page = 1, rows = 10;
+    private boolean isUpRefresh = true;
+
     Myiseelladapter adapter;
-    @BindView(R.id.rv)
-    RecyclerView rv;
-    List<Commodity.DataBean> dataBeans = new ArrayList<>();
-    Commodity.DataBean dataBean = new Commodity.DataBean();
+    private List<MyOrder> myOrders = new ArrayList<>();
+    private List<MyOrder> myOrderArrayList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_isell;
     }
 
+    private PublicInterfaceePresenetr presenetr;
+
     @Override
     protected void initView() {
-
-        rv.setLayoutManager( new LinearLayoutManager( getActivity() ) );
-        rv.addItemDecoration( new SpaceItemDecoration( 10 ) );
+        presenetr = new PublicInterfaceePresenetr( this );
+        smartRefresh.setOnRefreshListener( this );
+        smartRefresh.setOnLoadMoreListener( this );
+        recyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        recyclerView.addItemDecoration( new SpaceItemDecoration( 10 ) );
         adapter = new Myiseelladapter( getActivity() );
-        rv.setAdapter( adapter );
-        myOrder( 0 );
+        adapter.setOnItemChildClickListener( this::onItemChildClick );
+        recyclerView.setAdapter( adapter );
 
     }
 
     @Override
     protected void initData() {
-
+        presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectOrdersByStatus, Constant.selectOrdersByStatus );
 
     }
 
-    private void myOrder(int order) {
-        if (order == 0) {
-            dataBeans.add( new Commodity.DataBean( "", "", "", "", 1 ) );
-            dataBeans.add( new Commodity.DataBean( "", "", "", "", 2 ) );
-            dataBeans.add( new Commodity.DataBean( "", "", "", "", 3 ) );
-            adapter.setNewData( dataBeans );
-            adapter.notifyDataSetChanged();
-        } else if (order == 1) {
-            dataBeans.add( new Commodity.DataBean( "", "", "", "", 1 ) );
-            adapter.setNewData( dataBeans );
-            adapter.notifyDataSetChanged();
-        } else if (order == 2) {
-
-            dataBeans.add( new Commodity.DataBean( "", "", "", "", 2 ) );
-            adapter.setNewData( dataBeans );
-            adapter.notifyDataSetChanged();
-        } else if (order == 3) {
-            dataBeans.add( new Commodity.DataBean( "", "", "", "", 3 ) );
-            adapter.setNewData( dataBeans );
-            adapter.notifyDataSetChanged();
-        }
-
-
-        adapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                dataBean = (Commodity.DataBean) adapter.getItem(position);
-                switch (view.getId()) {
-                    case R.id.btn_01:
-                        if (dataBean.getDrawable() == 2) {
-                            finish();
-                        } else if (dataBean.getDrawable() == 3) {
-                            startActivity( ServiceActivity.class );
-                        }
-                        break;
-                    case R.id.btn_02:
-                        if (dataBean.getDrawable() == 2) {
-                            startActivity( ServiceActivity.class );
-                        } else if (dataBean.getDrawable() == 3) {
-                            startActivity( CheckTheLogisticsActivity.class );
-                        }
-                        break;
-                }
-
-
-            }
-        } );
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
-    }
 
     @OnClick({R.id.rbt_obligation, R.id.rbt_To_send_the_goods, R.id.rbt_off_the_stocks, R.id.btn_remain_to_be_evaluated})
     public void onViewClicked(View view) {
+        myOrderArrayList.clear();
+        page = 1;
+
         switch (view.getId()) {
             case R.id.rbt_obligation:
-                dataBeans.clear();
-                myOrder( 0 );
+
+                order = "";
+                initData();
                 break;
             case R.id.rbt_To_send_the_goods:
-                dataBeans.clear();
-                myOrder( 1 );
+                order = "2";
+
+                initData();
                 break;
             case R.id.rbt_off_the_stocks:
-                dataBeans.clear();
-                myOrder( 2 );
+                order = "3";
+
+                initData();
                 break;
             case R.id.btn_remain_to_be_evaluated:
-                dataBeans.clear();
-                myOrder( 3 );
+                order = "4";
+
+                initData();
                 break;
         }
+    }
+
+    @Override
+    public Map<String, Object> setPublicInterfaceData(int tag) {
+        Map<String, Object> paramsMap = new HashMap<>();
+        switch (tag) {
+            case Constant.selectOrdersByStatus:
+
+                paramsMap.put( "userid", userdata().getId() );
+                paramsMap.put( "status", order );
+                paramsMap.put( "page", page );
+                paramsMap.put( "rows", rows );
+
+                return paramsMap;
+            case Constant.sureSendOrder:
+                paramsMap.put( "ordercode", dataBean.getOrdercode() );
+                paramsMap.put( "shop_userid", dataBean.getShop_user_id() );
+                return paramsMap;
+        }
+        return null;
+    }
+
+    @Override
+    public void onPublicInterfaceSuccess(String data, int tag) {
+        switch (tag) {
+            case Constant.selectOrdersByStatus:
+
+                if (isUpRefresh) {
+                    myOrderArrayList.clear();
+                }
+                smartRefresh.closeHeaderOrFooter();
+                if (!data.equals( "[]" )) {
+
+                    myOrders = GsonUtils.getPersons( data, MyOrder.class );
+                    myOrderArrayList.addAll( myOrders );
+                    adapter.replaceData( myOrderArrayList );
+                } else {
+                    if (myOrderArrayList.size() == 0) {
+                        ivHintIcon.show();
+                    }
+                }
+                break;
+            case Constant.sureSendOrder:
+                myOrderArrayList.remove( getPage );
+                adapter.replaceData( myOrderArrayList );
+
+                break;
+        }
+    }
+
+    private int getPage;
+
+    @Override
+    public void onPublicInterfaceError(String error, int tag) {
+
+    }
+
+    MyOrder dataBean;
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        dataBean = (MyOrder) adapter.getItem( position );
+        getPage = position;
+        switch (view.getId()) {
+            case R.id.btn_01:
+                if (dataBean.getStatus() == 4) {
+                    startActivity( ServiceActivity.class );
+                } else if (dataBean.getStatus() == 2) {
+                    //startActivity( ServiceActivity.class );
+                    presenetr.getPostTokenRequest( getActivity(), ServerUrl.sureSendOrder, Constant.sureSendOrder );
+                }
+                break;
+            case R.id.btn_02:
+                if (dataBean.getStatus() == 4) {
+                    startActivity( CheckTheLogisticsActivity.class );
+                } else if (dataBean.getStatus() == 2) {
+
+                    startActivity( ServiceActivity.class );
+                }
+                break;
+        }
+    }
+
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        isUpRefresh = false;
+        page = page + 1;
+        initData();
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        isUpRefresh = true;
+        page = 1;
+        initData();
     }
 }

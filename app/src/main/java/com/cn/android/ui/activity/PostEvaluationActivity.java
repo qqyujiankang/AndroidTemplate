@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cn.android.R;
+import com.cn.android.bean.MyOrder;
 import com.cn.android.bean.SelectNewShop;
 import com.cn.android.common.MyActivity;
 import com.cn.android.network.Constant;
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /***
- *发布评价
+ *发布评价n
  */
 public class PostEvaluationActivity extends MyActivity implements PublicInterfaceView {
     @BindView(R.id.t_test_title)
@@ -41,11 +42,13 @@ public class PostEvaluationActivity extends MyActivity implements PublicInterfac
     EditText etContent;
     private PublicInterfaceePresenetr presenetr;
     SelectNewShop selectNewShop;
-//    @Override
+    private MyOrder myOrder;
+    //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //        setContentView();
 //    }
+    String shopid;
 
     @Override
     protected int getLayoutId() {
@@ -59,9 +62,18 @@ public class PostEvaluationActivity extends MyActivity implements PublicInterfac
 
 
         selectNewShop = getIntent().getParcelableExtra( "selectNewShop" );
-        tvProgress.setText( getString( R.string.test01 ) + selectNewShop.getVipPrice() );
-        tvTimeTitle.setText( selectNewShop.getShopName() );
-        ImageLoader.with( getActivity() ).load( selectNewShop.getShopImg() ).into( iv01 );
+        myOrder = getIntent().getParcelableExtra( "myOrder" );
+        if (selectNewShop != null) {
+            tvProgress.setText( getString( R.string.test01 ) + selectNewShop.getVipPrice() );
+            tvTimeTitle.setText( selectNewShop.getShopName() );
+            ImageLoader.with( getActivity() ).load( selectNewShop.getShopImg() ).into( iv01 );
+            shopid = selectNewShop.getId();
+        } else if (myOrder != null) {
+            tvProgress.setText( getString( R.string.test01 ) + myOrder.getShopList().get( 0 ).getShop_money() );
+            tvTimeTitle.setText( myOrder.getShopList().get( 0 ).getShop_name() );
+            ImageLoader.with( getActivity() ).load( myOrder.getShopList().get( 0 ).getShop_img() ).into( iv01 );
+            shopid = myOrder.getShopList().get( 0 ).getShopid();
+        }
     }
 
     @Override
@@ -91,7 +103,8 @@ public class PostEvaluationActivity extends MyActivity implements PublicInterfac
     public Map<String, Object> setPublicInterfaceData(int tag) {
         Map<String, Object> paramsMap = new HashMap<>();
         paramsMap.put( "userid", userdata().getId() );
-        paramsMap.put( "shopid", selectNewShop.getId() );
+
+        paramsMap.put( "shopid", shopid );
         paramsMap.put( "content", etContent.getText().toString().trim() );
 
         return paramsMap;

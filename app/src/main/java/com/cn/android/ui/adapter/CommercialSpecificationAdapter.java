@@ -34,35 +34,35 @@ public class CommercialSpecificationAdapter extends BaseQuickAdapter<ShopGuiGeBe
     protected void convert(BaseViewHolder helper, ShopGuiGeBean item) {
         CheckBox checkBox = helper.getView(R.id.iv_add);
         checkBox.setChecked(item.isClick());
-        EditText vipmoney=helper.getView(R.id.vipmoney);
-        EditText money=helper.getView(R.id.money);
+       // EditText vipmoney=helper.getView(R.id.vipmoney);
+        EditText money=helper.getView(R.id.et_money);
         EditText guige=helper.getView(R.id.guige);
         helper.setText(R.id.guige,list.get(helper.getLayoutPosition()).getGuiGe());
-        helper.setText(R.id.vipmoney,list.get(helper.getLayoutPosition()).getVipMoney()==null?"":list.get(helper.getLayoutPosition()).getVipMoney());
-        helper.setText(R.id.money,list.get(helper.getLayoutPosition()).getMoney()==null?"":list.get(helper.getLayoutPosition()).getMoney());
+      //  helper.setText(R.id.vipmoney,list.get(helper.getLayoutPosition()).getVipMoney()==null?"":list.get(helper.getLayoutPosition()).getVipMoney());
+        helper.setText(R.id.et_money,list.get(helper.getLayoutPosition()).getprice()==null?"":list.get(helper.getLayoutPosition()).getprice());
         helper.addOnClickListener(R.id.iv_add);
-        vipmoney.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(s.length()==0){
-                    return;
-                }
-                if(s.toString().indexOf(".")!=-1){
-                    return;
-                }
-                list.get(helper.getLayoutPosition()).setVipMoney(s.toString());
-            }
-        });
+//        vipmoney.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                if(s.length()==0){
+//                    return;
+//                }
+//                if(s.toString().indexOf(".")!=-1){
+//                    return;
+//                }
+//                list.get(helper.getLayoutPosition()).setVipMoney(s.toString());
+//            }
+//        });
         money.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -82,7 +82,7 @@ public class CommercialSpecificationAdapter extends BaseQuickAdapter<ShopGuiGeBe
                 if(s.toString().indexOf(".")!=-1){
                     return;
                 }
-                list.get(helper.getLayoutPosition()).setMoney(s.toString());
+                list.get(helper.getLayoutPosition()).setprice(s.toString());
             }
         });
         guige.addTextChangedListener(new TextWatcher() {

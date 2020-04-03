@@ -28,6 +28,8 @@
         app:layout_constraintLeft_toRightOf="@+id/goods_check" />
 
     <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:id="@+id/goods_name"
@@ -42,18 +44,19 @@
         app:layout_constraintLeft_toRightOf="@+id/goods_img" />
 
     <TextView
+        android:textSize="12sp"
         android:id="@+id/specifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="现货3斤"
         android:drawableTint="@color/colorButtonDisable"
-        android:drawableRight="@drawable/shopcart_down"
         android:textColor="@color/colorButtonDisable"
         android:layout_marginTop="@dimen/space_2"
         app:layout_constraintLeft_toLeftOf="@+id/goods_name"
         app:layout_constraintTop_toBottomOf="@+id/goods_name" />
 
     <TextView
+        android:textSize="12sp"
         android:id="@+id/goods_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +68,7 @@
     <View
         android:padding="10dp"
         android:id="@+id/view_1"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="@dimen/space_40"
         android:background="@drawable/shopcart_num_bg"
         app:layout_constraintBottom_toBottomOf="@+id/goods_img"
@@ -96,7 +99,7 @@
 
     <TextView
         android:id="@+id/goods_num"
-        android:layout_width="@dimen/space_78"
+        android:layout_width="30dp"
         android:layout_height="0dp"
         android:text="2"
         android:gravity="center"

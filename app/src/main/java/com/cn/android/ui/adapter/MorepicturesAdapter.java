@@ -16,14 +16,21 @@ public class MorepicturesAdapter extends BaseQuickAdapter<String, BaseViewHolder
     private Context context;
 
     public MorepicturesAdapter(Context context) {
-        super(R.layout.adapter_more_pictures);
+        super( R.layout.adapter_more_pictures );
         this.context = context;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-        helper.addOnClickListener(R.id.iv_particulars);
-        ImageView imageView = helper.getView(R.id.iv_particulars);
-        ImageLoader.with(context).load(item).error(context.getResources().getDrawable(R.mipmap.tj)).into(imageView);
+        helper.addOnClickListener( R.id.iv_cha );
+        helper.addOnClickListener( R.id.iv_particulars );
+
+        ImageView imageView = helper.getView( R.id.iv_particulars );
+        if (item.equals( "" )) {
+            helper.setGone( R.id.iv_cha, false );
+        } else {
+            helper.setGone( R.id.iv_cha, true );
+        }
+        ImageLoader.with( context ).load( item ).error( context.getResources().getDrawable( R.mipmap.tj ) ).into( imageView );
     }
 }

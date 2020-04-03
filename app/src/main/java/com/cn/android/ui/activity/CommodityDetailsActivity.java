@@ -13,9 +13,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.cn.android.R;
 import com.cn.android.bean.Commodity;
+import com.cn.android.bean.ProductDetails;
 import com.cn.android.bean.SelectNewShop;
 import com.cn.android.common.MyActivity;
 import com.cn.android.network.Constant;
+import com.cn.android.network.GsonUtils;
 import com.cn.android.network.ServerUrl;
 import com.cn.android.presenter.PublicInterfaceePresenetr;
 import com.cn.android.presenter.view.PublicInterfaceView;
@@ -23,6 +25,8 @@ import com.cn.android.ui.adapter.EvaluateAdapter;
 import com.cn.android.ui.dialog.CommoditySpecificationDialog;
 import com.cn.android.ui.dialog.SelectShippingAddressDialog;
 import com.cn.android.ui.dialog.ShareDialog;
+import com.cn.android.ui.dialog.TostDialog;
+import com.cn.android.utils.TimeUtils;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.widget.layout.SettingBar;
@@ -34,6 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -89,13 +94,14 @@ public class CommodityDetailsActivity extends MyActivity implements
     ImageView ivSeal;
     private SelectNewShop selectNewShop;
     PublicInterfaceePresenetr presenetr;
+    ProductDetails productDetails;
+    List<String> strings = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_commodity_details;
     }
 
-    private List<String> strings = new ArrayList<>();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -104,22 +110,7 @@ public class CommodityDetailsActivity extends MyActivity implements
         rv01.setLayoutManager( new LinearLayoutManager( getActivity(), LinearLayoutManager.VERTICAL, false ) );
         //rv01.addItemDecoration(new SpaceItemDecoration(30));
         selectNewShop = getIntent().getParcelableExtra( "SelectNewShop" );
-        Glide.with( getActivity() ).load( selectNewShop.getDetilas() ).into( ivSeal );
-        if (selectNewShop != null) {
-            tv01.setText( selectNewShop.getShopName() );
-            tv02.setText( getString( R.string.test01 ) + selectNewShop.getVipPrice() );
-            tv.setText( "市场指导价:" + getString( R.string.test01 ) + selectNewShop.getSellPrice() );
-            String val = selectNewShop.getImgUrls();
-            String[] splitVal = val.split( "\\," );//转数组
-            strings = Arrays.asList( splitVal );//转集合
-            xbanner.setData( strings, null );
-            xbanner.setmAdapter( new XBanner.XBannerAdapter() {
-                @Override
-                public void loadBanner(XBanner banner, Object model, View view, int position) {
-                    Glide.with( getActivity() ).load( strings.get( position ) ).into( (ImageView) view );
-                }
-            } );
-        }
+
         adapter = new EvaluateAdapter( getActivity() );
         rv01.setAdapter( adapter );
         ttb.setOnTitleBarListener( this );
@@ -128,20 +119,8 @@ public class CommodityDetailsActivity extends MyActivity implements
 
     @Override
     protected void initData() {
-        List<Commodity.DataBean> dataBeans = new ArrayList<>();
-        dataBeans.add( new Commodity.DataBean( "", "", "", "", 0 ) );
-        dataBeans.add( new Commodity.DataBean( "", "", "", "", 0 ) );
-        dataBeans.add( new Commodity.DataBean( "", "", "", "", 0 ) );
-        dataBeans.add( new Commodity.DataBean( "", "", "", "", 0 ) );
-        adapter.setNewData( dataBeans );
+        presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopByid, Constant.selectShopByid );
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
     }
 
     @OnClick({R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.btn_01, R.id.btn_02, R.id.sb_account_management, R.id.sb_add, R.id.sb_add0})
@@ -150,18 +129,26 @@ public class CommodityDetailsActivity extends MyActivity implements
 
             case R.id.sb_add0:
                 Intent intent = new Intent( getActivity(), PostEvaluationActivity.class );
-                intent.putExtra( "selectNewShop", selectNewShop );
+                //intent.putExtra( "selectNewShop", selectNewShop );
+
                 startActivity( intent );
                 break;
             case R.id.sb_add:
+
                 new SelectShippingAddressDialog.Builder( getActivity(), this ).show();
+
+
                 break;
             case R.id.sb_account_management:
-                new CommoditySpecificationDialog.Builder( getActivity() ).show();
+
+                new CommoditySpecificationDialog.Builder( getActivity(), productDetails ).show();
+
                 break;
 
             case R.id.tv_1:
-                startActivity( StoreNameDetailsActivity.class );
+                Intent intent1 = new Intent( getActivity(), StoreNameDetailsActivity.class );
+                intent1.putExtra( "userid", selectNewShop.getUserid() );
+                startActivity( intent1 );
 
                 break;
             case R.id.tv_2:
@@ -172,12 +159,33 @@ public class CommodityDetailsActivity extends MyActivity implements
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.sureConlectShopsByUserid, Constant.sureConlectShopsByUserid );
                 break;
             case R.id.btn_01:
-                new CommoditySpecificationDialog.Builder( getActivity() ).show();
+                if (userdata().getType() == 1) {
+                    if (userdata().getIsReal() == 2) {
+                        new CommoditySpecificationDialog.Builder( getActivity(), productDetails ).show();
+                    } else {
+                        new TostDialog.Builder( getActivity(), "您还未成为企业用户 请先完成企业认证" ).show();
+                    }
+                } else {
+                    new CommoditySpecificationDialog.Builder( getActivity(), productDetails ).show();
+                }
+
                 break;
             case R.id.btn_02:
-                startActivity( ConfirmAnOrderActivity.class );
+
+                if (userdata().getType() == 1) {
+                    if (userdata().getIsReal() == 2) {
+                        startActivity( ConfirmAnOrderActivity.class );
+                    } else {
+                        new TostDialog.Builder( getActivity(), "您还未成为企业用户 请先完成企业认证" ).show();
+                    }
+                } else {
+                    startActivity( ConfirmAnOrderActivity.class );
+                }
+
+
                 break;
         }
+
     }
 
     @Override
@@ -197,8 +205,10 @@ public class CommodityDetailsActivity extends MyActivity implements
         map.put( "userid", userdata().getId() );
 
         switch (tag) {
-
             case Constant.sureConlectShopsByUserid:
+                map.put( "shopid", selectNewShop.getId() );
+                return map;
+            case Constant.selectShopByid:
                 map.put( "shopid", selectNewShop.getId() );
                 return map;
 
@@ -210,6 +220,22 @@ public class CommodityDetailsActivity extends MyActivity implements
     public void onPublicInterfaceSuccess(String data, int tag) {
         switch (tag) {
             case Constant.sureConlectShopsByUserid:
+
+                break;
+            case Constant.selectShopByid:
+                productDetails = GsonUtils.getPerson( data, ProductDetails.class );
+                Glide.with( getActivity() ).load( productDetails.getDetilas() ).into( ivSeal );
+                tv01.setText( productDetails.getShopName() );
+                tv02.setText( getString( R.string.test01 ) + productDetails.getVipPrice() );
+                tv.setText( "市场指导价:" + getString( R.string.test01 ) + productDetails.getSellPrice() );
+                strings = TimeUtils.getStiringlist( productDetails.getImgUrls() );
+                xbanner.setData( strings, null );
+                xbanner.setmAdapter( new XBanner.XBannerAdapter() {
+                    @Override
+                    public void loadBanner(XBanner banner, Object model, View view, int position) {
+                        Glide.with( getActivity() ).load( strings.get( position ) ).into( (ImageView) view );
+                    }
+                } );
 
                 break;
         }

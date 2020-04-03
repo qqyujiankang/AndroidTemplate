@@ -12,13 +12,15 @@
         android:layout_height="wrap_content"
         app:title="收货地址" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_bind_commit"
-        android:layout_below="@+id/t_test_title"
-      />
+        android:layout_below="@+id/t_test_title">
+
+        <include layout="@layout/pubiu_layout_rv_data" />
+    </RelativeLayout>
+
 
     <Button
 

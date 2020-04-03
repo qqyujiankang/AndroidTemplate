@@ -1,5 +1,6 @@
 package com.cn.android.ui.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import com.cn.android.bean.Commodity;
 import com.cn.android.bean.HomeData;
 import com.cn.android.bean.SelectTypeListByPid;
 import com.cn.android.bean.ShopBean;
+import com.cn.android.bean.selectStoreListByPid;
 import com.cn.android.common.MyLazyFragment;
 import com.cn.android.network.Constant;
 import com.cn.android.network.GsonUtils;
@@ -70,17 +72,17 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
     //分类
     private List<HomeData.ShopTypeListBean> shopTypeListBeanList = new ArrayList<>();
     private List<SelectTypeListByPid> selectTypeListByPids = new ArrayList<>();
+    private List<selectStoreListByPid> storeListByPids = new ArrayList<>();
     private String pid = "1";
     private int store = 1;
 
     StoreClassiFicationAdapter storeClassiFicationAdapter;
-    List<Commodity.DataBean> dataBeans1 = new ArrayList<>();
 
     public static ClassifyFragment newInstance() {
         return new ClassifyFragment();
     }
 
-     int aposition = -1;
+    int aposition = -1;
 
     public void onClick(int position) {
         aposition = position;
@@ -131,7 +133,12 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
         }
         shopTypeListBeanList.get( position ).setClick( true );
         adapter.replaceData( shopTypeListBeanList );
-        presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectTypeListByPid, Constant.selectTypeListByPid );
+        if (store == 1) {
+            presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectTypeListByPid, Constant.selectTypeListByPid );
+        } else {
+            presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectStoreListByPid, Constant.selectStoreListByPid );
+        }
+
 
         classAdapter.replaceData( shopTypeListBeanList );
 
@@ -141,7 +148,7 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_RichScan:
-                if (TheloginIdActivity.state == 0) {
+                if (userdata().getType() == 1) {
 
                     if (store == 1) {
                         store = 2;
@@ -156,18 +163,16 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
 
                         }
                         shopRecyclerView1.setAdapter( storeClassiFicationAdapter );
-                        if (dataBeans1.size() == 0) {
-                            dataBeans1.add( new Commodity.DataBean( "", "店铺名称", "", "", R.mipmap.test29 ) );
-                            dataBeans1.add( new Commodity.DataBean( "", "店铺名称", "", "", R.mipmap.test30 ) );
-                            dataBeans1.add( new Commodity.DataBean( "", "店铺名称", "", "", R.mipmap.test29 ) );
-                            dataBeans1.add( new Commodity.DataBean( "", "店铺名称", "", "", R.mipmap.test31 ) );
-                        }
+                        presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectStoreListByPid, Constant.selectStoreListByPid );
 
-                        storeClassiFicationAdapter.setNewData( dataBeans1 );//StoreNameDetailsActivity
+
                         storeClassiFicationAdapter.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
                             @Override
                             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                                startActivity( StoreNameDetailsActivity.class );
+
+                                Intent intent = new Intent( getActivity(), StoreNameDetailsActivity.class );
+                                intent.putExtra( "userid", storeListByPids.get( position ).getId() );
+                                startActivity( intent );
                             }
                         } );
                     } else if (store == 2) {
@@ -201,12 +206,15 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
     public Map<String, Object> setPublicInterfaceData(int tag) {
         Map<String, Object> paramsMap = new HashMap<>();
 
-
+//
         switch (tag) {
             case Constant.selectFristTypeList:
                 paramsMap.put( "type", userdata().getType() );
                 return paramsMap;
             case Constant.selectTypeListByPid:
+                paramsMap.put( "pid", pid );
+                return paramsMap;
+            case Constant.selectStoreListByPid:
                 paramsMap.put( "pid", pid );
                 return paramsMap;
         }
@@ -222,11 +230,11 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
                 log( "selectFristTypeList=============" + data );
                 shopTypeListBeanList = GsonUtils.getPersons( data, HomeData.ShopTypeListBean.class );
                 if (aposition == -1) {
-                    shopTypeListBeanList.get( 0).setClick( true );
-                    pid = shopTypeListBeanList.get( 0).getId();
-                }else {
-                    shopTypeListBeanList.get( aposition).setClick( true );
-                    pid = shopTypeListBeanList.get( aposition).getId();
+                    shopTypeListBeanList.get( 0 ).setClick( true );
+                    pid = shopTypeListBeanList.get( 0 ).getId();
+                } else {
+                    shopTypeListBeanList.get( aposition ).setClick( true );
+                    pid = shopTypeListBeanList.get( aposition ).getId();
                 }
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectTypeListByPid, Constant.selectTypeListByPid );
 
@@ -237,6 +245,10 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
                 selectTypeListByPids = GsonUtils.getPersons( data, SelectTypeListByPid.class );
                 adapter.replaceData( selectTypeListByPids );
                 L.e( "Https", " selectFristTypeList1 = " + data );
+                break;
+            case Constant.selectStoreListByPid:
+                storeListByPids = GsonUtils.getPersons( data, selectStoreListByPid.class );
+                storeClassiFicationAdapter.setNewData( storeListByPids );//StoreNameDetailsActivity
                 break;
         }
 

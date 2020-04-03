@@ -7,8 +7,8 @@ import com.cn.android.utils.SPUtils;
  * Created by PC-122 on 2017/12/21.
  */
 public class ServerUrl {
-    //public static String defaultIp = "http://192.168.0.168:8077";
-    public static String defaultIp = "http://118.24.159.31:80";
+    public static String defaultIp = "http://192.168.0.125:8077";
+    // public static String defaultIp = "http://118.24.159.31:80";
 
     public static String LOGIN_API = defaultIp + "/app/login/";
     public static String User_API = defaultIp + "/app/user/";
@@ -102,6 +102,25 @@ public class ServerUrl {
     public static String upShopByUserid = defaultIp + "/app/shop/upShopByUserid";
     //    企业 自荐商品排序
     public static String sortShopByUserid = defaultIp + "/app/shop/sortShopByUserid";
+    //    个人信息
+    public static String selectAppUserByUserid = defaultIp + "/app/user/selectAppUserByUserid";
+    //    确认发货
+    public static String sureSendOrder = defaultIp + "/app/order/sureSendOrder";
+    //确认收货
+    public static String surePickOrder = defaultIp + "/app/order/surePickOrder";
+    //    我卖出的
+    public static String selectOrdersByStatus = defaultIp + "/app/order/selectOrdersByStatus";
+    //    搜索
+    public static String selectShopListBySearch = defaultIp + "/app/home/selectShopListBySearch";
+    //    企业 商品管理-添加
+    public static String saveShopByUserid = defaultIp + "/app/shop/saveShopByUserid";
+    //一级分类id查询所有店铺
+    public static String selectStoreListByPid = defaultIp + "/app/home/selectStoreListByPid";
+    //    商品详情
+    public static String selectShopByid = defaultIp + "/app/shop/selectShopByid";
+    //    企业 商品管理-编辑详情
+    public static String selectShopByID = defaultIp + "/app/shop/selectShopByID";
+    public static String updateShopByUserid = defaultIp + "/app/shop/updateShopByUserid";
 
 
 }

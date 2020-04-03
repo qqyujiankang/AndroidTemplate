@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/ll_01"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_radius_white_5"
         android:orientation="vertical">
@@ -25,16 +25,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-           />
+            android:text="312313" />
 
         <TextView
             android:id="@+id/tv"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="sdfsdfsdfsdfsdfsdfdsfdsfsdfdsfsd"
             android:textSize="10sp" />
     </LinearLayout>
 </LinearLayout>

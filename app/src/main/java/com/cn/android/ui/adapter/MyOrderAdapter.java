@@ -36,11 +36,13 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrder, BaseViewHolder> {
         relativeLayout.setLayoutManager( new LinearLayoutManager( context ) );
         myordeshopListAdapter = new MyordeshopListAdapter( context );
         relativeLayout.setAdapter( myordeshopListAdapter );
+
         myordeshopListAdapter.replaceData( item.getShopList() );
         helper.setText( R.id.tv_reference,  item.getOrdercode() );
         helper.setText( R.id.tv_total_shop_money, context.getString( R.string.test01 ) + item.getTotal_shop_money() );
         helper.setText( R.id.total_shop_num, "共" + item.getTotal_shop_money() + "件" );
         helper.addOnClickListener( R.id.btn_login_commit );
+        helper.addOnClickListener( R.id.Rl_01 );
         helper.addOnClickListener( R.id.btn_02 );
         if (item.getStatus() == 1) {
             helper.setText( R.id.tv_status, "待付款" );
@@ -57,13 +59,14 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrder, BaseViewHolder> {
             helper.setVisible( R.id.btn_02, true );
             helper.setText( R.id.btn_01, "确认收货" );
             helper.setText( R.id.btn_02, "查看物流" );
+            helper.addOnClickListener( R.id.btn_01 );
 
             helper.setTextColor( R.id.btn_02, context.getResources().getColor(R.color.huise) );
             helper.setBackgroundRes( R.id.btn_02, R.drawable.bg_home_search_bar_transparent );
 
 
             helper.setText( R.id.tv_status, "待收货" );
-        } else if (item.getStatus() == 3) {
+        } else if (item.getStatus() == 4) {
             helper.setText( R.id.btn_login_commit, "去评价" );
             helper.setText( R.id.tv_status, "待评价" );
         }
