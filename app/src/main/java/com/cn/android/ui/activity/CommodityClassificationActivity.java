@@ -31,6 +31,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 上传商品选择分类
+ */
 public class CommodityClassificationActivity extends MyActivity implements TabLayout.OnTabSelectedListener,
         PublicInterfaceView, BaseQuickAdapter.OnItemClickListener {
     @BindView(R.id.tlTabLayout)
@@ -40,6 +43,7 @@ public class CommodityClassificationActivity extends MyActivity implements TabLa
 
     private PublicInterfaceePresenetr presenetr;
     private ShopAdapter adapter;
+    private String test = "请选择";
 
     @Override
     protected int getLayoutId() {
@@ -48,6 +52,9 @@ public class CommodityClassificationActivity extends MyActivity implements TabLa
 
     @Override
     protected void initView() {
+        mTabLayout.addTab( mTabLayout.newTab().setText( test ) );
+        mTabLayout.addTab( mTabLayout.newTab().setText( test ) );
+        mTabLayout.addTab( mTabLayout.newTab().setText( test ) );
         mTabLayout.addOnTabSelectedListener( this );
         presenetr = new PublicInterfaceePresenetr( this );
         rv.setLayoutManager( new LinearLayoutManager( getActivity() ) );
@@ -152,13 +159,13 @@ public class CommodityClassificationActivity extends MyActivity implements TabLa
 
             pid = shopTypeListBeanList.get( position ).getId();
             pidname = shopTypeListBeanList.get( position ).getName();
-            //mTabLayout.getTabAt( 0 ).setText( pidname );
+            mTabLayout.getTabAt( 0 ).setText( pidname );
             presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectTypeListByPid, Constant.selectTypeListByPid );
         } else if (adapter instanceof ShopAdapter) {
             ThreeListposition = position;
             seconde_type_id = selectTypeListByPids.get( position ).getId();
             seconde_type_idname = selectTypeListByPids.get( position ).getName();
-          //  mTabLayout.getTabAt( 1 ).setText( seconde_type_idname );
+            mTabLayout.getTabAt( 1 ).setText( seconde_type_idname );
             adapter = new Class3ItemAdapter( getActivity() );
             adapter.setOnItemClickListener( this );
             rv.setAdapter( adapter );
@@ -168,7 +175,7 @@ public class CommodityClassificationActivity extends MyActivity implements TabLa
         } else if (adapter instanceof Class3ItemAdapter) {
             three_type_id = selectTypeListByPids.get( ThreeListposition ).getThreeList().get( position ).getId();
             three_type_idname = selectTypeListByPids.get( ThreeListposition ).getThreeList().get( position ).getName();
-           // mTabLayout.getTabAt( 2 ).setText( three_type_idname );
+            mTabLayout.getTabAt( 2 ).setText( three_type_idname );
             Intent intent = getIntent();
             intent.putExtra( "first_type_id", pid );
             intent.putExtra( "pidname", pidname );
@@ -181,7 +188,6 @@ public class CommodityClassificationActivity extends MyActivity implements TabLa
         }
 
     }
-
 
 
 }

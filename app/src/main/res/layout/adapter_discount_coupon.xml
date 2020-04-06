@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll01"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     android:orientation="vertical">
 
     <TextView
@@ -10,27 +10,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="25.5dp"
+        android:layout_marginTop="15.5dp"
         android:text="$50"
         android:textColor="@color/white"
         android:textSize="30sp" />
 
 
     <TextView
+        android:textSize="12sp"
         android:id="@+id/tv_usable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="5dp"
         android:text="满300元可用"
         android:textColor="@color/white" />
 
     <TextView
+        android:textSize="12sp"
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="20dp"
         android:text="2020年10月21日—2020年11月28日"
         android:textColor="@color/white" />

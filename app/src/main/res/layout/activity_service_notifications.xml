@@ -13,8 +13,5 @@
         android:layout_height="wrap_content"
         app:title="服务通知" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/pubiu_layout_rv_data" />
 </LinearLayout>

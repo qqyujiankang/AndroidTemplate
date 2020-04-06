@@ -14,7 +14,7 @@
             android:id="@+id/iv"
             android:layout_width="96dp"
             android:layout_height="83dp"
-            android:src="@mipmap/test12" />
+          />
 
         <TextView
             android:id="@id/tv_name"

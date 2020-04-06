@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.cn.android.R;
 import com.cn.android.common.MyLazyFragment;
 import com.cn.android.helper.ActivityStackManager;
-import com.cn.android.network.Constant;
-import com.cn.android.network.ServerUrl;
 import com.cn.android.ui.activity.CommodityManagementActivity;
 import com.cn.android.ui.activity.DiscountCouponActivity;
 import com.cn.android.ui.activity.EnterprisesActivity;
@@ -34,7 +32,6 @@ import com.cn.android.ui.activity.ThebalanceDetailsActivity;
 import com.cn.android.ui.activity.TheloginIdActivity;
 import com.cn.android.ui.activity.WithdrawDepositActivity;
 import com.cn.android.utils.DataUtils;
-import com.cn.android.utils.SPUtils;
 import com.hjq.dialog.MessageDialog;
 import com.hjq.image.ImageLoader;
 
@@ -104,6 +101,10 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
     LinearLayout llIsell;
     @BindView(R.id.ll_updateStore)
     LinearLayout llUpdateStore;
+    @BindView(R.id.tv_01)
+    TextView tv01;
+    @BindView(R.id.tv_02)
+    TextView tv02;
     private int order = 0;
 
     public static PersonalCenterFragment newInstance() {
@@ -117,24 +118,29 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @Override
     protected void initView() {
-        tvBalanceOfAccount.setText( DataUtils.getMoney( userdata().getUmoney() ) );
+        if (userdata() != null) {
+            tvBalanceOfAccount.setText( DataUtils.getMoney( userdata().getUmoney() ) );
 
-        if (TextUtils.isEmpty( userdata().getHeadImg() )) {
-            ImageLoader.with( this )
-                    .circle()
-                    .load( R.mipmap.test24 )
-                    .into( ivHear );
-        } else {
-            ImageLoader.with( this )
-                    .circle()
-                    .load( userdata().getHeadImg() )
-                    .into( ivHear );
-        }
+            if (TextUtils.isEmpty( userdata().getHeadImg() )) {
+                ImageLoader.with( this )
+                        .circle()
+                        .load( R.mipmap.test24 )
+                        .into( ivHear );
+            } else {
+                ImageLoader.with( this )
+                        .circle()
+                        .load( userdata().getHeadImg() )
+                        .into( ivHear );
+            }
 
-        if (userdata().getIsReal() == 2) {
-            tvEnterprises.setText( "已入驻" );
+            if (userdata().getIsReal() == 2) {
+                tvEnterprises.setText( "已入驻" );
+            }
+            if (userdata().getType() == 2) {
+                llPul.setVisibility( View.GONE );
+            }
+            tvName.setText( userdata().getNickname() );
         }
-        tvName.setText( userdata().getNickname() );
     }
 
     @Override

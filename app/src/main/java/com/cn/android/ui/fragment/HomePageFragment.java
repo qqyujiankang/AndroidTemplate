@@ -14,7 +14,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
 import com.cn.android.bean.HomeData;
 import com.cn.android.bean.SelectNewShop;
+import com.cn.android.common.MyActivity;
 import com.cn.android.common.MyLazyFragment;
+import com.cn.android.helper.ActivityStackManager;
 import com.cn.android.network.Constant;
 import com.cn.android.network.GetJsonDate;
 import com.cn.android.network.GsonUtils;
@@ -28,6 +30,7 @@ import com.cn.android.ui.activity.InformActivity;
 import com.cn.android.ui.activity.NformationForDetailsActivity;
 import com.cn.android.ui.activity.SearchActivity;
 import com.cn.android.ui.activity.StoreNameDetailsActivity;
+import com.cn.android.ui.activity.TheloginIdActivity;
 import com.cn.android.ui.activity.locationActivity;
 import com.cn.android.ui.adapter.CommodityAdapter;
 import com.cn.android.ui.adapter.CommodityClassifyAdapter;
@@ -62,6 +65,8 @@ import butterknife.OnClick;
 import cn.bertsir.zbar.Qr.ScanResult;
 import cn.bertsir.zbar.QrConfig;
 import cn.bertsir.zbar.QrManager;
+
+import static com.cn.android.common.MyActivity.Province;
 
 /**
  * 首页
@@ -133,15 +138,16 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
         presenetr = new PublicInterfaceePresenetr( this );
         smallLabel.setOnRefreshListener( this );
         smallLabel.setOnLoadMoreListener( this );
-
-        if (userdata().getType() == 1) {
-            tvQiQ.setVisibility( View.GONE );
-            ivInformation.setVisibility( View.VISIBLE );
-            rbn01.setVisibility( View.GONE );
-            llMarketingDivision.setVisibility( View.VISIBLE );
-            llHighQualityShops.setVisibility( View.VISIBLE );
+        if (userdata() != null) {
+            if (userdata().getType() == 1) {
+                tvQiQ.setVisibility( View.GONE );
+                ivInformation.setVisibility( View.VISIBLE );
+                rbn01.setVisibility( View.GONE );
+                llMarketingDivision.setVisibility( View.VISIBLE );
+                llHighQualityShops.setVisibility( View.VISIBLE );
+            }
         }
-        tvQiQ.setText( userdata().getArea() );
+        tvQiQ.setText( MyActivity.District );
         ImmersionBar.setTitleBar( getActivity(), netsv );
         rv03.setLayoutManager( new LinearLayoutManager( getContext(), LinearLayoutManager.HORIZONTAL, false ) );
         rv03.addItemDecoration( new SpaceItemDecoration( 30 ) );
@@ -262,7 +268,12 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
                 } );
                 break;
             case R.id.iv_RichScan:
-                startActivity( InformActivity.class );
+                if (isLogin()) {
+                    startActivity( InformActivity.class );
+                } else {
+                    startActivity( TheloginIdActivity.class );
+                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                }
                 break;
         }
     }
@@ -273,10 +284,14 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
     @Override
     public Map<String, Object> setPublicInterfaceData(int tag) {
         Map<String, Object> paramsMap = new HashMap<>();
-        paramsMap.put( "type", userdata().getType() );
-        paramsMap.put( "province", userdata().getProvince() );
-        paramsMap.put( "city", userdata().getCity() );
-        paramsMap.put( "area", userdata().getArea() );
+        if (userdata() != null) {
+            paramsMap.put( "type", userdata().getType() );
+        } else {
+            paramsMap.put( "type", "2" );
+        }
+        paramsMap.put( "province", MyActivity.Province );
+        paramsMap.put( "city", MyActivity.City );
+        paramsMap.put( "area", MyActivity.District );
 
         switch (tag) {
             case Constant.selectHome:
@@ -326,11 +341,12 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
                 appUserListBeanList = GsonUtils.getPersons( appUserList, HomeData.AppUserListBean.class );
                 shopInfoListBeanArrayList = GsonUtils.getPersons( shopInfoList, SelectNewShop.class );
                 shopTypeListBeanList = GsonUtils.getPersons( shopTypeList, HomeData.ShopTypeListBean.class );
-
-                if (userdata().getType() == 1) {
-                    theMarketingDivisionAdapter.setNewData( marketingUserListBeanList );
-                    highQualityShopsAdapter.setNewData( appUserListBeanList );
-                    marketingDivisionAdapter.setNewData( wordsInfoListBeanList );
+                if (userdata() != null) {
+                    if (userdata().getType() == 1) {
+                        theMarketingDivisionAdapter.setNewData( marketingUserListBeanList );
+                        highQualityShopsAdapter.setNewData( appUserListBeanList );
+                        marketingDivisionAdapter.setNewData( wordsInfoListBeanList );
+                    }
                 }
 
                 //homeData = GsonUtils.getPerson( data, HomeData.class );
@@ -400,7 +416,22 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
             selectNewShop = shopInfoListBeanArrayList.get( position );
             Intent intent = new Intent( getActivity(), CommodityDetailsActivity.class );
             intent.putExtra( "SelectNewShop", selectNewShop );
-            startActivity( intent );
+            switch (view.getId()) {
+                case R.id.Rl_01:
+                    startActivity( intent );
+                    break;
+                case R.id.iv:
+                    if (isLogin()) {
+                        intent.putExtra( "id", 1 );
+                        startActivity( intent );
+                    } else {
+                        startActivity( TheloginIdActivity.class );
+                        ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    }
+                    break;
+            }
+
+
         } else if (adapter instanceof CommodityClassifyAdapter) {
             if (position != 9) {
                 ((HomeActivity) getActivity()).onFragmentClick( position );
@@ -420,8 +451,22 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
             selectNewShop = shopInfoListBeanArrayList.get( position );
             Intent intent = new Intent( getActivity(), CommodityDetailsActivity.class );
             intent.putExtra( "SelectNewShop", selectNewShop );
+            switch (view.getId()) {
+                case R.id.Rl_01:
+                    startActivity( intent );
+                    break;
+                case R.id.iv_guo_wu:
+                    if (isLogin()) {
+                        intent.putExtra( "id", 1 );
+                        startActivity( intent );
+                    } else {
+                        startActivity( TheloginIdActivity.class );
+                        ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    }
+                    break;
+            }
 
-            startActivity( intent );
+
         }
     }
 }

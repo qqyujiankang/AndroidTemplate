@@ -56,36 +56,36 @@ public final class HomeActivity extends MyActivity
     @Override
     protected void initView() {
 
-        mViewPager.addOnPageChangeListener(this);
-        mViewPager.setNoScroll(true);
+        mViewPager.addOnPageChangeListener( this );
+        mViewPager.setNoScroll( true );
 
 
         // 不使用图标默认变色
-        mBottomNavigationView.setItemIconTintList(null);
-        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+        mBottomNavigationView.setItemIconTintList( null );
+        mBottomNavigationView.setOnNavigationItemSelectedListener( this );
 
-        KeyboardWatcher.with(this)
-                .setListener(this);
+        KeyboardWatcher.with( this )
+                .setListener( this );
     }
 
     @Override
     protected void initData() {
-        mPagerAdapter = new BaseFragmentAdapter<>(this);
-        mPagerAdapter.addFragment(HomePageFragment.newInstance());
-        mPagerAdapter.addFragment(classifyFragment);
-        mPagerAdapter.addFragment(ShoppingTrolleyFragment.newInstance());
-        mPagerAdapter.addFragment(PersonalCenterFragment.newInstance());
+        mPagerAdapter = new BaseFragmentAdapter<>( this );
+        mPagerAdapter.addFragment( HomePageFragment.newInstance() );
+        mPagerAdapter.addFragment( classifyFragment );
+        mPagerAdapter.addFragment( ShoppingTrolleyFragment.newInstance() );
+        mPagerAdapter.addFragment( PersonalCenterFragment.newInstance() );
 
-        mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setAdapter( mPagerAdapter );
 
         // 限制页面数量
-        mViewPager.setOffscreenPageLimit(mPagerAdapter.getCount());
+        mViewPager.setOffscreenPageLimit( mPagerAdapter.getCount() );
     }
 
     public void onFragmentClick(int position) {
-        mViewPager.setCurrentItem(1);
-        mBottomNavigationView.setSelectedItemId(R.id.home_found);
-        classifyFragment.onClick(position);
+        mViewPager.setCurrentItem( 1 );
+        mBottomNavigationView.setSelectedItemId( R.id.home_found );
+        classifyFragment.onClick( position );
     }
 
     /**
@@ -101,16 +101,22 @@ public final class HomeActivity extends MyActivity
 
         switch (position) {
             case 0:
-                mBottomNavigationView.setSelectedItemId(R.id.menu_home);
+                mBottomNavigationView.setSelectedItemId( R.id.menu_home );
                 break;
             case 1:
-                mBottomNavigationView.setSelectedItemId(R.id.home_found);
+                mBottomNavigationView.setSelectedItemId( R.id.home_found );
                 break;
             case 2:
-                mBottomNavigationView.setSelectedItemId(R.id.home_message);
+                mBottomNavigationView.setSelectedItemId( R.id.home_message );
                 break;
             case 3:
-                mBottomNavigationView.setSelectedItemId(R.id.home_me);
+                if (isLogin()) {
+                    mBottomNavigationView.setSelectedItemId( R.id.home_me );
+                } else {
+                    startActivity( TheloginIdActivity.class );
+                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                }
+
                 break;
 
         }
@@ -130,16 +136,21 @@ public final class HomeActivity extends MyActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_home:
-                mViewPager.setCurrentItem(0);
+                mViewPager.setCurrentItem( 0 );
                 return true;
             case R.id.home_found:
-                mViewPager.setCurrentItem(1);
+                mViewPager.setCurrentItem( 1 );
                 return true;
             case R.id.home_message:
-                mViewPager.setCurrentItem(2);
+                mViewPager.setCurrentItem( 2 );
                 return true;
             case R.id.home_me:
-                mViewPager.setCurrentItem(3);
+                if (isLogin()) {
+                    mViewPager.setCurrentItem( 3 );
+                } else {
+                    startActivity( TheloginIdActivity.class );
+                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                }
                 return true;
 //
 
@@ -152,29 +163,29 @@ public final class HomeActivity extends MyActivity
      */
     @Override
     public void onSoftKeyboardOpened(int keyboardHeight) {
-        mBottomNavigationView.setVisibility(View.GONE);
+        mBottomNavigationView.setVisibility( View.GONE );
     }
 
     @Override
     public void onSoftKeyboardClosed() {
-        mBottomNavigationView.setVisibility(View.VISIBLE);
+        mBottomNavigationView.setVisibility( View.VISIBLE );
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // 回调当前 Fragment 的 onKeyDown 方法
-        if (mPagerAdapter.getCurrentFragment().onKeyDown(keyCode, event)) {
+        if (mPagerAdapter.getCurrentFragment().onKeyDown( keyCode, event )) {
             return true;
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown( keyCode, event );
     }
 
     @Override
     public void onBackPressed() {
         if (DoubleClickHelper.isOnDoubleClick()) {
             //移动到上一个任务栈，避免侧滑引起的不良反应
-            moveTaskToBack(false);
-            postDelayed(new Runnable() {
+            moveTaskToBack( false );
+            postDelayed( new Runnable() {
 
                 @Override
                 public void run() {
@@ -183,17 +194,17 @@ public final class HomeActivity extends MyActivity
                     // 销毁进程（请注意：调用此 API 可能导致当前 Activity onDestroy 方法无法正常回调）
                     // System.exit(0);
                 }
-            }, 300);
+            }, 300 );
         } else {
-            toast(R.string.home_exit_hint);
+            toast( R.string.home_exit_hint );
         }
     }
 
     @Override
     protected void onDestroy() {
-        mViewPager.removeOnPageChangeListener(this);
-        mViewPager.setAdapter(null);
-        mBottomNavigationView.setOnNavigationItemSelectedListener(null);
+        mViewPager.removeOnPageChangeListener( this );
+        mViewPager.setAdapter( null );
+        mBottomNavigationView.setOnNavigationItemSelectedListener( null );
         super.onDestroy();
     }
 
@@ -202,14 +213,6 @@ public final class HomeActivity extends MyActivity
         super.onResume();
 
 
-//        anInt = getIntent().getIntExtra("name", 0);
-//        if (anInt == 1) {
-//            mViewPager.setCurrentItem(1);
-//            mBottomNavigationView.setSelectedItemId(R.id.home_found);
-//        } else {
-//            mViewPager.setCurrentItem(0);
-//            mBottomNavigationView.setSelectedItemId(R.id.menu_home);
-//        }
     }
 
 

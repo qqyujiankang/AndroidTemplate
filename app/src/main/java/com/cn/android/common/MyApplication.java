@@ -25,6 +25,8 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
@@ -51,7 +53,10 @@ public final class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+            // 三个参数分别是上下文、应用的appId、是否检查签名（默认为false）
+        IWXAPI mWxApi = WXAPIFactory.createWXAPI( this, "wx45d9da477e2b96ee", true );
+            // 注册
+        mWxApi.registerApp( "wx45d9da477e2b96ee" );
         initSDK( this );
 
 
@@ -145,7 +150,6 @@ public final class MyApplication extends Application {
         // 使用 Dex分包
 //        MultiDex.install(this);
     }
-
 
 
 }

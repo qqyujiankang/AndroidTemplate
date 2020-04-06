@@ -58,7 +58,7 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
         return R.layout.activity_product_list;
     }
 
-    private String typeid,search;
+    private String typeid, search;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -96,12 +96,16 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
     @Override
     public Map<String, Object> setPublicInterfaceData(int tag) {
         Map<String, Object> paramsMap = new HashMap<>();
-        paramsMap.put( "province", userdata().getProvince() );
-        paramsMap.put( "city", userdata().getCity() );
-        paramsMap.put( "area", userdata().getArea() );
+        paramsMap.put( "province", Province );
+        paramsMap.put( "city", City );
+        paramsMap.put( "area", District );
         paramsMap.put( "page", page );
         paramsMap.put( "rows", rows );
-        paramsMap.put( "type", userdata().getType() );
+        if (userdata() != null) {
+            paramsMap.put( "type", userdata().getType() );
+        } else {
+            paramsMap.put( "type", 2 );
+        }
         switch (tag) {
             case Constant.selectShopListByShopType:
                 paramsMap.put( "typeid", typeid );
@@ -110,9 +114,6 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
                 paramsMap.put( "search", search );
                 break;
         }
-
-
-
 
 
         return paramsMap;
@@ -132,7 +133,7 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
             shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
             shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
             commodityAdapte1r.replaceData( shopInfoListBeanArrayLis1 );
-        } else if (shopInfoListBeanArrayLis1.size()==0){
+        } else if (shopInfoListBeanArrayLis1.size() == 0) {
             ivHintIcon.show();
         }
     }
@@ -149,7 +150,17 @@ public class ProductListActivity extends MyActivity implements PublicInterfaceVi
         selectNewShop = shopInfoListBeanArrayLis1.get( position );
         Intent intent = new Intent( getActivity(), CommodityDetailsActivity.class );
         intent.putExtra( "SelectNewShop", selectNewShop );
-        startActivity( intent );
+        switch (view.getId()) {
+            case R.id.Rl_01:
+                startActivity( intent );
+                break;
+            case R.id.iv:
+                intent.putExtra( "id", 1 );
+                startActivity( intent );
+                break;
+        }
+
+
     }
 
 

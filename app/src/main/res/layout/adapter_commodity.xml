@@ -37,7 +37,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="19dp"
                 android:layout_marginTop="@dimen/dp_10"
-                android:src="@mipmap/zhaoxiangji" />
+               />
 
             <TextView
                 android:id="@+id/tv_name"

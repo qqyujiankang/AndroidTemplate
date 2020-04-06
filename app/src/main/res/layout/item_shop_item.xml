@@ -12,7 +12,7 @@
         android:layout_width="61dp"
         android:layout_height="46dp"
         android:layout_marginTop="10dp"
-        tools:src="@mipmap/test1" />
+        />
 
     <TextView
         android:id="@+id/shop_name"

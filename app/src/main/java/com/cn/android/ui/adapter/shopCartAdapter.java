@@ -1,6 +1,9 @@
 package com.cn.android.ui.adapter;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,34 +24,39 @@ import java.util.List;
 public class shopCartAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> {
     goodsCartAdapter adapter;
     private OnShopCartItemListener onShopCartItemListener;
-    public shopCartAdapter(@Nullable List<ShopBean> data,OnShopCartItemListener onShopCartItemListener) {
-        super(R.layout.item_cart_shop, data);
+    private Context context;
+
+    public shopCartAdapter(Context context, @Nullable List<ShopBean> data, OnShopCartItemListener onShopCartItemListener) {
+        super( R.layout.item_cart_shop, data );
         this.onShopCartItemListener = onShopCartItemListener;
+        this.context = context;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, ShopBean item) {
         final int pos = helper.getAdapterPosition();
-        RecyclerView recyclerView = helper.getView(R.id.shop_recycle);
-        recyclerView.setLayoutManager(new LinearLayoutManager(helper.itemView.getContext()));
-
+        helper.setText( R.id.shop_name, item.getStore_name() );
+        RecyclerView recyclerView = helper.getView( R.id.shop_recycle );
+        recyclerView.setLayoutManager( new LinearLayoutManager( helper.itemView.getContext() ) );
+        final CheckBox checkBox = helper.getView( R.id.parent_check );
+        checkBox.setChecked( item.isChecked() );
+        helper.setOnCheckedChangeListener( R.id.parent_check, new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!item.isChecked() && !checkBox.isChecked()) {
+                } else {
+                    onShopCartItemListener.OnParentCheckedListener( b, pos );
+                }
+            }
+        } );
         //recyclerView.addItemDecoration(new SpaceItemDecoration(1));
-        adapter = new goodsCartAdapter(item.getList(),pos,onShopCartItemListener);
-        recyclerView.setAdapter(adapter);
-        helper.getView(R.id.goods_num);
-
+        adapter = new goodsCartAdapter( context, pos, onShopCartItemListener );
+        recyclerView.setAdapter( adapter );
+        adapter.replaceData( item.getShopList() );
+        helper.getView( R.id.goods_num );
 
 
     }
 
-
-
-//    private List<ShopBean.ShopItem> getdata() {
-//        List<ShopBean> lists = new ArrayList<>();
-//        for (int i = 0; i < 2; i++) {
-//            lists.add(new ShopBean(""));
-//        }
-//        return lists;
-//    }
 
 }

@@ -59,5 +59,14 @@ public class Constant {
     public static final int selectStoreListByPid = 1143;
     public static final int selectShopByid = 1144;
     public static final int selectShopByID = 1144;
+    public static final int addOrderShop = 1145;
+    public static final int selectOrderShopsByUserid = 1146;
+    public static final int updateOrderShopNum = 1147;
+    public static final int deleteOrderShop = 1150;
+    public static final int deleteAllOrderShop = 1151;
+    public static final int buyOrderShop = 1152;
+    public static final int sureOrderShop = 1153;
+    public static final int selectMessgeList = 1154;
+    public static final int selectMessgeList1 = 1155;
 
 }

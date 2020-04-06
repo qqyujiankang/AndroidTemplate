@@ -15,8 +15,7 @@
             android:layout_width="94dp"
             android:layout_height="94dp"
             android:layout_marginLeft="19dp"
-            android:layout_marginTop="23dp"
-            android:src="@mipmap/zhaoxiangji" />
+            android:layout_marginTop="23dp" />
 
         <TextView
             android:id="@+id/tv_bame"
@@ -26,7 +25,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@+id/iv_tu"
-            android:text=""></TextView>
+            android:text="dsfsdfdsf" />
 
         <TextView
             android:id="@+id/tv_price"
@@ -36,7 +35,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/iv_tu"
-            android:text=""
+            android:text="456456"
             android:textSize="13sp" />
 
         <TextView
@@ -47,7 +46,8 @@
             android:layout_alignLeft="@+id/tv_price"
             android:layout_marginTop="5dp"
             android:drawableLeft="@mipmap/vip"
-            android:text=""
+            android:drawablePadding="3dp"
+            android:text="545"
             android:textColor="#EF4321" />
 
         <ImageView

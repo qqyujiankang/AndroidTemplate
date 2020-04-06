@@ -28,7 +28,6 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.TheEvaluationlistActivity"></activity>
         <!-- //开发者申请的key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -233,7 +232,8 @@
         <activity
             android:name=".ui.activity.SearchActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" /> <!-- 订单详情 -->
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" /> <!-- 订单详情 -->
         <activity
             android:name=".ui.activity.TheOrderDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -301,10 +301,29 @@
         <activity
             android:name=".ui.activity.SetupshopActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> <!-- 上传商品选择分类 -->
         <activity
             android:name=".ui.activity.CommodityClassificationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+
+        <!--      运单填写-->
+        <activity
+            android:name=".ui.activity.WaybillFillInActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!--        评价列表-->
+        <activity
+            android:name=".ui.activity.TheEvaluationlistActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!--    微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <service android:name="com.amap.api.location.APSService" />

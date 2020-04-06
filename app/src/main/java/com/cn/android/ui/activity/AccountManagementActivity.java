@@ -32,6 +32,13 @@ public class AccountManagementActivity extends MyActivity {
 
     @Override
     protected void initView() {
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         sbVersionChecking.setRightText( userdata().getUserphone() );
         if (userdata().getIsWechat() == 1) {
             sb02.setRightText( "已绑定" );

@@ -65,7 +65,7 @@ public abstract class MyActivity extends BaseActivity
         return 0;
     }
 
-    public String Province, City, District;
+    public static String Province, City, District;
 
     @Override
     protected void initActivity() {

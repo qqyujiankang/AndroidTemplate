@@ -7,8 +7,8 @@ import com.cn.android.utils.SPUtils;
  * Created by PC-122 on 2017/12/21.
  */
 public class ServerUrl {
-    public static String defaultIp = "http://192.168.0.125:8077";
-    // public static String defaultIp = "http://118.24.159.31:80";
+    public static String defaultIp = "http://192.168.0.119:8077";
+    //  public static String defaultIp = "http://118.24.159.31:80";
 
     public static String LOGIN_API = defaultIp + "/app/login/";
     public static String User_API = defaultIp + "/app/user/";
@@ -120,7 +120,24 @@ public class ServerUrl {
     public static String selectShopByid = defaultIp + "/app/shop/selectShopByid";
     //    企业 商品管理-编辑详情
     public static String selectShopByID = defaultIp + "/app/shop/selectShopByID";
+    //企业 商品管理-编辑
     public static String updateShopByUserid = defaultIp + "/app/shop/updateShopByUserid";
+    //    商品详情规格
+    public static String addOrderShop = defaultIp + "/app/shop/addOrderShop";
+    //    购物车列表
+    public static String selectOrderShopsByUserid = defaultIp + "/app/shop/selectOrderShopsByUserid";
+    //  购物车==改变数量
+    public static String updateOrderShopNum = defaultIp + "/app/shop/updateOrderShopNum";
+    //购物车==删除
+    public static String deleteOrderShop = defaultIp + "/app/shop/deleteOrderShop";
+    //购物车==清空购物车
+    public static String deleteAllOrderShop = defaultIp + "/app/shop/deleteAllOrderShop";
+    //立即购买
+    public static String buyOrderShop = defaultIp + "/app/shop/buyOrderShop";
+    //购物车结算
+    public static String sureOrderShop = defaultIp + "/app/shop/sureOrderShop";
+    //    我的消息
+    public static String selectMessgeList = defaultIp + "/app/user/selectMessgeList";
 
 
 }

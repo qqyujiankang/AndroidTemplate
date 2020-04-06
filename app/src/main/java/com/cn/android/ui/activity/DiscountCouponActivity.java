@@ -1,12 +1,16 @@
 package com.cn.android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
 import com.cn.android.bean.Commodity;
 import com.cn.android.bean.DiscountCoupon;
 import com.cn.android.common.MyActivity;
+import com.cn.android.helper.RadioButtonGroupHelper;
 import com.cn.android.network.Constant;
 import com.cn.android.network.GsonUtils;
 import com.cn.android.network.ServerUrl;
@@ -35,11 +39,11 @@ import butterknife.ButterKnife;
 /**
  * 优惠券
  */
-public class DiscountCouponActivity extends MyActivity implements PublicInterfaceView, OnRefreshListener, OnLoadMoreListener {
+public class DiscountCouponActivity extends MyActivity implements
+        PublicInterfaceView, OnRefreshListener, OnLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
 
 
     DiscountCouponAdapter discountCouponAdapter;
-    List<Commodity.DataBean> dataBeans = new ArrayList<>();
     @BindView(R.id.titleBar)
     TitleBar titleBar;
     @BindView(R.id.recyclerView)
@@ -49,6 +53,8 @@ public class DiscountCouponActivity extends MyActivity implements PublicInterfac
     @BindView(R.id.iv_hint_icon)
     HintLayout ivHintIcon;
     private PublicInterfaceePresenetr presenetr;
+    private boolean isUpRefresh = true;
+
 
     @Override
     protected int getLayoutId() {
@@ -64,6 +70,7 @@ public class DiscountCouponActivity extends MyActivity implements PublicInterfac
         recyclerView.addItemDecoration( new SpaceItemDecoration( 30 ) );
         discountCouponAdapter = new DiscountCouponAdapter( getActivity() );
         recyclerView.setAdapter( discountCouponAdapter );
+        discountCouponAdapter.setOnItemChildClickListener( this::onItemChildClick );
 
     }
 
@@ -72,13 +79,6 @@ public class DiscountCouponActivity extends MyActivity implements PublicInterfac
         showLoading();
         presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectConpostByUserid, Constant.selectConpostByUserid );
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
     }
 
     int page = 1;
@@ -104,14 +104,16 @@ public class DiscountCouponActivity extends MyActivity implements PublicInterfac
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
         showComplete();
-
+        if (isUpRefresh) {
+            couponArrayList1.clear();
+        }
+        smartRefresh.closeHeaderOrFooter();
         if (!data.equals( "[]" )) {
-            smartRefresh.closeHeaderOrFooter();
+            ivHintIcon.hide();
             couponArrayList = GsonUtils.getPersons( data, DiscountCoupon.class );
             couponArrayList1.addAll( couponArrayList );
-            Log.i( "Https=================", couponArrayList1.size() + "" );
             discountCouponAdapter.replaceData( couponArrayList1 );
-        } else if (couponArrayList.size()==0){
+        } else if (couponArrayList.size() == 0) {
             ivHintIcon.show();
         }
     }
@@ -124,14 +126,24 @@ public class DiscountCouponActivity extends MyActivity implements PublicInterfac
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        isUpRefresh = false;
         page = page + 1;
         initData();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        couponArrayList1.clear();
+        isUpRefresh = true;
         page = 1;
         initData();
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        DiscountCoupon discountCoupon = couponArrayList1.get( position );
+        Intent intent = getIntent();
+        intent.putExtra( "discountCoupon", discountCoupon );
+        setResult( 300, intent );
+        finish();
     }
 }

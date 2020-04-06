@@ -100,14 +100,17 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
     protected void initView() {
         ImmersionBar.setTitleBar( getActivity(), title );
         presenetr = new PublicInterfaceePresenetr( this );
+        if (userdata() != null) {
+            if (userdata().getType() == 1) {
+                ivRichScan.setBackground( getResources().getDrawable( R.mipmap.dian01 ) );
+                tvQiQ.setText( "分类" );
+                tvQiQ.setCompoundDrawablesWithIntrinsicBounds( null, null, null, null );
+            } else {
+                ivRichScan.setBackground( getResources().getDrawable( R.mipmap.xiaoxi ) );
 
-        if (userdata().getType() == 1) {
-            ivRichScan.setBackground( getResources().getDrawable( R.mipmap.dian01 ) );
-            tvQiQ.setText( "分类" );
-            tvQiQ.setCompoundDrawablesWithIntrinsicBounds( null, null, null, null );
+            }
         } else {
             ivRichScan.setBackground( getResources().getDrawable( R.mipmap.xiaoxi ) );
-
         }
         rvClassNmae.setLayoutManager( new LinearLayoutManager( getActivity() ) );
         shopRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
@@ -209,7 +212,11 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
 //
         switch (tag) {
             case Constant.selectFristTypeList:
-                paramsMap.put( "type", userdata().getType() );
+                if (userdata() != null) {
+                    paramsMap.put( "type", userdata().getType() );
+                } else {
+                    paramsMap.put( "type", 2 );
+                }
                 return paramsMap;
             case Constant.selectTypeListByPid:
                 paramsMap.put( "pid", pid );

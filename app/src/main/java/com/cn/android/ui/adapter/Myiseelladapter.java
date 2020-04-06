@@ -42,18 +42,19 @@ public class Myiseelladapter extends BaseQuickAdapter<MyOrder, BaseViewHolder> {
         helper.setText( R.id.tv_phone, item.getPhone() );
         helper.setText( R.id.tv_address, item.getAddress() );
         if (item.getStatus() == 2) {
-            helper.setGone( R.id.rl03, true );
-            helper.setText( R.id.tv_status, "待发货");
+            helper.setText( R.id.tv_status, "待发货" );
         } else if (item.getStatus() == 3) {
-            helper.setGone( R.id.rl03, true );
+            helper.setText( R.id.btn_01, "联系买家" );
+            helper.setText( R.id.btn_02, "查看物流" );
             helper.setText( R.id.tv_status, "已发货" );
+            helper.setBackgroundRes( R.id.btn_01, R.drawable.bg_w );
+            helper.setTextColor( R.id.btn_01, R.color.color666666 );
         } else if (item.getStatus() == 4) {
             helper.setText( R.id.btn_01, "联系买家" );
             helper.setText( R.id.btn_02, "查看物流" );
             helper.setText( R.id.tv_status, "已完成" );
             helper.setBackgroundRes( R.id.btn_01, R.drawable.bg_w );
             helper.setTextColor( R.id.btn_01, R.color.color666666 );
-            helper.setGone( R.id.rl03, true );
         }
 
     }

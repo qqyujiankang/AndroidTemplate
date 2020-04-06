@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentActivity;
 
+import com.cn.android.bean.Userdata;
+import com.cn.android.network.GsonUtils;
+import com.cn.android.utils.SPUtils;
 import com.hjq.dialog.base.BaseDialogFragment;
 import com.hjq.toast.ToastUtils;
 
@@ -21,7 +24,7 @@ public final class MyDialogFragment {
 
     public static class Builder<B extends MyDialogFragment.Builder>
             extends BaseDialogFragment.Builder<B> {
-
+        private Userdata userBean;
         public Builder(FragmentActivity activity) {
             super(activity);
         }
@@ -45,7 +48,12 @@ public final class MyDialogFragment {
         }
 
         public void toast(Object object) {
+
             ToastUtils.show(object);
+        }
+        public Userdata userdata() {
+            userBean = GsonUtils.getPerson( SPUtils.getString( "AppUser", "" ), Userdata.class );
+            return userBean;
         }
     }
 }

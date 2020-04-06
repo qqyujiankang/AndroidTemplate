@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ProductDetails {
 
+
     /**
      * shopid : 1
      * shopName : 商品名称商品名称商品名称商品名称

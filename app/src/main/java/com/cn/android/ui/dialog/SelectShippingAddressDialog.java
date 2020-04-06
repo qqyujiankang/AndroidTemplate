@@ -54,8 +54,6 @@ public class SelectShippingAddressDialog {
             rv01.setAdapter(shippingAddressAdatper);
             List<Commodity.DataBean> dataBeans = new ArrayList<>();
 
-            dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
-            dataBeans.add(new Commodity.DataBean("", "商品名称商品进尼康照相机商品名称商品名...", "100", "984", R.mipmap.zhaoxiangji));
             //shippingAddressAdatper.setNewData(dataBeans);
             shippingAddressAdatper.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                 @Override

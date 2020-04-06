@@ -30,6 +30,7 @@ import com.cn.android.ui.adapter.MorepicturesAdapter;
 import com.cn.android.utils.DataUtils;
 import com.cn.android.utils.L;
 import com.cn.android.utils.TimeUtils;
+import com.cn.android.widget.SpaceItemDecoration;
 import com.google.gson.Gson;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
@@ -68,11 +69,10 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     LinearLayout ll01;
     @BindView(R.id.ll02)
     LinearLayout ll02;
-    MorepicturesAdapter morepicturesAdapter;
+
     @BindView(R.id.relativeLayout)
     RecyclerView relativeLayout;
-    PublicInterfaceePresenetr presenetr;
-    FileOperationPresenetr fileOperation;
+
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.tv_01)
@@ -93,10 +93,15 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     NestedScrollView swap;
     @BindView(R.id.ll)
     LinearLayout ll;
+    @BindView(R.id.et_ser_mun)
+    EditText etSerMun;
     private ArrayList<String> morepicturesArrayList = new ArrayList<>();
     private ArrayList<String> morepicturesArrayList1 = new ArrayList<>();
     private int is_send = 0;
     SelectNewShop selectNewShop;
+    MorepicturesAdapter morepicturesAdapter;
+    PublicInterfaceePresenetr presenetr;
+    FileOperationPresenetr fileOperation;
 
     @Override
     protected int getLayoutId() {
@@ -112,6 +117,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
         morepicturesAdapter = new MorepicturesAdapter( getActivity() );
         relativeLayout.setAdapter( morepicturesAdapter );
         rv.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        rv.addItemDecoration( new SpaceItemDecoration( 1 ) );
         commercialSpecificationAdapter = new CommercialSpecificationAdapter( getActivity(), strings );
         rv.setAdapter( commercialSpecificationAdapter );
         commercialSpecificationAdapter.setNewData( strings );
@@ -222,6 +228,9 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
     }
 
     private void shangchuangshangpin() {
+        if (etSerMun.getText().toString().equals( "" )) {
+            toast( "请输入成交量" );
+        }
         if (etName.getText().toString().equals( "" )) {
             toast( "请输入宝贝名称" );
         }
@@ -378,6 +387,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
                 map.put( "shop_img", morepicturesArrayList1.get( 0 ) );
 
                 map.put( "img_urls", getimg() );
+                map.put( "sale_num", etSerMun.getText().toString().trim() );
 
 
                 return map;
@@ -419,9 +429,20 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
                     sbTestSwitch.setChecked( false );
                 }
                 if (uploadTheGoods.getSkuList().size() != 0) {
-                    for (int i = 0; i <= uploadTheGoods.getSkuList().size(); i++) {
-                        strings.get( i ).setprice( DataUtils.getMoney( uploadTheGoods.getSkuList().get( i ).getSkuPrice() ) );
-                        strings.get( i ).setGuiGe( uploadTheGoods.getSkuList().get( i ).getSkuName() );
+                    for (int i = 0; i < uploadTheGoods.getSkuList().size(); i++) {
+                        ShopGuiGeBean bean = new ShopGuiGeBean();
+                        if (uploadTheGoods.getSkuList().size() == 1) {
+                            bean.setClick( true );
+                        }
+                        if (uploadTheGoods.getSkuList().size() - 1 == i) {
+
+                            bean.setClick( true );
+                        } else {
+                            bean.setClick( false );
+                        }
+                        bean.setprice( DataUtils.getMoney( uploadTheGoods.getSkuList().get( i ).getSkuPrice() ) );
+                        bean.setGuiGe( uploadTheGoods.getSkuList().get( i ).getSkuName() );
+                        strings.add( bean );
                     }
                 } else {
                     strings.add( new ShopGuiGeBean( "", true ) );
@@ -467,5 +488,12 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
             tv01.setText( pidname + "-" + seconde_type_idname + "-" + three_type_idname );
 
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind( this );
     }
 }

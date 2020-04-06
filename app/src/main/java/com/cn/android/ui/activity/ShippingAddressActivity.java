@@ -55,6 +55,25 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
     SmartRefreshLayout smartRefresh;
     @BindView(R.id.btn_bind_commit)
     Button btnBindCommit;
+    private int id;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind( this );
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (aBoolean) {
+            aBoolean = false;
+            list1.clear();
+            initData();
+
+        }
+    }
 
     @Override
     protected int getLayoutId() {
@@ -63,6 +82,7 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
 
     @Override
     protected void initView() {
+        id = getIntent().getIntExtra( "id", 0 );
         smartRefresh.setOnRefreshListener( this );
         smartRefresh.setOnLoadMoreListener( this );
         presenetr = new PublicInterfaceePresenetr( this );
@@ -79,20 +99,8 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (aBoolean) {
-            aBoolean = false;
-            list1.clear();
-            initData();
-
-        }
-    }
-
-    @Override
     protected void initData() {
-
-
+        showLoading();
         presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectAddressByUserid, Constant.selectAddressByUserid );
     }
 
@@ -128,17 +136,18 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
         switch (tag) {
 
             case Constant.selectAddressByUserid:
+                showComplete();
                 smartRefresh.closeHeaderOrFooter();
                 if (isUpRefresh) {
                     list1.clear();
                 }
-
-
                 list = GsonUtils.getPersons( data, AddressByUserid.class );
+
                 list1.addAll( list );
 
                 if (list1.size() != 0) {
                     shippingAddressAdatper.replaceData( list1 );
+                    ivHintIcon.hide();
                 } else {
                     ivHintIcon.show();
                 }
@@ -151,13 +160,6 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
     @Override
     public void onPublicInterfaceError(String error, int tag) {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
     }
 
 
@@ -178,8 +180,18 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         AddressByUserid addressByUserid = (AddressByUserid) adapter.getItem( position );
-        Intent intent = new Intent( getActivity(), AddressDetailActivity.class );
+        Intent intent = new Intent();
         intent.putExtra( "addressByUserid", addressByUserid );
-        startActivity( intent );
+
+        if (id == 1) {
+            intent = getIntent();
+            setResult( 200,intent );
+            finish();
+        } else {
+            intent.setClass( getActivity(), AddressDetailActivity.class );
+
+            startActivity( intent );
+        }
+
     }
 }

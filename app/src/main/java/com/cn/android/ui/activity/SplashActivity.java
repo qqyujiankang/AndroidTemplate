@@ -96,7 +96,7 @@ public final class SplashActivity extends MyActivity
         finish();
         if (!isLogin()) {
 
-            startActivity( TheloginIdActivity.class );
+            startActivity( HomeActivity.class );
         } else {
             startActivity( HomeActivity.class );
         }

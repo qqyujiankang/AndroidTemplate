@@ -28,7 +28,7 @@
             android:layout_height="93dp"
             android:layout_below="@+id/iv_bao"
             android:layout_marginLeft="19dp"
-            android:src="@mipmap/zhaoxiangji" />
+            />
 
         <TextView
             android:id="@+id/tv_name"

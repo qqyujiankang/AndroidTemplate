@@ -44,5 +44,6 @@ public class CommodityAdapter extends BaseQuickAdapter<SelectNewShop, BaseViewHo
         ImageLoader.with( context ).load( item.getShopImg() ).into( imageView );
 
         helper.addOnClickListener( R.id.Rl_01 );
+        helper.addOnClickListener( R.id.iv );
     }
 }

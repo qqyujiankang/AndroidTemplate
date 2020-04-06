@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/space_268"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <CheckBox
         android:id="@+id/goods_check"
@@ -20,57 +20,57 @@
         android:id="@+id/goods_img"
         android:layout_width="@dimen/space_184"
         android:layout_height="@dimen/space_184"
+        android:layout_marginLeft="@dimen/space_20"
         android:src="@mipmap/test10"
         app:corner_radius="5dp"
-        android:layout_marginLeft="@dimen/space_20"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/goods_check" />
+        app:layout_constraintLeft_toRightOf="@+id/goods_check"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textSize="15sp"
-        android:layout_marginTop="5dp"
-        android:ellipsize="end"
-        android:maxLines="2"
         android:id="@+id/goods_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="大连美早樱桃1.8斤单果28- 30mm大连美早樱桃1.8斤单果28- 30mm"
-        app:layout_constraintTop_toTopOf="@+id/goods_img"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="@dimen/space_26"
         android:layout_marginLeft="@dimen/space_26"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="@dimen/space_26"
+        android:ellipsize="end"
         android:lineSpacingExtra="@dimen/space_10"
-        app:layout_constraintLeft_toRightOf="@+id/goods_img" />
+        android:maxLines="2"
+        android:text="大连美早樱桃1.8斤单果28- 30mm大连美早樱桃1.8斤单果28- 30mm"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toRightOf="@+id/goods_img"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goods_img" />
 
     <TextView
-        android:textSize="12sp"
         android:id="@+id/specifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="现货3斤"
-        android:drawableTint="@color/colorButtonDisable"
-        android:textColor="@color/colorButtonDisable"
         android:layout_marginTop="@dimen/space_2"
+        android:drawableTint="@color/colorButtonDisable"
+        android:text="现货3斤"
+        android:textColor="@color/colorButtonDisable"
+        android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="@+id/goods_name"
         app:layout_constraintTop_toBottomOf="@+id/goods_name" />
 
     <TextView
-        android:textSize="12sp"
         android:id="@+id/goods_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="¥10"
         android:textColor="@color/red"
-        app:layout_constraintLeft_toLeftOf="@+id/goods_name"
-        app:layout_constraintBottom_toBottomOf="@+id/goods_img" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/goods_img"
+        app:layout_constraintLeft_toLeftOf="@+id/goods_name" />
 
     <View
-        android:padding="10dp"
         android:id="@+id/view_1"
         android:layout_width="80dp"
         android:layout_height="@dimen/space_40"
         android:background="@drawable/shopcart_num_bg"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/goods_img"
         app:layout_constraintRight_toRightOf="@+id/goods_name" />
 
@@ -79,56 +79,56 @@
         android:id="@+id/goods_add"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/shopcart_jian"
-        android:background="@null"
         android:layout_margin="@dimen/space_10"
+        android:background="@null"
+        android:src="@drawable/shopcart_jian"
         android:tint="@color/colorButtonDisable"
-        app:layout_constraintTop_toTopOf="@+id/view_1"
         app:layout_constraintBottom_toBottomOf="@+id/view_1"
+        app:layout_constraintLeft_toLeftOf="@+id/view_1"
         app:layout_constraintRight_toLeftOf="@+id/view_2"
-        app:layout_constraintLeft_toLeftOf="@+id/view_1" />
+        app:layout_constraintTop_toTopOf="@+id/view_1" />
 
     <View
         android:id="@+id/view_2"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@+id/view_1"
+        android:background="@color/colorLine"
         app:layout_constraintBottom_toBottomOf="@+id/view_1"
         app:layout_constraintRight_toLeftOf="@+id/goods_num"
-        android:background="@color/colorLine" />
+        app:layout_constraintTop_toTopOf="@+id/view_1" />
 
     <TextView
         android:id="@+id/goods_num"
         android:layout_width="30dp"
         android:layout_height="0dp"
-        android:text="2"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="@+id/view_1"
+        android:text="2"
+        app:layout_constraintBottom_toBottomOf="@+id/view_1"
         app:layout_constraintLeft_toLeftOf="@+id/view_1"
         app:layout_constraintRight_toRightOf="@+id/view_1"
-        app:layout_constraintBottom_toBottomOf="@+id/view_1" />
+        app:layout_constraintTop_toTopOf="@+id/view_1" />
 
     <View
         android:id="@+id/view_3"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@+id/view_1"
+        android:background="@color/colorLine"
         app:layout_constraintBottom_toBottomOf="@+id/view_1"
         app:layout_constraintLeft_toRightOf="@+id/goods_num"
-        android:background="@color/colorLine" />
+        app:layout_constraintTop_toTopOf="@+id/view_1" />
 
     <ImageButton
         android:id="@+id/goods_jian"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/shopcart_add"
+        android:layout_margin="@dimen/space_10"
         android:background="@null"
         android:padding="@dimen/space_20"
-        android:layout_margin="@dimen/space_10"
+        android:src="@drawable/shopcart_add"
         android:tint="@color/colorButtonDisable"
-        app:layout_constraintTop_toTopOf="@+id/view_1"
         app:layout_constraintBottom_toBottomOf="@+id/view_1"
         app:layout_constraintLeft_toRightOf="@+id/view_3"
-        app:layout_constraintRight_toRightOf="@+id/view_1" />
+        app:layout_constraintRight_toRightOf="@+id/view_1"
+        app:layout_constraintTop_toTopOf="@+id/view_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

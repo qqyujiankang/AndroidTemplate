@@ -59,12 +59,10 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
     private PublicInterfaceePresenetr presenetr;
     CommodityManagementAdapter commodityManagementAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
-    }
+    private List<SelectNewShop> shopInfoListBeanArrayList = new ArrayList<>();
+    private List<SelectNewShop> shopInfoListBeanArrayLis1 = new ArrayList<>();
+    private String shopid = "";
+    private int position;
 
     @Override
     protected int getLayoutId() {
@@ -86,7 +84,9 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
         commodityManagementAdapter.setOnItemChildClickListener( this );
     }
 
-
+    /**
+     * 请求数据
+     */
     @Override
     protected void initData() {
         presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopsByUserid, Constant.selectShopsByUserid );
@@ -95,16 +95,23 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
 
     private String type = "1";
 
+    /**
+     * 点击事件
+     * 点击之前把list的数据清楚
+     * type 1 已发布 2 草稿箱
+     *
+     * @param view
+     */
     @OnClick({R.id.rbt_obligation, R.id.rbt_To_send_the_goods})
     public void onViewClicked(View view) {
+        shopInfoListBeanArrayLis1.clear();
         switch (view.getId()) {
             case R.id.rbt_obligation:
-                shopInfoListBeanArrayLis1.clear();
+
                 type = "1";
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopsByUserid, Constant.selectShopsByUserid );
                 break;
             case R.id.rbt_To_send_the_goods:
-                shopInfoListBeanArrayLis1.clear();
                 type = "2";
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopsByUserid, Constant.selectShopsByUserid );
 
@@ -142,10 +149,12 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
         return null;
     }
 
-    private List<SelectNewShop> shopInfoListBeanArrayList = new ArrayList<>();
-    private List<SelectNewShop> shopInfoListBeanArrayLis1 = new ArrayList<>();
-    private String shopid = "";
-    private int position;
+    /**
+     * 网络数据返回
+     *
+     * @param data
+     * @param tag
+     */
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
@@ -160,7 +169,7 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
                     shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
                     shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
                     commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
-                } else if (shopInfoListBeanArrayLis1.size()==0){
+                } else if (shopInfoListBeanArrayLis1.size() == 0) {
                     ivHintIcon.show();
                 }
                 break;

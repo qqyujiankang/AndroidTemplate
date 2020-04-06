@@ -38,7 +38,7 @@
                 android:layout_height="45dp"
 
 
-                android:src="@mipmap/test1" />
+                />
         </LinearLayout>
 
 

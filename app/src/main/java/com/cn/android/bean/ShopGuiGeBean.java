@@ -5,6 +5,9 @@ public class ShopGuiGeBean {
     private String price;
     private boolean isClick;
 
+    public ShopGuiGeBean() {
+    }
+
     public ShopGuiGeBean(String sku_name, boolean isClick) {
         this.sku_name = sku_name;
         this.isClick = isClick;

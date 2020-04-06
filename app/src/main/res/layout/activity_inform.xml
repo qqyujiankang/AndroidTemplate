@@ -92,9 +92,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -102,14 +103,13 @@
         android:background="@color/white">
 
         <ImageView
-            android:src="@mipmap/youhuicuxiao"
             android:id="@+id/iv_f"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="10dp"
-            />
+            android:src="@mipmap/youhuicuxiao" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -133,6 +133,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -142,22 +143,22 @@
             android:textColor="#666666"
             android:textSize="10sp"></TextView>
     </RelativeLayout>
+
     <RelativeLayout
 
-        android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:background="@color/white">
 
         <ImageView
-            android:src="@mipmap/zhanghutongzhi"
             android:id="@+id/iv_fd"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="10dp"
-            />
+            android:src="@mipmap/zhanghutongzhi" />
 
         <TextView
             android:id="@+id/tv_name1"
@@ -181,6 +182,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_time1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -190,22 +192,22 @@
             android:textColor="#666666"
             android:textSize="10sp"></TextView>
     </RelativeLayout>
+
     <RelativeLayout
 
-        android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:background="@color/white">
 
         <ImageView
-            android:src="@mipmap/dianpu"
             android:id="@+id/iv_fd1"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="10dp"
-            />
+            android:src="@mipmap/dianpu" />
 
         <TextView
             android:id="@+id/tv_name2"

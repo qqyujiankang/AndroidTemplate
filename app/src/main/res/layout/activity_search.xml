@@ -25,7 +25,6 @@
             android:background="@mipmap/bar_icon_back_black" />
 
         <com.hjq.widget.view.ClearEditText
-
             android:id="@+id/search_txt"
             style="@style/EditTextStyle"
             android:layout_width="wrap_content"

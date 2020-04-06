@@ -30,5 +30,6 @@ public class NotCommodityAdapter extends BaseQuickAdapter<SelectNewShop, BaseVie
         helper.setText( R.id.tv_price, context.getString( R.string.test01 ) + item.getSellPrice() );
         helper.setText( R.id.iv_vpi_price, context.getString( R.string.test01 ) + "" + item.getVipPrice() );
         helper.addOnClickListener( R.id.Rl_01 );
+        helper.addOnClickListener( R.id.iv_guo_wu );
     }
 }

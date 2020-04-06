@@ -57,7 +57,6 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:text="29.00"
                     android:id="@+id/tv_02"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,28 +65,30 @@
                     android:layout_marginTop="22dp"
                     android:drawableLeft="@mipmap/vip"
                     android:drawablePadding="10dp"
+                    android:text="29.00"
                     android:textColor="#EF4321"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
                     android:id="@+id/tv_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_02"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginTop="5dp"
                     android:layout_toRightOf="@+id/tv_02"
                     android:text="155"
                     android:textColor="#999999"
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/tv_sale_mun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_02"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:text="成交量"
+                    android:text=""
                     android:textColor="#AAAAAA" />
 
 
@@ -159,10 +160,10 @@
 
                 <com.hjq.widget.layout.SettingBar
                     android:id="@+id/sb_add0"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
+                    android:visibility="gone"
                     app:bar_leftText="评价"
                     app:bar_rightIcon="@drawable/ico_go_black" />
 

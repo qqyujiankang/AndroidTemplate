@@ -28,7 +28,7 @@
             android:layout_width="130dp"
             android:layout_height="110dp"
             android:layout_marginTop="10dp"
-            android:src="@mipmap/zhaoxiangji"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,6 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
         <ImageView
+            android:id="@+id/iv_guo_wu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"

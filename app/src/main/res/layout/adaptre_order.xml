@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_dialog_rounded_corner_5">
+
+        <ImageView
+            android:id="@+id/iv_tet10"
+            android:layout_width="94.5dp"
+            android:layout_height="94.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:src="@mipmap/test10" />
+
+        <TextView
+            android:id="@+id/tv_test02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_tet10"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/iv_tet10"
+            android:text="【Manuka Health 蜜纽康】瑞瓦 瑞瓦蜂蜜 Rewarewa 2瓶"></TextView>
+
+        <TextView
+            android:id="@+id/tv_test03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_test02"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_tet10"
+
+            android:text="规格 350g" />
+
+        <TextView
+            android:id="@+id/tv_shop_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_test03"
+            android:layout_alignBottom="@+id/iv_tet10"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_tet10"
+
+            android:text="X2" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_tet10"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"
+            android:text="￥48.45"
+            android:textColor="#EF4321" />
+
+        <View
+            android:id="@+id/vv_2"
+            style="@style/HorizontalLineStyle"
+            android:layout_below="@+id/iv_tet10" />
+
+
+    </RelativeLayout>
+</LinearLayout>

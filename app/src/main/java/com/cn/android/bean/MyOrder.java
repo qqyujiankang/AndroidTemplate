@@ -150,7 +150,8 @@ public class MyOrder implements Parcelable {
         this.shopList = shopList;
     }
 
-    public static class ShopListBean {
+    public static class ShopListBean implements Parcelable {
+
         /**
          * shop_money : 10
          * ctime : 2020-03-30 12:12:12
@@ -229,6 +230,47 @@ public class MyOrder implements Parcelable {
         public void setShop_num(int shop_num) {
             this.shop_num = shop_num;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt( this.shop_money );
+            dest.writeString( this.ctime );
+            dest.writeString( this.shop_img );
+            dest.writeString( this.sku_name );
+            dest.writeString( this.shopid );
+            dest.writeString( this.shop_name );
+            dest.writeInt( this.shop_num );
+        }
+
+        public ShopListBean() {
+        }
+
+        protected ShopListBean(Parcel in) {
+            this.shop_money = in.readInt();
+            this.ctime = in.readString();
+            this.shop_img = in.readString();
+            this.sku_name = in.readString();
+            this.shopid = in.readString();
+            this.shop_name = in.readString();
+            this.shop_num = in.readInt();
+        }
+
+        public static final Creator<ShopListBean> CREATOR = new Creator<ShopListBean>() {
+            @Override
+            public ShopListBean createFromParcel(Parcel source) {
+                return new ShopListBean( source );
+            }
+
+            @Override
+            public ShopListBean[] newArray(int size) {
+                return new ShopListBean[size];
+            }
+        };
     }
 
 

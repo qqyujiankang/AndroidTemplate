@@ -35,6 +35,7 @@ public class DiscountCouponAdapter extends BaseQuickAdapter<DiscountCoupon, Base
         }
         helper.setText( R.id.tv_price, context.getString( R.string.test01 ) + item.getUseMoney() + "" );
         helper.setText( R.id.tv_usable, item.getContent() );
-        helper.setText( R.id.tv_time, item.getStime() + item.getEtime() );
+        helper.setText( R.id.tv_time, item.getStime() + "-"+item.getEtime() );
+        helper.addOnClickListener( R.id.ll01 );
     }
 }

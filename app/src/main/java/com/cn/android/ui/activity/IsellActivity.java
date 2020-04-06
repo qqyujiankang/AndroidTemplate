@@ -1,5 +1,6 @@
 package com.cn.android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -78,8 +80,9 @@ public class IsellActivity extends MyActivity implements PublicInterfaceView, Ba
         recyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
         recyclerView.addItemDecoration( new SpaceItemDecoration( 10 ) );
         adapter = new Myiseelladapter( getActivity() );
-        adapter.setOnItemChildClickListener( this::onItemChildClick );
         recyclerView.setAdapter( adapter );
+        adapter.setOnItemChildClickListener( this::onItemChildClick );
+
 
     }
 
@@ -94,11 +97,14 @@ public class IsellActivity extends MyActivity implements PublicInterfaceView, Ba
     public void onViewClicked(View view) {
         myOrderArrayList.clear();
         page = 1;
-
+        adapter = new Myiseelladapter( getActivity() );
+        recyclerView.setAdapter( adapter );
+        adapter.setOnItemChildClickListener( this::onItemChildClick );
         switch (view.getId()) {
             case R.id.rbt_obligation:
 
                 order = "";
+
                 initData();
                 break;
             case R.id.rbt_To_send_the_goods:
@@ -132,8 +138,7 @@ public class IsellActivity extends MyActivity implements PublicInterfaceView, Ba
 
                 return paramsMap;
             case Constant.sureSendOrder:
-                paramsMap.put( "ordercode", dataBean.getOrdercode() );
-                paramsMap.put( "shop_userid", dataBean.getShop_user_id() );
+
                 return paramsMap;
         }
         return null;
@@ -160,8 +165,7 @@ public class IsellActivity extends MyActivity implements PublicInterfaceView, Ba
                 }
                 break;
             case Constant.sureSendOrder:
-                myOrderArrayList.remove( getPage );
-                adapter.replaceData( myOrderArrayList );
+
 
                 break;
         }
@@ -185,8 +189,9 @@ public class IsellActivity extends MyActivity implements PublicInterfaceView, Ba
                 if (dataBean.getStatus() == 4) {
                     startActivity( ServiceActivity.class );
                 } else if (dataBean.getStatus() == 2) {
-                    //startActivity( ServiceActivity.class );
-                    presenetr.getPostTokenRequest( getActivity(), ServerUrl.sureSendOrder, Constant.sureSendOrder );
+                    Intent intent = new Intent( getActivity(), WaybillFillInActivity.class );
+                    intent.putExtra( "dataBean", dataBean );
+                    startActivityForResult( intent, 200 );
                 }
                 break;
             case R.id.btn_02:
@@ -213,5 +218,15 @@ public class IsellActivity extends MyActivity implements PublicInterfaceView, Ba
         isUpRefresh = true;
         page = 1;
         initData();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult( requestCode, resultCode, data );
+        if (requestCode == 200 && resultCode == 200) {
+            myOrderArrayList.clear();
+            page = 1;
+            initData();
+        }
     }
 }
