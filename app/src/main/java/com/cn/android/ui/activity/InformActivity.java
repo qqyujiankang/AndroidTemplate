@@ -15,6 +15,7 @@ import com.cn.android.network.GsonUtils;
 import com.cn.android.network.ServerUrl;
 import com.cn.android.presenter.PublicInterfaceePresenetr;
 import com.cn.android.presenter.view.PublicInterfaceView;
+import com.cn.android.ui.activity.rong.ConversationListActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,7 +100,7 @@ public class InformActivity extends MyActivity implements PublicInterfaceView {
                 startActivity( intent );
                 break;
             case R.id.ll_my_team://kefu
-                startActivity( ServiceActivity.class );
+                startActivity( ConversationListActivity.class );
 
                 break;
 

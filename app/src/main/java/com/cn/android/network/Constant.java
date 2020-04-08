@@ -68,5 +68,6 @@ public class Constant {
     public static final int sureOrderShop = 1153;
     public static final int selectMessgeList = 1154;
     public static final int selectMessgeList1 = 1155;
+    public static final int selectPoster = 1156;
 
 }

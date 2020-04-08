@@ -91,7 +91,7 @@ public class DetailsOfMarketingDivisionActivity extends MyActivity implements Pu
 
     @OnClick(R.id.iv_02)
     public void onViewClicked() {
-        new QRcoDialog.Builder( getActivity(), Gravity.TOP, "扫一扫二维码，加微信" ).show();
+        new QRcoDialog.Builder( getActivity(), Gravity.TOP, "扫一扫二维码，加微信" ,detailsOfMarketingDivision.getWechatImg()).show();
     }
 
     @Override

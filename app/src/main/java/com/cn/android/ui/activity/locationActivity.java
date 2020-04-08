@@ -1,5 +1,6 @@
 package com.cn.android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -31,8 +32,8 @@ public class locationActivity extends MyActivity implements OnAddressPickerSureL
 
     @Override
     protected void initView() {
-        apvAddress.setOnAddressPickerSure(this);
-
+        apvAddress.setOnAddressPickerSure( this );
+        tv0.setText(  Province+City+District);
     }
 
     @Override
@@ -42,17 +43,26 @@ public class locationActivity extends MyActivity implements OnAddressPickerSureL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
         // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        ButterKnife.bind( this );
     }
 
     @Override
-    public void onSureClick(String address, String provinceCode, String cityCode, String districtCode) {
-        Log.i("exp", "address====" + address +
+    public void onSureClick(String address, String provinceCode, String cityCode, String districtCode, String district) {
+        Log.i( "exp", "address====" + address +
                 "===address====" + provinceCode +
                 "address====" + cityCode + "" +
-                "address====" + districtCode);
+                "address====" + districtCode );
+        Intent intent = getIntent();
+        int id = getIntent().getIntExtra( "id", 0 );
+        intent.putExtra( "address", district );
+        if (id == 1) {
+
+            setResult( 200, intent );
+        } else if (id == 2) {
+            setResult( 201, intent );
+        }
         finish();
     }
 }

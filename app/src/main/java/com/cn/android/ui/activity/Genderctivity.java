@@ -57,15 +57,22 @@ public class Genderctivity extends MyActivity implements PublicInterfaceView, On
 
     @Override
     protected void initData() {
+        if (userdata().getSex().equals( "男" )) {
+            tvMan.setChecked( true );
+            tvConfidentiality.setChecked( false );
+            tvWoman.setChecked( false );
+        } else if (userdata().getSex().equals( "女" )) {
+            tvWoman.setChecked( true );
+            tvMan.setChecked( false );
+            tvConfidentiality.setChecked( false );
+        }else {
+            tvConfidentiality.setChecked( true );
+            tvWoman.setChecked( false );
+            tvMan.setChecked( false );
+        }
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
-    }
 
     @OnClick({R.id.ll_man, R.id.Rl_tv_woman, R.id.Rl_tv_confidentiality})
     public void onViewClicked(View view) {
@@ -109,7 +116,7 @@ public class Genderctivity extends MyActivity implements PublicInterfaceView, On
                 if (tvMan.isChecked()) {
                     sex = "男";
                 } else if (tvWoman.isChecked()) {
-                    sex = "男";
+                    sex = "女";
                 } else if (tvConfidentiality.isChecked()) {
                     sex = "保密";
 

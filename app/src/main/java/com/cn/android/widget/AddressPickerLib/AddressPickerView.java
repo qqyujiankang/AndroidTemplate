@@ -172,7 +172,7 @@ public class AddressPickerView extends RelativeLayout implements View.OnClickLis
             if (mOnAddressPickerSureListener != null) {
                 mOnAddressPickerSureListener.onSureClick(
                         mSelectProvice.getN() + mSelectCity.getN() + mSelectDistrict.getN(),
-                        mSelectProvice.getP(), mSelectCity.getP(), mSelectDistrict.getP());
+                        mSelectProvice.getP(), mSelectCity.getP(), mSelectDistrict.getP(),mSelectDistrict.getN());
             }
         } else {
             Toast.makeText(mContext, "地址还没有选完整哦", Toast.LENGTH_SHORT).show();
@@ -353,7 +353,7 @@ public class AddressPickerView extends RelativeLayout implements View.OnClickLis
      * 点确定回调这个接口
      */
     public interface OnAddressPickerSureListener {
-        void onSureClick(String address, String provinceCode, String cityCode, String districtCode);
+        void onSureClick(String address, String provinceCode, String cityCode, String districtCode,String district);
     }
 
     public void setOnAddressPickerSure(OnAddressPickerSureListener listener) {

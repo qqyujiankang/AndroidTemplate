@@ -212,7 +212,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
 
                 break;
             case R.id.ll_01:
-                is_send = 1;
+                is_send = 2;
                 shangchuangshangpin();
 
 
@@ -220,7 +220,7 @@ public class UploadTheGoodsActivity extends MyActivity implements BaseQuickAdapt
 
 
             case R.id.ll02:
-                is_send = 2;
+                is_send = 1;
                 shangchuangshangpin();
                 break;
         }

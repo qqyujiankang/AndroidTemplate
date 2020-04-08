@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cn.android.R;
+import com.cn.android.bean.AddressByUserid;
 import com.cn.android.bean.Commodity;
 import com.cn.android.bean.ProductDetails;
 import com.cn.android.bean.SelectNewShop;
@@ -22,6 +23,7 @@ import com.cn.android.network.GsonUtils;
 import com.cn.android.network.ServerUrl;
 import com.cn.android.presenter.PublicInterfaceePresenetr;
 import com.cn.android.presenter.view.PublicInterfaceView;
+import com.cn.android.ui.activity.rong.ConversationActivity;
 import com.cn.android.ui.adapter.EvaluateAdapter;
 import com.cn.android.ui.dialog.CommoditySpecificationDialog;
 import com.cn.android.ui.dialog.SelectShippingAddressDialog;
@@ -43,6 +45,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 /**
  * 商品详情
@@ -124,6 +128,9 @@ public class CommodityDetailsActivity extends MyActivity implements
     @Override
     protected void initData() {
         presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectShopByid, Constant.selectShopByid );
+        if (isLogin()) {
+            presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectAddressByUserid, Constant.selectAddressByUserid );
+        }
 
     }
 
@@ -144,19 +151,23 @@ public class CommodityDetailsActivity extends MyActivity implements
                 break;
             case R.id.sb_add:
                 if (isLogin()) {
-                    new SelectShippingAddressDialog.Builder( getActivity(), this ).show();
+                    new SelectShippingAddressDialog.Builder( getActivity(), this, list ).show();
 
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    // ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
 
                 break;
             case R.id.sb_account_management:
                 if (isLogin()) {
                     isllogn = 1;
+                    new CommoditySpecificationDialog.Builder( getActivity(), productDetails, 0, userdata().getType(), Constant.buyOrderShop ).show();
+
+                } else {
+                    new CommoditySpecificationDialog.Builder( getActivity(), productDetails, 0, 1, Constant.buyOrderShop ).show();
+
                 }
-                new CommoditySpecificationDialog.Builder( getActivity(), productDetails, 0, userdata().getType(), Constant.buyOrderShop ).show();
 
                 break;
 
@@ -167,7 +178,17 @@ public class CommodityDetailsActivity extends MyActivity implements
 
                 break;
             case R.id.tv_2:
-                startActivity( ServiceActivity.class );
+                //Intent intent=new Intent( getActivity(), ConversationActivity.class );
+                //startActivity( ConversationActivity.class );
+                /**
+                 * 启动会话界面。
+                 */
+                if (isLogin()) {
+                    RongIM.getInstance().startConversation( getActivity(), Conversation.ConversationType.PRIVATE, productDetails.getUserid(), productDetails.getShopName() );
+
+                } else {
+                    startActivity( TheloginIdActivity.class );
+                }
                 break;
             case R.id.tv_3:
                 // TODO: 2020/3/31
@@ -175,7 +196,7 @@ public class CommodityDetailsActivity extends MyActivity implements
                     presenetr.getPostTokenRequest( getActivity(), ServerUrl.sureConlectShopsByUserid, Constant.sureConlectShopsByUserid );
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    // ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
                 break;
             case R.id.btn_01:
@@ -191,7 +212,7 @@ public class CommodityDetailsActivity extends MyActivity implements
                     }
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    // ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
 
                 break;
@@ -200,16 +221,19 @@ public class CommodityDetailsActivity extends MyActivity implements
                     if (userdata().getType() == 1) {
                         if (userdata().getIsReal() == 2) {
                             new CommoditySpecificationDialog.Builder( getActivity(), productDetails, 1, userdata().getType(), Constant.buyOrderShop ).show();
+
                             //  startActivity( ConfirmAnOrderActivity.class );
                         } else {
                             new TostDialog.Builder( getActivity(), "您还未成为企业用户 请先完成企业认证" ).show();
                         }
                     } else {
-                        startActivity( ConfirmAnOrderActivity.class );
+                        new CommoditySpecificationDialog.Builder( getActivity(), productDetails, 1, userdata().getType(), Constant.buyOrderShop ).show();
+
+                        // startActivity( ConfirmAnOrderActivity.class );
                     }
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    //ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
 
 
@@ -225,9 +249,12 @@ public class CommodityDetailsActivity extends MyActivity implements
     }
 
     @Override
-    public void getaddressconfidence(Commodity.DataBean dataBean) {
-        log( dataBean );
+    public void getaddressconfidence(AddressByUserid dataBean) {
+        sbAdd.setLeftText( dataBean.getProCityArea() + dataBean.getAddress() );
     }
+
+    int page = 1;
+    int rows = 10;
 
     @Override
     public Map<String, Object> setPublicInterfaceData(int tag) {
@@ -243,14 +270,28 @@ public class CommodityDetailsActivity extends MyActivity implements
             case Constant.selectShopByid:
                 map.put( "shopid", selectNewShop.getId() );
                 return map;
+            case Constant.selectAddressByUserid:
+
+
+                map.put( "page", page );
+                map.put( "rows", rows );
+                return map;
 
         }
         return null;
     }
 
+    List<AddressByUserid> list = new ArrayList<>();
+
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
         switch (tag) {
+            case Constant.selectAddressByUserid:
+                list = GsonUtils.getPersons( data, AddressByUserid.class );
+                if (list.size() != 0) {
+                    sbAdd.setLeftText( list.get( 0 ).getProCityArea() + list.get( 0 ).getAddress() );
+                }
+                break;
             case Constant.sureConlectShopsByUserid:
 
                 break;
@@ -262,6 +303,9 @@ public class CommodityDetailsActivity extends MyActivity implements
                 tv.setText( "市场指导价:" + getString( R.string.test01 ) + productDetails.getSellPrice() );
                 tvSaleMun.setText( "成交量" + productDetails.getSaleNum() );
                 strings = TimeUtils.getStiringlist( productDetails.getImgUrls() );
+                if (productDetails.getSkuList().size() != 0) {
+                    sbAccountManagement.setLeftText( productDetails.getSkuList().get( 0 ).getSkuName() );
+                }
                 xbanner.setData( strings, null );
                 if (productDetails.getIs_conlect() == 1) {
                     tv3.setChecked( true );

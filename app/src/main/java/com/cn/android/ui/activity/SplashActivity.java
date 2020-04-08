@@ -1,5 +1,6 @@
 package com.cn.android.ui.activity;
 
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -17,6 +18,8 @@ import com.hjq.permissions.XXPermissions;
 import java.util.List;
 
 import butterknife.BindView;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 
 /**
  * author : Android 轮子哥
@@ -38,7 +41,7 @@ public final class SplashActivity extends MyActivity
 
     @BindView(R.id.tv_splash_debug)
     View mDebugView;
-
+    public  String Province, City, District;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
@@ -69,6 +72,7 @@ public final class SplashActivity extends MyActivity
                 // 透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为true)
                 .transparentNavigationBar()
                 .init();
+
     }
 
     @Override
@@ -94,7 +98,24 @@ public final class SplashActivity extends MyActivity
     public void hasPermission(List<String> granted, boolean isAll) {
         // startActivityFinish(HomeActivity.class);
         finish();
-        if (!isLogin()) {
+        if (isLogin()) {
+            RongIM.connect( userdata().getRongyunToken(), new RongIMClient.ConnectCallback() {
+                @Override
+                public void onTokenIncorrect() {
+
+                }
+
+                @Override
+                public void onSuccess(String userid) {
+                    Log.d( "TAG", "--onSuccess" + userid );//123456
+
+                }
+
+                @Override
+                public void onError(RongIMClient.ErrorCode errorCode) {
+                    Log.d( "TAG", "--onSuccess" + errorCode );
+                }
+            } );
 
             startActivity( HomeActivity.class );
         } else {

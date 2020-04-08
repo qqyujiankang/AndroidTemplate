@@ -123,6 +123,8 @@ public class ProductsCoverActivity extends MyActivity implements
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
+        showComplete();
+
         switch (tag) {
             case Constant.selectShopListByUserid:
                 if (isUpRefresh) {
@@ -139,6 +141,10 @@ public class ProductsCoverActivity extends MyActivity implements
                 }
                 break;
             case Constant.sortShopByUserid:
+                shopInfoListBeanArrayLis1.clear();
+                page=1;
+
+                initData();
                // shopInfoListBeanArrayLis1.remove( position );
                 //commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
                 break;
@@ -173,6 +179,7 @@ public class ProductsCoverActivity extends MyActivity implements
         switch (view.getId()) {
 
             case R.id.iv:
+                showLoading();
                 position = position;
                 shopid = shopInfoListBeanArrayLis1.get( position ).getId();
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.sortShopByUserid, Constant.sortShopByUserid );

@@ -11,33 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="邀请码" />
-
-    <RelativeLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@mipmap/invidtaion_code">
-
-        <ImageView
-            android:id="@+id/iv_code"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/tv_code"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_code"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@drawable/bg_radius_white_5"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="邀请码：ewu489"
-            android:textColor="#333333" />
-    </RelativeLayout>
+<ImageView
+    android:scaleType="fitXY"
+    android:id="@+id/iv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 </LinearLayout>

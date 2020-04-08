@@ -335,9 +335,11 @@ public class ShoppingTrolleyFragment extends MyLazyFragment<HomeActivity>
         return null;
     }
 
+    List<String> stringList;
+
     private String getids() {
         boolean checkedAll = true;
-        List<String> stringList = new ArrayList<>();
+        stringList = new ArrayList<>();
         for (ShopBean parentEntity : lists) {
             if (!parentEntity.isChecked()) {
                 checkedAll = false;
@@ -389,7 +391,7 @@ public class ShoppingTrolleyFragment extends MyLazyFragment<HomeActivity>
                 break;
             case Constant.sureOrderShop:
                 //  startActivity( ConfirmAnOrderActivity.class );
-                CommodityManagement  managements = GsonUtils.getPerson( data, CommodityManagement.class );
+                CommodityManagement managements = GsonUtils.getPerson( data, CommodityManagement.class );
                 Intent intent = new Intent( getActivity(), ConfirmAnOrderActivity.class );
                 intent.putExtra( "managements", managements );
                 getActivity().startActivity( intent );
@@ -439,8 +441,11 @@ public class ShoppingTrolleyFragment extends MyLazyFragment<HomeActivity>
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_jiesuan:
+                if (getids().equals( "[]" )) {
+                    toast( "请选择商品" );
+                    return;
+                }
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.sureOrderShop, Constant.sureOrderShop );
-
                 break;
             case R.id.tv_01://删除
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.deleteOrderShop, Constant.deleteOrderShop );

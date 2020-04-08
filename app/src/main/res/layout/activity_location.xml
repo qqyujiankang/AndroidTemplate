@@ -29,7 +29,7 @@
             android:layout_marginTop="5dp"
             android:drawableLeft="@mipmap/dinngwei01"
             android:drawablePadding="10dp"
-            android:text="西安雁塔区" />
+            android:text="" />
 
         <TextView
             android:layout_width="wrap_content"

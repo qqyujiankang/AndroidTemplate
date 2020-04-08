@@ -88,8 +88,8 @@ public class NewPersonalDataActivity extends MyActivity implements FileOperation
                     @Override
                     public void onSelect(List<String> data) {
                         ImageLoader.with( getActivity() )
+                                .circle()
                                 .load( data.get( 0 ) )
-                                .circle( 20 )
                                 .into( iv );
                         filePresenetr.uploadSingleFileRequest( getActivity(), "file",
                                 new File( data.get( 0 ) ), ServerUrl.upload, Constant.updateHeadImg );

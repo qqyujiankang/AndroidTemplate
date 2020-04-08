@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cn.android.R;
+import com.cn.android.bean.AddressByUserid;
 import com.cn.android.bean.Commodity;
 import com.cn.android.common.MyDialogFragment;
 import com.cn.android.ui.activity.AddressDetailActivity;
@@ -38,44 +39,43 @@ public class SelectShippingAddressDialog {
         ShippingAddressAdatper shippingAddressAdatper;
         GridLayoutManager gridLayoutManager;
         private FragmentActivity fragmentActivity;
-        Commodity.DataBean dataBean = new Commodity.DataBean();
 
-        public Builder(FragmentActivity activity, onaddressconfidence onaddressconfidence) {
-            super(activity);
+        public Builder(FragmentActivity activity, onaddressconfidence onaddressconfidence, List<AddressByUserid> list) {
+            super( activity );
             this.fragmentActivity = activity;
 
-            setContentView(R.layout.dialog_select_shipping_address);
-            shippingAddressAdatper = new ShippingAddressAdatper(getActivity());
-            rv01.addItemDecoration(new SpaceItemDecoration(10));
-            gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+            setContentView( R.layout.dialog_select_shipping_address );
+            shippingAddressAdatper = new ShippingAddressAdatper( getActivity() );
+            rv01.addItemDecoration( new SpaceItemDecoration( 10 ) );
+            gridLayoutManager = new GridLayoutManager( getActivity(), 1 );
             //设置RecycleView显示的方向是水平还是垂直 GridLayout.HORIZONTAL水平  GridLayout.VERTICAL默认垂直
             //设置布局管理器， 参数gridLayoutManager对象
-            rv01.setLayoutManager(gridLayoutManager);
-            rv01.setAdapter(shippingAddressAdatper);
-            List<Commodity.DataBean> dataBeans = new ArrayList<>();
+            rv01.setLayoutManager( gridLayoutManager );
+            rv01.setAdapter( shippingAddressAdatper );
 
+            shippingAddressAdatper.replaceData( list );
             //shippingAddressAdatper.setNewData(dataBeans);
-            shippingAddressAdatper.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            shippingAddressAdatper.setOnItemChildClickListener( new BaseQuickAdapter.OnItemChildClickListener() {
                 @Override
                 public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                    dataBean = (Commodity.DataBean) adapter.getData().get(position);
-                    onaddressconfidence.getaddressconfidence(dataBean);
+                    AddressByUserid  addressByUserid= (AddressByUserid) adapter.getData().get( position );
+                    onaddressconfidence.getaddressconfidence( addressByUserid );
                     dismiss();
                 }
-            });
-            setAnimStyle(BaseDialog.AnimStyle.BOTTOM);
-            setGravity(Gravity.BOTTOM);
+            } );
+            setAnimStyle( BaseDialog.AnimStyle.BOTTOM );
+            setGravity( Gravity.BOTTOM );
         }
 
         @OnClick(R.id.tv01)
         public void onViewClicked() {
-            Intent intent = new Intent(getActivity(), AddressDetailActivity.class);
-            fragmentActivity.startActivity(intent);
+            Intent intent = new Intent( getActivity(), AddressDetailActivity.class );
+            fragmentActivity.startActivity( intent );
 
         }
     }
 
     public interface onaddressconfidence {
-        void getaddressconfidence(Commodity.DataBean dataBean);
+        void getaddressconfidence(AddressByUserid dataBean);
     }
 }

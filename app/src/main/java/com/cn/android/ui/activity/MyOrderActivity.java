@@ -67,12 +67,6 @@ public class MyOrderActivity extends MyActivity implements
 //        setContentView();
 //    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind( this );
-    }
 
     @Override
     protected int getLayoutId() {
@@ -112,6 +106,17 @@ public class MyOrderActivity extends MyActivity implements
     protected void initData() {
 
         presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectOrderListByStatus, Constant.selectOrderListByStatus );
+
+    }
+
+    public static boolean aBoolean = false;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (aBoolean) {
+            aBoolean = false;
+        }
 
     }
 
@@ -213,7 +218,9 @@ public class MyOrderActivity extends MyActivity implements
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.surePickOrder, Constant.surePickOrder );
                 break;
             case R.id.Rl_01:
-                startActivity( TheOrderDetailsActivity.class );
+                Intent intent1 = new Intent( getActivity(), TheOrderDetailsActivity.class );
+                intent1.putExtra( "myOrder", shopInfoListBeanArrayLis1.get( position ) );
+                startActivity( intent1 );
                 break;
             case R.id.btn_02://CheckTheLogisticsActivity
 
@@ -221,7 +228,7 @@ public class MyOrderActivity extends MyActivity implements
                 break;
             case R.id.btn_login_commit:
                 if (shopInfoListBeanArrayLis1.get( position ).getStatus() == 3) {
-                    new QRcoDialog.Builder( getActivity(), Gravity.TOP, "扫码核销" ).show();
+                    new QRcoDialog.Builder( getActivity(), Gravity.TOP, "扫码核销","" ).show();
 
                 } else if (shopInfoListBeanArrayLis1.get( position ).getStatus() == 1) {
                     startActivity( ConfirmAnOrderActivity.class );

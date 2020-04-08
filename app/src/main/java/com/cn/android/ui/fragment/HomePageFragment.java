@@ -55,6 +55,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -215,6 +216,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rbn_02:
+
                 isUpRefresh = true;
                 page = 1;
                 selectNewShopArrayList.clear();
@@ -222,6 +224,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectNewShopList, Constant.selectNewShopList );
                 break;
             case R.id.rbn_01:
+
                 isUpRefresh = true;
                 page = 1;
                 selectNewShopArrayList.clear();
@@ -229,7 +232,9 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.selectNewShopList, Constant.selectNewShopList );
                 break;
             case R.id.tv_qi_q:
-                startActivity( locationActivity.class );
+                Intent intent=new Intent( getActivity(), locationActivity.class);
+                intent.putExtra( "id",1 );
+                startActivityForResult( intent ,200);
                 break;
             case R.id.sv_default:
                 startActivity( SearchActivity.class );
@@ -272,7 +277,7 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
                     startActivity( InformActivity.class );
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                   // ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
                 break;
         }
@@ -467,6 +472,15 @@ public class HomePageFragment extends MyLazyFragment<HomeActivity> implements
             }
 
 
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult( requestCode, resultCode, data );
+        if (requestCode==200&&resultCode==200){
+            String s=data.getStringExtra("address");
+            tvQiQ.setText( s );
         }
     }
 }

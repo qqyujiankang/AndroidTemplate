@@ -106,7 +106,10 @@ public class PublicInterfaceImpl implements PublicInterfaceBiz {
         L.e( "Https", "Post params ======= " + new Gson().toJson( paramsMap ) );
         if (null != paramsMap) {
             for (Map.Entry<String, Object> entry : paramsMap.entrySet()) {
-                params.put( entry.getKey(), entry.getValue().toString() );
+                if (entry.getValue()!=null){
+                    params.put( entry.getKey(), entry.getValue().toString() );
+                }
+
             }
         } else {
             paramsMap = new HashMap<>();
@@ -179,7 +182,7 @@ public class PublicInterfaceImpl implements PublicInterfaceBiz {
                 break;
             case 200:
                 if (!"ok".equals( new GetJsonDate().getJsonMsg( s ) )) {
-                    ToastUtils.show( new GetJsonDate().getJsonMsg( s ) );
+                    //ToastUtils.show( new GetJsonDate().getJsonMsg( s ) );
                 }
                 requestListener.onRequesSuccess( new GetJsonDate().getJsonData( s ) );
                 break;

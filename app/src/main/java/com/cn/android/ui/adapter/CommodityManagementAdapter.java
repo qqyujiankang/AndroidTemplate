@@ -49,10 +49,10 @@ public class CommodityManagementAdapter extends BaseQuickAdapter<SelectNewShop, 
         }
         helper.addOnClickListener( R.id.tv_03 );
         if (item.getIsUp() == 1) {
-            helper.setText( R.id.tv_03, "上架" );
+            helper.setText( R.id.tv_03, "下架" );
 
         } else if (item.getIsUp() == 2) {
-            helper.setText( R.id.tv_03, "下架" );
+            helper.setText( R.id.tv_03, "上架" );
         }
         if (context instanceof ProductsCoverActivity) {
 

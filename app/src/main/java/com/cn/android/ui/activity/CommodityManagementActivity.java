@@ -158,6 +158,7 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
+        showComplete();
         switch (tag) {
             case Constant.selectShopsByUserid:
                 if (isUpRefresh) {
@@ -165,7 +166,7 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
                 }
                 smartRefresh.closeHeaderOrFooter();
                 if (!data.equals( "[]" )) {
-
+                    ivHintIcon.hide();
                     shopInfoListBeanArrayList = GsonUtils.getPersons( data, SelectNewShop.class );
                     shopInfoListBeanArrayLis1.addAll( shopInfoListBeanArrayList );
                     commodityManagementAdapter.replaceData( shopInfoListBeanArrayLis1 );
@@ -212,6 +213,7 @@ public class CommodityManagementActivity extends MyActivity implements OnTitleBa
         shopid = shopInfoListBeanArrayLis1.get( position ).getId();
         switch (view.getId()) {
             case R.id.tv_03:
+                showLoading();
                 presenetr.getPostTokenRequest( getActivity(), ServerUrl.upShopByUserid, Constant.upShopByUserid );
                 break;
             case R.id.tv_02:

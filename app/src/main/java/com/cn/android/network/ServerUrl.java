@@ -138,6 +138,8 @@ public class ServerUrl {
     public static String sureOrderShop = defaultIp + "/app/shop/sureOrderShop";
     //    我的消息
     public static String selectMessgeList = defaultIp + "/app/user/selectMessgeList";
+    //    生成邀请码
+    public static String selectPoster = defaultIp + "/app/user/selectPoster";
 
 
 }

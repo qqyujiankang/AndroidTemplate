@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.cn.android.R;
 import com.cn.android.common.MyDialogFragment;
 import com.hjq.dialog.base.BaseDialog;
+import com.hjq.image.ImageLoader;
 
 import androidx.fragment.app.FragmentActivity;
 import butterknife.BindView;
@@ -36,12 +37,13 @@ public final class QRcoDialog {
         @BindView(R.id.tv)
         TextView tv;
 
-        public Builder(FragmentActivity activity, int i, String s) {
+        public Builder(FragmentActivity activity, int i, String s,String img) {
             super(activity);
 
             setContentView(R.layout.dialog_qr_code);
-            Bitmap qrCode = QRUtils.getInstance().createQRCode("www.qq.com");
-            ivCode.setImageBitmap(qrCode);
+           // Bitmap qrCode = QRUtils.getInstance().createQRCode("www.qq.com");
+           // ivCode.setImageBitmap(qrCode);
+            ImageLoader.with( getActivity() ).load( img ).into( ivCode );
             setAnimStyle(BaseDialog.AnimStyle.RIGHT);
             tv.setText(s);
             setGravity(i);

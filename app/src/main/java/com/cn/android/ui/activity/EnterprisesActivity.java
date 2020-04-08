@@ -165,6 +165,7 @@ public class EnterprisesActivity extends MyActivity implements PublicInterfaceVi
         userdata.setIsReal( 1 );
         SaveUserBean( userdata );
         startActivity( OpeningOfTheEnterpriseActivity.class );
+        finish();
     }
 
     @Override

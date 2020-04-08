@@ -43,6 +43,7 @@ public abstract class MyLazyFragment<A extends MyActivity>
     /** ButterKnife 注解 */
     private Unbinder mButterKnife;
     private Userdata userBean;
+
     /**
      * 获取标题栏 id
      */

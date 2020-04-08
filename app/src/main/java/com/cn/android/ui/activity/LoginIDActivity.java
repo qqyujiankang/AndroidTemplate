@@ -1,6 +1,8 @@
 package com.cn.android.ui.activity;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +26,9 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * 登录
@@ -118,16 +123,40 @@ public class LoginIDActivity extends MyActivity implements PublicInterfaceView {
 
     @Override
     public void onPublicInterfaceSuccess(String data, int tag) {
-
-
         switch (tag) {
             case Constant.login:
                 showComplete();
                 if (!data.equals( "null" )) {
                     userdata = GsonUtils.getPerson( data, Userdata.class );
+
+                    /**
+                     *" ：code":200,"userId":"15535958281","token":"BZ//rc/gZm1iOgN57xUDMDVTPjpnzvGsgskHghc8vyyxw8DF0jUqBBsMIfiJFAxsfvEA/GdAnm+EBipMC21EQPLnRY4RvKEz"
+                     *   "code":200,"userId":"15535958282","token":"LLqHSs10ZXIR7cDzjAg8lDVTPjpnzvGsgskHghc8vyyxw8DF0jUqBImmZ5zz5eQQfvEA/GdAnm+EBipMC21EQOjkBKrT647W"}
+                     */
                     SPUtils.putString( "AppUser", data );
                     SPUtils.putString( "token", userdata.getToken() );
+                    RongIM.connect( userdata().getRongyunToken(), new RongIMClient.ConnectCallback() {
+                        @Override
+                        public void onTokenIncorrect() {
+
+                        }
+
+                        @Override
+                        public void onSuccess(String userid) {
+                            Log.d( "TAG", "--onSuccess" + userid );//123456
+
+                        }
+
+                        @Override
+                        public void onError(RongIMClient.ErrorCode errorCode) {
+                            Log.d( "TAG", "--onSuccess" + errorCode );
+                        }
+                    } );
+                    RongIM.getInstance().setCurrentUserInfo( new UserInfo( userdata.getId(), userdata.getNickname(), Uri.parse( userdata.getHeadImg() ) ) );
+
+                    finish();
                     startActivity( HomeActivity.class );
+
                 }
                 break;
         }

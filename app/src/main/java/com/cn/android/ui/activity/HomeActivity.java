@@ -107,14 +107,19 @@ public final class HomeActivity extends MyActivity
                 mBottomNavigationView.setSelectedItemId( R.id.home_found );
                 break;
             case 2:
-                mBottomNavigationView.setSelectedItemId( R.id.home_message );
+                if (isLogin()) {
+                    mBottomNavigationView.setSelectedItemId( R.id.home_message );
+                }else {
+                    startActivity( TheloginIdActivity.class );
+                   // ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                }
                 break;
             case 3:
                 if (isLogin()) {
                     mBottomNavigationView.setSelectedItemId( R.id.home_me );
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                 //   ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
 
                 break;
@@ -142,14 +147,19 @@ public final class HomeActivity extends MyActivity
                 mViewPager.setCurrentItem( 1 );
                 return true;
             case R.id.home_message:
-                mViewPager.setCurrentItem( 2 );
+                if (isLogin()) {
+                    mViewPager.setCurrentItem( 2 );
+                }else {
+                    startActivity( TheloginIdActivity.class );
+                    //ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                }
                 return true;
             case R.id.home_me:
                 if (isLogin()) {
                     mViewPager.setCurrentItem( 3 );
                 } else {
                     startActivity( TheloginIdActivity.class );
-                    ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
+                    //ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 }
                 return true;
 //

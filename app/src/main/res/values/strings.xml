@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">玺购商城</string>
+    <string name="app_name">玺购优选</string>
 
     <!-- 通用的 -->
     <string name="common_phone_input_hint">输入手机号码</string>

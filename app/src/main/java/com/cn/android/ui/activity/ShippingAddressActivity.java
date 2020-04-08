@@ -180,17 +180,18 @@ public class ShippingAddressActivity extends MyActivity implements PublicInterfa
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         AddressByUserid addressByUserid = (AddressByUserid) adapter.getItem( position );
-        Intent intent = new Intent();
-        intent.putExtra( "addressByUserid", addressByUserid );
+
 
         if (id == 1) {
-            intent = getIntent();
+            Intent intent = getIntent();
+            intent.putExtra( "addressByUserid", addressByUserid );
             setResult( 200,intent );
             finish();
         } else {
-            intent.setClass( getActivity(), AddressDetailActivity.class );
+            Intent u=new Intent(  );
+            u.setClass( getActivity(), AddressDetailActivity.class );
 
-            startActivity( intent );
+            startActivity( u );
         }
 
     }

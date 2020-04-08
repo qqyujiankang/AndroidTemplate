@@ -9,43 +9,44 @@ public class Userdata implements Parcelable {
 
 
     /**
-     * id : 899079
+     * id : 104681
      * isPlatform : 2
-     * type : 1
-     * userphone : 15535958281
+     * type : 2
+     * userphone : 15535958293
      * pid :
      * province : 陕西省
      * city : 西安市
      * area : 雁塔区
-     * isReal : 2
+     * isReal : 0
      * applyTime :
-     * idcardFront : http://192.168.0.168:8077/upload/c44edac6c1e64241afc092f2c9ada62f.png
-     * idcardBack : http://192.168.0.168:8077/upload/4975b0064d074ad0964d4a00f3df701e.jpg
-     * businessImg : http://192.168.0.168:8077/upload/c20c6086ffb94a1e9539fadd295037d4.jpg
+     * idcardFront :
+     * idcardBack :
+     * businessImg :
      * realname :
      * phone :
-     * isCater : 1
-     * caterImg : http://192.168.0.168:8077/upload/f3f6174277ff4b9d801dc8f69a5859fb.jpg
-     * storeTypeId : 3
-     * storeTypName : 调料干杂
-     * storeName : 禹城市
-     * storeImg : http://118.24.159.31:80/upload/ad0dbf2a5d8f452f8909e381c6e9cb97.png
+     * isCater : 2
+     * caterImg :
+     * storeTypeId :
+     * storeTypName :
+     * storeName :
+     * storeImg :
      * status : 1
-     * token : 1247387702
-     * umoney : 8500.0
-     * isWechat : 1
-     * wechatno : 15535958281
-     * wechatName : 庾建康
-     * isAlipay : 1
-     * alipayno : 15535958281
-     * alipayName : 庾建康
-     * nickname : 1111111111165656明年明年哦漏哦欧诺
-     * sex : 保密
-     * headImg : http://118.24.159.31:80/upload/1131b962b5564611a2cf805b79739415.png
+     * token : 5820494987
+     * umoney : 0.0
+     * isWechat : 2
+     * wechatno :
+     * wechatName :
+     * isAlipay : 2
+     * alipayno :
+     * alipayName :
+     * nickname :
+     * sex :
+     * headImg :
      * isGood : 2
-     * ctime : 2020-03-26 12:10:57
+     * ctime : 2020-04-07 11:40:03
      * stime :
      * etime :
+     * rongyunToken : rgQhrfYJ9CfPsBhFQymMyDVTPjpnzvGsgskHghc8vyyxw8DF0jUqBCFUg43zB7FrqZiPTd1nhZsPpUj34UfRGA==
      */
 
     private String id;
@@ -85,6 +86,7 @@ public class Userdata implements Parcelable {
     private String ctime;
     private String stime;
     private String etime;
+    private String rongyunToken;
 
     public static Userdata objectFromData(String str) {
 
@@ -387,6 +389,14 @@ public class Userdata implements Parcelable {
         this.etime = etime;
     }
 
+    public String getRongyunToken() {
+        return rongyunToken;
+    }
+
+    public void setRongyunToken(String rongyunToken) {
+        this.rongyunToken = rongyunToken;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -431,6 +441,7 @@ public class Userdata implements Parcelable {
         dest.writeString( this.ctime );
         dest.writeString( this.stime );
         dest.writeString( this.etime );
+        dest.writeString( this.rongyunToken );
     }
 
     public Userdata() {
@@ -474,6 +485,7 @@ public class Userdata implements Parcelable {
         this.ctime = in.readString();
         this.stime = in.readString();
         this.etime = in.readString();
+        this.rongyunToken = in.readString();
     }
 
     public static final Parcelable.Creator<Userdata> CREATOR = new Parcelable.Creator<Userdata>() {

@@ -118,6 +118,8 @@ public class PersonalCenterFragment extends MyLazyFragment<HomeActivity> {
 
     @Override
     protected void initView() {
+        tv01.setText( getString( R.string.test01 )+"1980" );
+        tv02.setText( getString( R.string.test01 )+"4980" );
         if (userdata() != null) {
             tvBalanceOfAccount.setText( DataUtils.getMoney( userdata().getUmoney() ) );
 

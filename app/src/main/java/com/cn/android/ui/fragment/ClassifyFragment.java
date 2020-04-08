@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -198,7 +199,13 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
                 startActivity( SearchActivity.class );
                 break;
             case R.id.tv_qi_q:
-                startActivity( locationActivity.class );
+                if (userdata() != null) {
+                    if (userdata().getType() == 1) {
+                        Intent inten = new Intent( getContext(), locationActivity.class );
+                        inten.putExtra( "id", 2 );
+                        startActivityForResult( inten, 201 );
+                    }
+                }
                 break;
         }
 
@@ -223,6 +230,7 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
                 return paramsMap;
             case Constant.selectStoreListByPid:
                 paramsMap.put( "pid", pid );
+
                 return paramsMap;
         }
         return null;
@@ -264,5 +272,14 @@ public class ClassifyFragment extends MyLazyFragment<HomeActivity> implements Ba
     @Override
     public void onPublicInterfaceError(String error, int tag) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult( requestCode, resultCode, data );
+        if (requestCode == 201 && resultCode == 201) {
+            String s = data.getStringExtra( "address" );
+            tvQiQ.setText( s );
+        }
     }
 }

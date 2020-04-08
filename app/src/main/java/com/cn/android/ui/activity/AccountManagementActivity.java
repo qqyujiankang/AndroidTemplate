@@ -63,6 +63,7 @@ public class AccountManagementActivity extends MyActivity {
     @OnClick({R.id.sb_Version_checking, R.id.sb_01, R.id.sb02})
     public void onViewClicked(View view) {
         Intent intent = new Intent( getActivity(), BindingAccountActivity.class );
+
         switch (view.getId()) {
             case R.id.sb_Version_checking:
                 startActivity( BindPhoneActivity.class );

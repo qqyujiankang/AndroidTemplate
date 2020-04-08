@@ -39,6 +39,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import cat.ereza.customactivityoncrash.config.CaocConfig;
+import io.rong.imkit.RongIM;
 import okhttp3.OkHttpClient;
 
 /**
@@ -53,11 +54,14 @@ public final class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-            // 三个参数分别是上下文、应用的appId、是否检查签名（默认为false）
+        // 三个参数分别是上下文、应用的appId、是否检查签名（默认为false）
         IWXAPI mWxApi = WXAPIFactory.createWXAPI( this, "wx45d9da477e2b96ee", true );
-            // 注册
+        // 注册
         mWxApi.registerApp( "wx45d9da477e2b96ee" );
         initSDK( this );
+
+        RongIM.init( this,"sfci50a7sxyti" );
+        RongIM.getInstance().setMessageAttachedUserInfo(true);
 
 
     }

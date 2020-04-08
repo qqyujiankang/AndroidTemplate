@@ -8,6 +8,7 @@ import com.cn.android.R;
 import com.cn.android.common.MyActivity;
 import com.cn.android.helper.ActivityStackManager;
 import com.cn.android.utils.SPUtils;
+import com.hjq.image.ImageLoader;
 import com.hjq.toast.ToastUtils;
 import com.hjq.widget.layout.SettingBar;
 
@@ -75,15 +76,19 @@ public class SetActivity extends MyActivity {
                 break;
             case R.id.sb_log_out:
                 // 退出登录
-                startActivity(TheloginIdActivity.class);
+                // 清空缓存
+                ImageLoader.clear( this );
+                startActivity( TheloginIdActivity.class );
                 // 进行内存优化，销毁掉所有的界面
-                ActivityStackManager.getInstance().finishAllActivities(TheloginIdActivity.class);
+                ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 break;
             case R.id.btn_bind_commit:
                 // 退出登录
-                startActivity(TheloginIdActivity.class);
+                // 清空缓存
+                ImageLoader.clear( this );
+                startActivity( TheloginIdActivity.class );
                 // 进行内存优化，销毁掉所有的界面
-                ActivityStackManager.getInstance().finishAllActivities(TheloginIdActivity.class);
+                ActivityStackManager.getInstance().finishAllActivities( TheloginIdActivity.class );
                 break;
         }
     }

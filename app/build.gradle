@@ -33,7 +33,7 @@ android {
         }
 
         // 开启 Dex 分包
-        //multiDexEnabled true
+        multiDexEnabled true
 
         // 混淆配置
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-app.pro'
@@ -157,12 +157,12 @@ dependencies {
 
     // Dex 分包，解决 64k 方法问题
 
-    //implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     // ButterKnife 注解库：https://github.com/JakeWharton/butterknife
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
@@ -214,7 +214,6 @@ dependencies {
 
     //崩溃后重启,优雅的退出应用 https://github.com/nanchen2251/AppManager
     implementation 'com.github.nanchen2251:AppManager:1.0.1'
-
     // 应用更新 功能强大，链式编程，调用简单，集成轻松，扩展性强大
     implementation 'com.allenliu.versionchecklib:library:2.2.1'
 
@@ -261,5 +260,9 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
     implementation files('libs/jsoup-1.8.3.jar')
 
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
+    api 'cn.rongcloud.sdk:im_kit:2.9.18'
+//im_kit必须依赖im_lib，所以需要加入对应依赖
+    api 'cn.rongcloud.sdk:im_lib:2.9.18'
 }

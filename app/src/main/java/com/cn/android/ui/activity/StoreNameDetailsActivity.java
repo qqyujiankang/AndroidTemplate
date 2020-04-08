@@ -153,9 +153,11 @@ public class StoreNameDetailsActivity extends MyActivity implements
 
                 if (!data.equals( "[]" )) {
                     personal = GsonUtils.getPerson( data, Personal.class );
-                    tvShopName.setText( personal.getStoreName() );
-                    ImageLoader.with( getActivity() ).load( personal.getHeadImg() ).into( ivHear );
-                    ImageLoader.with( getActivity() ).load( personal.getStoreImg() ).into( ivShopImg );
+                    if (personal != null) {
+                        tvShopName.setText( personal.getStoreName() );
+                        ImageLoader.with( getActivity() ).load( personal.getHeadImg() ).into( ivHear );
+                        ImageLoader.with( getActivity() ).load( personal.getStoreImg() ).into( ivShopImg );
+                    }
                 }
                 break;
 
@@ -205,6 +207,7 @@ public class StoreNameDetailsActivity extends MyActivity implements
     public void onViewClicked(View view) {
         shopInfoListBeanArrayList.clear();
         page = 1;
+
         switch (view.getId()) {
             case R.id.rbn_01:
                 type = "1";
